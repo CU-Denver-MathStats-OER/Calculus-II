@@ -1,0 +1,600 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{The Alternating Series Test}
+\def\topicshort{Alt Series Test}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\, Introduction:}
+
+Our objective is to study {\bf\emph{alternating series}} whose terms alternating between positive and negative values.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{alt_series_def.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+A famous example of an alternating series is the alternating harmonic series which converges to the value $\ln(2)$.
+\[\ds\sum^{\infty}_{n=1}(-1)^{n+1}\ds\frac{1}{n}\]
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{alt_harmonic_series.jpg}
+\captionof{figure}{Partial Sums of the Alternating Harmonic Series}
+\label{fig:}
+\end{center}
+\end{minipage} 
+
+\vfill\eject
+
+The pattern of partial sums will hold in general for alternating series as shown in the following diagram. Notice how the sequence of partial sums is oscillating and seems to be converging to some value $S$.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{alt_series_partial_sums.jpg}
+\captionof{figure}{Partial Sums of an Alternating Series}
+\label{fig:}
+\end{center}
+\end{minipage} 
+
+\vskip 5mm
+
+It turns out that determining the convergence or divergence of an alternating series is based on a very simple test.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{alt_series_test.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+ 
+\vskip 5mm
+Let's work a couple of examples.
+\vskip 5mm
+
+
+\section*{Alternating Series Test Examples:}
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}(-1)^{n+1}\ds\frac{1}{n^2}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We see that the sequence $a_n=1/n^2$ is decreasing since for all $n\ge 1$ we have
+\[\ds\frac{1}{(n+1)^2}\le \ds\frac{1}{n^2}.\]
+Moreover, $\ds\lim_{n\to\infty}a_n=\ds\lim_{n\to\infty}\frac{1}{n^2}=0$ and so the series converges by the Alternating Series Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vskip 5mm
+Here is another example.
+\vskip 5mm
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}(-1)^{n+1}\ds\frac{n}{2n-1}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\ifnum\longform=1
+\vskip 3in
+	\else
+\vfill\eject
+
+\fi
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We immediately see that the $\lim_{n\to\infty}\,a_n=\lim_{n\to\infty}\,n/(2n-1)=1/2\not=0$. So the Alternating Series test does not apply. (Notice that given the knowledge of this limit we do not need to verify that the corresponding positive terms are decreasing.) Moving on, we now know that
+\[\ds\lim_{n\to\infty}(-1)^{n+1}\ds\frac{n}{2n-1}\quad\text{Does Not Exist}.\]
+So the limit does not equal zero and the series diverges by the Divergence Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Here is another example.
+\vskip 5mm
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}(-1)^{n+1}\sin^2(1/n)$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We can see that
+\[\ds\lim_{n\to\infty}\sin^2(1/n)=\sin^2(0)=0.\]
+So if the non-alternating portion of the sequence is decreasing the Alternating Series Test applies. We use the fact that on the interval $[0,1]$ the function $f(x)=\sin^2(x)$ is an increasing function.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.5]{sin_squared_graphic.jpg}
+\captionof{figure}{$f(x)=\sin^2(x)$ is Increasing on the Interval $[0,1]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+ 
+\vskip 5mm
+That is,
+\[x_1\le x_2\quad\Longrightarrow\quad \sin^2(x_1)\le\sin^2(x_2.)\]
+Then the composition of an increasing function with a decreasing function is a decreasing function.
+\[\ds\frac{1}{n+1}\le\ds\frac{1}{n}\quad\Longrightarrow\quad\sin^2\left(\frac{1}{n+1}\right)\le\sin^2\left(\frac{1}{n}\right).\]
+So our non-alternating component of the series terms is a decreasing sequence and the Alternating Series Test applies. So we conclude that the series converges by the Alternating Series Test.
+\vskip 5mm
+
+Here is another method to determine whether the sequence terms $\sin^2(1/n)$ are decreasing. Consider the function $f(x)=\sin^2(1/x)$ on the interval $(0,1]$. Then
+\[f'(x)=2\underbrace{\sin\left(\ds\frac{1}{x}\right)\cos\left(\ds\frac{1}{x}\right)}_{\textcolor{red}{>0}}\cdot\underbrace{\left(\ds\frac{-1}{x^2}\right)}_{\textcolor{red}{<0}}=-\ds\frac{2}{x}\cdot\sin\left(\ds\frac{1}{x}\right)\cdot\cos\left(\ds\frac{1}{x}\right)=\underbrace{-\ds\frac{1}{x}}_{\textcolor{red}{<0}}\cdot\underbrace{\sin\left(\ds\frac{2}{x}\right)}_{\textcolor{red}{>0}}<0\] 
+Since $f'(x)<0$ when $0<x\le 1$ we have the same conclusion that the sequence terms $\sin^2(1/n)$ are decreasing.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 5mm
+Here is a challenging example.
+\vskip 5mm
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}(-1)^{n+1}\left(\ds\frac{n}{n+1}\right)^{n^2}$ converges or diverges.
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+%\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+%
+%\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We first check if the Alternating Series Test applies. Let's determine if the non-alternating component of the series terms gives a decreasing sequence.
+That is, do we satisfy the following?
+\[0\le\left(\ds\frac{n+1}{n+2}\right)^{(n+1)^2}\le\left(\ds\frac{n}{n+1}\right)^{n^2}\]
+This will require a bit of work. We will use the fact that $\ln(1+x)<x$ when $x>-1$ and then compute a derivative. To see why the stated inequality is true we let $g(x)=x-\ln(1+x)$. Then
+\[g'(x)=1-\ds\frac{1}{1+x}\quad\text{and}\quad g''(x)=\ds\frac{1}{(1+x)^2}>0.\]
+Then there is a critical point when $g'(x)=0$ which occurs at $x=0$. Moreover, since $g''(0)=1>0$ we see that there is a minimum at $x=0$. Then $g(0)=0$ and $g(0)$ being a minimum is equivalent to $g(x)=x-\ln(1+x)\ge 0$ when $x>-1$. Equivalently, $\ln(1+x)\le x$ whenever $x>-1$. Now we take the following derivative assuming $x\ge 1$.
+\beq
+\ds\frac{d}{dx}\left[\left(\ds\frac{x}{x+1}\right)^{x^2}\right]&=&\ds\frac{d}{dx}\left[e^{^{x^2\ln\left(\ds\frac{x}{x+1}\right)}}\right]\\
+&=&e^{^{x^2\ln\left(\ds\frac{x}{x+1}\right)}}\cdot\left(2x\ln\left(1-\ds\frac{1}{x+1}\right)+\ds\frac{x}{x+1}\right)\\
+&<&e^{^{x^2\ln\left(\ds\frac{x}{x+1}\right)}}\cdot\left(-2x\left(\ds\frac{1}{x+1}\right)+\ds\frac{x}{x+1}\right)\\
+&=&e^{^{x^2\ln\left(\ds\frac{x}{x+1}\right)}}\cdot\left(-\ds\frac{x}{x+1}\right)\\
+&<&0
+\eeq
+And the non-alternating terms of the series form a decreasing sequence as is required by part(i) of the Alternating Series Test.
+\vskip 5mm
+We next need to evaluate 
+\[\ds\lim_{n\to\infty}\left(\ds\frac{n}{n+1}\right)^{n^2}.\]
+We calculate as follows. First observe that
+\[\ds\lim_{n\to\infty}\left(\ds\frac{n}{n+1}\right)^{n^2}=\ds\lim_{n\to\infty}\,e^{\ln\left[\left(\ds\frac{n}{n+1}\right)^{n^2}\right]}=e^{\ds\lim_{n\to\infty}\,\ln\left[\left(\ds\frac{n}{n+1}\right)^{n^2}\right]}\]
+Then we compute the following.
+\[\ds\lim_{n\to\infty}\,\ln\left[\left(\ds\frac{n}{n+1}\right)^{n^2}\right]\]
+\[\vdots\]
+	\end{boxsolution}
+	\begin{boxsolutioncont}
+\[\vdots\]
+\beq
+\ds\lim_{n\to\infty}\,\ln\left[\left(\ds\frac{n}{n+1}\right)^{n^2}\right]&=&\ds\lim_{n\to\infty}n^2\cdot\ln\left(\ds\frac{n}{n+1}\right)\\
+\\
+&=&\ds\lim_{n\to\infty}\ds\frac{\ln\left(\ds\frac{n}{n+1}\right)}{1/n^2}=\ds\frac{0}{0}\quad\text{form}\\
+\\
+&=&\ds\lim_{n\to\infty}\ds\frac{\left(\ds\frac{n+1}{n}\right)\left(\ds\frac{1}{(n+1)^2}\right)}{\left(-\ds\frac{2}{n^3}\right)}\quad\text{by L'Hopital's Rule}\\
+\\
+&=&\ds\lim_{n\to\infty}\ds\frac{-n^3}{2n(n+1)}\\
+\\
+&=&-\infty\quad\text{by known growth rates}
+\eeq
+It follows that
+\vskip 2mm
+\[\ds\lim_{n\to\infty}\left(\ds\frac{n}{n+1}\right)^{n^2}=e^{-\infty}\quad\text{form}\]
+\vskip 5mm
+and so $\ds\lim_{n\to\infty}\left(\ds\frac{n}{n+1}\right)^{n^2}=0$ and the series converges by the Alternating Series Test.
+\vspace*{5mm}
+	\end{boxsolutioncont}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+
+\ifnum\longform=1
+\noindent{\bf\emph{\underline{Optional Section}:}} For those that like to dive into some problem solving, here is another argument that the sequence $\left\{\left(\frac{n}{n+1}\right)^{n^2}\right\}$ is decreasing. 
+\vskip 5mm
+The first part of our argument is that 
+\[\left\{\left(\ds\frac{n}{n+1}\right)^{n^2}\right\}\quad\text{is decreasing}\quad\iff\quad\left\{\left(\ds\frac{n+1}{n}\right)^{n^2}\right\}\quad\text{is increasing}.\] 
+We will show that the sequence terms on the right above are increasing. We can start by rewriting those sequence terms as
+\[\left(\ds\frac{n+1}{n}\right)^{n^2}=\left[\left(\ds\frac{n+1}{n}\right)^{n}\right]^n.\]
+Since the composition of increasing functions is increasing, and $b_n=c^n$ is an increasing function when $c>1$, it is sufficient to show that the terms $\left(\ds\frac{n+1}{n}\right)^{n}$ are increasing when $n\ge 1$.
+
+\vfill\eject
+
+So we need to show that for all $n\ge 1$ we have
+\[\left(\ds\frac{n+1}{n}\right)^{n}\le\left(\ds\frac{n+2}{n+1}\right)^{n+1}.\]
+The AM-GM inequality states the following for non-negative real numbers $x_1,x_2,\dots,x_{n+1}$:
+\[\sqrt[n+1]{x_1\cdot x_2\cdots x_{n+1}}\le\ds\frac{x_1+x_2+\cdots+x_{n+1}}{n+1}\]
+Let $x1=x_2=\cdots x_n=1+\frac{1}{n}$ and $x_{n+1}=1$. Then
+\[\left[\left(1+\ds\frac{1}{n}\right)^n\cdot 1\right]^{1/n+1}\le\ds\frac{n\left(1+\ds\frac{1}{n}\right)+1}{n+1}\quad\Longrightarrow\quad
+\left(\ds\frac{n+1}{n}\right)^n\le\left(\ds\frac{n+2}{n+1}\right)^{n+1}\]
+and we have shown the desired inequality. So the sequence terms $\left(\ds\frac{n+1}{n}\right)^{n^2}$ are increasing and so the terms $\left(\ds\frac{n}{n+1}\right)^{n^2}$ are decreasing as desired.
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Alternating Series Remainder:}
+
+For most series we can not determine an actual value of the series and are forced to make approximations using partial sums. A nice property of alternating series is that it is easy to analyze the error in an approximation. 
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{alt_series_remainder_thm.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+%\vskip 5mm
+
+Let's work through an example.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Estimate $\sin(1)$ to within five decimal places.
+\vskip 5mm
+\note We use the fact that 
+\[\sin(1)=\ds\sum^{\infty}_{n=0}(-1)^n\ds\frac{1}{(2n+1)!}=1-\ds\frac{1}{3!}+\ds\frac{1}{5!}-\ds\frac{1}{7!}+\cdots.\]
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Since $\sin(1)$ can be represented as an alternating series we will use the Alternating Series Remainder Theorem.
+\[\big|\,R_k\,\big|=\left|\,\sin(1)-\ds\sum^{k}_{n=0}(-1)^n\underbrace{\ds\frac{1}{(2n+1)!}}_{\textcolor{red}{b_n}}\right|\le\underbrace{\ds\frac{1}{(2k+3)!}}_{\textcolor{red}{b_{k+1}}}\]
+\vskip 5mm
+So if we satisfy $1/(2k+3)!<10^{-5}$ we will have enough terms to approximate within our desired accuracy.
+\[1!=1\qquad 2!=2\quad 3!=6\quad 4!=24\quad 5!=120\quad 6!=720\quad 7!=5040\quad 8!=40,320\quad 9!=352,880\]
+\[\ds\frac{1}{(2k+3)!}<\ds\frac{1}{10^5}\quad\Longrightarrow\quad (2k+3)!>10^5\quad\Longrightarrow\quad 2k+3>9\quad\Longrightarrow k>3 \]
+\vskip 2mm
+That means $|R_4|=\big|\sin(1)-S_4\big|<10^{-5}$. We calculate
+\vskip 5mm
+\[S_4=\ds\sum^{4}_{n=0}(-1)^n\ds\frac{1}{(2n+1)!}=1-\ds\frac{1}{3!}+\ds\frac{1}{5!}-\ds\frac{1}{7!}+\ds\frac{1}{9!}=0.8414710878.\]
+\vskip 5mm
+The true value is $\sin(1)=0.84147098$ and our approximation is accurate to 5 decimal places.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Absolute and Conditional Convergence:}
+
+When a particular series, such as an alternating series, has both positive and negative terms we consider two kinds of convergence: {\bf\emph{absolute convergence}} and {\bf\emph{conditional convergence}}.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{abs_cond_conv_def.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{abs_conv_implies_conv.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage} 
+
+\vskip 1cm
+
+
+
+\section*{Examples:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Determine whether the following series converge conditionally, converge absolutely, or diverge. 
+
+	\begin{enumerate}
+		\item $\ds\sum^{\infty}_{n=1}(-1)^{n+1}\ds\frac{1}{n}=1-\ds\frac{1}{2}+\ds\frac{1}{3}-\ds\frac{1}{4}+\cdots$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 3.5in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+The series converges by the Alternating Series Test. But
+\[\ds\sum^{\infty}_{n=1}\left|(-1)^{n+1}\ds\frac{1}{n}\right|=\ds\sum^{\infty}_{n=1}\ds\frac{1}{n}\]
+which is the divergent Harmonic series. It follows that the original series converges conditionally.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\vfill\eject
+
+		\item $\ds\sum^{\infty}_{n=1}(-1)^{n+1}\ds\frac{1}{n^2}=1-\ds\frac{1}{4}+\ds\frac{1}{9}-\ds\frac{1}{16}+\cdots$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 6in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+The series converges by the Alternating Series Test. And
+\[\ds\sum^{\infty}_{n=1}\left|(-1)^{n+1}\ds\frac{1}{n^2}\right|=\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^2}\]
+is a convergent $p$-series with $p=2>1$. It follows that the original series converges absolutely.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\vfill\eject
+
+		\item $\ds\sum^{\infty}_{n=0}(-1)^n\ds\frac{1}{\sqrt{n+4}}=\ds\frac{1}{\sqrt{4}}-\ds\frac{1}{\sqrt{5}}+\ds\frac{1}{\sqrt{6}}-\ds\frac{1}{\sqrt{7}}+\cdots$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 6in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+The series converges by the Alternating Series Test. And we evaluate
+\[\ds\sum^{\infty}_{n=0}\left|(-1)^{n}\ds\frac{1}{\sqrt{n+4}}\right|=\ds\sum^{\infty}_{n=0}\ds\frac{1}{\sqrt{n+4}}=\ds\sum^{\infty}_{n=4}\ds\frac{1}{\sqrt{n}}.\]
+This is a divergent $p$-series with $p=1/2\le 1$. It follows that the original series converges conditionally.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+			
+	\end{enumerate}
+	
+\end{example}
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{\cos(n)}{n^{3/2}}=\cos(1)+\ds\frac{\cos(2)}{2^{3/2}}+\ds\frac{\cos(3)}{3^{3/2}}+\cdots$ converges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We look at the series approximating the cosine values.
+\[\ds\sum^{\infty}_{n=1}\ds\frac{\cos(n)}{n^{3/2}}\approx 0.54-\ds\frac{0.42}{2^{3/2}}-\ds\frac{0.98}{3^{3/2}}+\cdots\]
+The series is not an alternating series since the signs do not alternate $+\;-\;+\;-\;+\;-\;+\;\cdots$. Additionally the positive components of the series terms do ot form a decreasing sequence. So the Alternating Series Test does not apply. Let's check for absolute convergence and so evaluate the series
+\[\ds\sum^{\infty}_{n=1}\left|\ds\frac{\cos(n)}{n^{3/2}}\right|=\ds\sum^{\infty}_{n=1}\ds\frac{\big|\cos(n)\big|}{n^{3/2}}.\]
+Since $0\le\big|\cos(n)\big|\le 1$ we will compare with the convergent $p$-series $\sum^{\infty}_{n=1}\frac{1}{n^{3/2}}$. 
+\[0\le \ds\frac{\big|\cos(n)\big|}{n^{3/2}}\le \ds\frac{1}{n^{3/2}}\]
+and so the series $\sum^{\infty}_{n=1}\left|\frac{\cos(n)}{n^{3/2}}\right|$ converges by the Direct Comparison Test which implies that the original series converges absolutely. Every absolutely convergent series is convergent and so we conclude that the original series $\sum^{\infty}_{n=1}\frac{\cos(n)}{n^{3/2}}$ converges.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+	\begin{discussion}
+\vspace*{5mm}
+One of the consequences of absolute convergence is that we may safely rearrange or regroup the terms in the series without changing the value of the sum. But if a series converges conditionally, a rearrangement or regrouping of the series terms may change the value of the series. Consider the following example 
+\[\ln(2)=1-\ds\frac{1}{2}+\ds\frac{1}{3}-\ds\frac{1}{4}+\ds\frac{1}{5}+\cdots.\]
+This is a conditionally convergent alternating series. It turns out that if we rearrange the terms we can show
+\[1+\ds\frac{1}{3}-\ds\frac{1}{2}+\ds\frac{1}{5}+\ds\frac{1}{7}-\ds\frac{1}{4}+\cdots=\ds\frac{3\ln(2)}{2}.\] 
+The point is we need to be careful when we rearrange the terms of a conditionally convergent series. Later in the course we will need the fact that the terms of an absolutely convergent series can be rearranged and regrouped without changing the value of the series. 
+\vspace*{5mm}
+	\end{discussion}
+
+\fi
+	
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 5mm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,379 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Volumes - The Slicing Method}
+\def\topicshort{The Slicing Method}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction}
+
+Suppose that we want to determine the volume of a 3D region/solid with a varying cross-section such as shown below.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{slicing_gr01.jpg}
+\caption{3D region/solid with a varying cross-section}
+\end{center}
+\end{figure}
+
+In this section we will start by dividing the solid into slices along the $x$-axis and then analyze the volume of the slices.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{slicing_gr02.jpg}
+\caption{3D region/solid divided into three slices}
+\end{center}
+\end{figure}
+
+The volume of a slice located at $x^{*}_k$ can be estimated as $Vol\big(\,slice_k\,\big)=A(x^{*}_{k})\Delta x$ where $A(x^{*}_{k})$ is the area of a cross-section at point $x^{*}_{k}$. Then, if there are $n$ total slices we have
+\[\text{Total Volume}\approx\ds\sum^{n}_{k=1}Vol\Big(\,slice_k\,\Big)=\ds\sum^{n}_{k=1}A(x^{*}_{k})\Delta x.\]
+As the number of slices increases, the width of the slices decreases and we can calculate the total volume as an integral.
+\[Volume=\stackrel{\stackrel{\text{\textcolor{red}{Sum}}}{\downarrow}}{\int^{x=b}_{x=a}}\;\underbrace{\stackrel{\stackrel{\text{\textcolor{red}{\;Cross-Section Area\;}}}{\downarrow}}{A(x)}\;\;\stackrel{\stackrel{\text{\textcolor{red}{\;Width of Slice\;}}}{\downarrow}}{dx}}_{\text{\textcolor{blue}{Volume of Slice}}}\] 
+
+We will focus on solids formed by revolving regions in the $(x,y)$-plane about a coordinate axis.
+
+\section*{Solids of Revolution}
+
+Start with a region below the graph $y=f(x)$ and revolve around the $x$-axis.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{slicing_gr03.jpg}$\Longrightarrow$\includegraphics[scale=0.5]{slicing_gr04.jpg}$\Longrightarrow$\includegraphics[scale=0.5]{slicing_gr05.jpg}
+\caption{Creating a solid of revolution}
+\end{center}
+\end{figure}
+
+
+\subsection*{The Disc Method:}
+
+Start with a concrete example.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example} Find the volume of the solid of revolution formed by rotating the region below $y=(x-1)^2+1$ on the interval $[-1,3]$ about the $x$-axis. 
+\vskip 5mm
+Start by graphing the region.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{slicing_gr06.jpg}$\xRightarrow[\text{\textcolor{red}{Create solid of revolution}}]{}$\includegraphics[scale=0.6]{slicing_gr07.jpg}
+\caption{Solid of revolution created from a region below $y=(x-1)^2+1$}
+\end{center}
+\end{figure}
+
+We now analyze the volume of a slice of the region.
+
+\vfill\eject
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{slicing_gr08.jpg}$\xRightarrow[\stackrel{\text{\textcolor{red}{Creating a Slice of the Region}}}{\text{\textcolor{red}{\tiny By Revolving a Rectangle}}}]{}$\includegraphics[scale=0.6]{slicing_gr09.jpg}
+\caption{The slices of the 3D solid are circular discs}
+\end{center}
+\end{figure}
+
+The cross-sectional area of a circular disc located at $x$ is $A(x)=\pi\big[f(x)\big]^2$. So we evaluate the following integral.
+
+\beq
+Volume&=&\pi\ds\int^{x=b}_{x=a}\big[f(x)\big]^2\,dx\\
+\\
+&=&\pi\ds\int^{x=3}_{x=-1}\big[(x-1)^2+1\big]^2\,dx\\
+\\
+&=&\pi\ds\int^{x=3}_{x=-1}(x-1)^4+2(x-1)^2+1\,dx\\
+\\
+&=&\pi\left[\ds\frac{(x-1)^5}{5}+\ds\frac{2}{3}(x-1)^3+x\ds\right]^{x=3}_{x=-1}\\
+\\
+&=&\pi\left[\left(\ds\frac{2^5}{5}+\ds\frac{2}{3}\cdot 2^3+3\right)-\left(\ds\frac{(-2)^5}{5}+\ds\frac{2}{3}\cdot(-2)^3-1\right)\right]\\
+\\
+&=&\ds\frac{412}{15}\pi
+\eeq  
+
+\end{example}
+
+Now try an example on your own.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example} Find the volume of the solid of revolution formed by rotating the region below $y=\sqrt{x}$ on the interval $[1,4]$ about the $x$-axis. 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Start by graphing the region:
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{slicing_gr10.jpg}$\xRightarrow[\text{\textcolor{red}{Create solid of revolution}}]{}$\includegraphics[scale=0.7]{slicing_gr11.jpg}
+\captionof{figure}{Solid of revolution created from the region below $y=\sqrt{x}$ on the interval $[1,4]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 1cm
+The slices of the region are circular discs and so we simply evaluate the following integral.
+\beq
+Volume&=&\pi\ds\int^{x=b}_{x=a}\big[f(x)\big]^2\,dx\\
+\\
+&=&\pi\ds\int^{x=4}_{x=1}\big[\sqrt{x}\big]^2\,dx\\
+\\
+&=&\pi\ds\int^{x=4}_{x=1}x\,dx\\
+\\
+&=&\pi\left[\ds\frac{x^2}{2}\ds\right]^{x=4}_{x=1}\\
+\\
+&=&\pi\left[\ds\frac{4^2}{2}-\ds\frac{1^2}{2}\right]\\
+\\
+&=&\ds\frac{15}{2}\pi\\
+\eeq  
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+\subsection*{The Washer Method:}
+
+Sometimes the slices will not be discs. Consider the following example where we rotate the region between $y=\sqrt{x}$ and $y=1$ on the interval $[1,4]$ about the $x$-axis.
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{slicing_gr14.jpg}$\xRightarrow[\text{\textcolor{red}{Create solid of revolution}}]{}$\includegraphics[scale=0.7]{slicing_gr15.jpg}
+\captionof{figure}{Rotate the region between $y=\sqrt{x}$ and $y=1$ on the interval $[1,4]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+Look at the slices of the solid. They are not discs.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{slicing_gr16.jpg}$\xRightarrow[\stackrel{\text{\textcolor{red}{Creating a slice of the}}}{\text{\textcolor{red}{\tiny 3D solid of revolution}}}]{}$\includegraphics[scale=0.7]{slicing_gr17.jpg}
+\captionof{figure}{Slices after rotating the region between $y=\sqrt{x}$ and $y=1$ on the interval $[1,4]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{2mm} 
+
+The slices are ``washers." Fortunately, the cross-sectional area of a washer is easy. 
+\[A(x)=\pi\big[R(x)\big]^2-\pi\big[r(x)\big]^2=\pi\left(\big[R(x)\big]^2-\big[r(x)\big]^2\right),\]
+where $R(x)$ is the larger radius to the outside edge of the washer, and $r(x)$ is the smaller radius to the inside edge of the washer. And so we simply evaluate the following integral.
+
+\[Volume=\pi\ds\int^{x=b}_{x=a}\big[R(x)\big]^2-\big[r(x)\big]^2\,dx\]
+
+Now try another example on your own. Be careful with the cross-sectional area.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vfill\eject
+
+\fi
+
+\begin{example} Find the volume of the solid of revolution formed by rotating the region between $y=x$ and $y=1/x$ on the interval $[1,4]$ about the $x$-axis. 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Start by graphing the region:
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{slicing_gr12.jpg}$\xRightarrow[\text{\textcolor{red}{Create solid of revolution}}]{}$\includegraphics[scale=0.7]{slicing_gr13.jpg}
+\captionof{figure}{Rotate the region between $y=x$ and $y=1/x$ on the interval $[1,4]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 1cm
+The slices of the region are circular washers. The cross-section area of a washer located at point $x$ is $\pi\big[R(x)\big]^2-\pi\big[r(x)\big]^2$, where $R(x)$ is the larger radius to the outside edge of the washer, and $r(x)$ is the smaller radius to the inside edge of the washer. And so we simply evaluate the following integral.
+\beq
+Volume&=&\pi\ds\int^{x=b}_{x=a}\big[R(x)\big]^2-\big[r(x)\big]^2\,dx\\
+\\
+&=&\pi\ds\int^{x=4}_{x=1}x^2-\left(\ds\frac{1}{x}\right)^2\,dx\\
+\\
+&=&\pi\ds\int^{x=4}_{x=1}x^2-\ds\frac{1}{x^2}\,dx\\
+\\
+&=&\pi\left[\ds\frac{x^3}{3}+\ds\frac{1}{x}\ds\right]^{x=4}_{x=1}\\
+\\
+&=&\pi\left[\left(\ds\frac{4^3}{3}+\ds\frac{1}{4}\right)-\left(\ds\frac{1^3}{3}+\ds\frac{1}{1}\right)\right]\\
+\\
+&=&\ds\frac{81}{4}\pi
+\eeq  
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+\vfill\eject
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}
+We can rotate a regions about the $y$-axis as well. Suppose we have the region under $y=4-x^2$ on the interval $[0,2]$ about the $y$-axis. Since we rotate about the $y$-axis we should probably switch variables to have $x=\sqrt{4-y}$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Start by graphing the region:
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[scale=0.45]{slicing_gr18.jpg}$\xRightarrow[\text{\textcolor{red}{Create solid of revolution}}]{}$\includegraphics[scale=0.45]{slicing_gr19.jpg}
+\captionof{figure}{Rotate the region $x=\sqrt{4-y}$ on the interval $[0,4]$.}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vskip 1cm
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[scale=0.45]{slicing_gr20.jpg}$\xRightarrow[\stackrel{\text{\textcolor{red}{Creating a slice of the}}}{\text{\textcolor{red}{\tiny 3D solid of revolution}}}]{}$\includegraphics[scale=0.45]{slicing_gr21.jpg}
+\captionof{figure}{Slices after rotating the region under $x=\sqrt{4-y}$ on the interval $[0,4]$.}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vskip 5mm
+The slices are discs and so $A(y)=\pi\big[r(y)\big]^2=\pi\big[\sqrt{4-y}\big]^2$. And so we simply evaluate the following integral.
+\beq
+Volume&=&\pi\ds\int^{y=4}_{y=0}\big[\sqrt{4-y}\big]^2\,dy\\
+\\
+&=&\pi\ds\int^{y=4}_{y=0}4-y\,dy\\
+\\
+&=&\pi\left[4y-\ds\frac{y^2}{2}\ds\right]^{y=4}_{y=0}\\
+\\
+&=&\pi\left[\left(16-\ds\frac{4^2}{2}\right)-\Big(0-0\Big)\right]\\
+\\
+&=&8\pi
+\eeq  
+	\end{boxsolution}
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

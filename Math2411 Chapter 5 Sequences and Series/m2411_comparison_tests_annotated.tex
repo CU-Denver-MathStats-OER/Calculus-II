@@ -1,0 +1,404 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{The Comparison Tests}
+\def\topicshort{Comparison Tests}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\, Introduction:}
+
+Our objective is to study the comparison tests for convergence of infinite series. Let's motivate with an example.
+\[\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3+3n+1}\]
+We might consider the Integral Test since $f(x)=\frac{1}{x^3+3x+1}$ satisfies all three properties for the Integral Test: $f$ is continuous for all $x|ge 1$; $f(x)>0$ for all $x>1$; and $f$ is decreasing for all $x>1$. However, the integral 
+\[\ds\int^{\infty}_{x=1}\ds\frac{1}{x^3+3x+1}\,dx\]
+is a difficult integral. The obvious technique of choice would be partial fractions, but the denominator $x^3+3x+1$ is difficult to factor. In fact, it factors into the product of a linear factor and an irreducible quadratic where the one real zero is
+\[x=-\left(\ds\frac{2}{\sqrt{5}-1}\right)^{1/3}+\left(\ds\frac{\sqrt{5}-1}{2}\right)^{1/3}.\] 
+Since we can rarely determine the exact value of an infinite series we are often satisfied by simply determining convergence or divergence. And if the series converges, we can estimate the value of the sum with partial sums.
+
+\section*{Direct Comparison Test:}
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{comparison_test_thm.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+
+\section*{Direct Comparison Test Examples:}
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3+3n+1}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 5in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compare $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3+3n+1}$ with $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3}$ which is a $p$-series with $p=3>1$. Then we have 
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[scale=0.75]{comparison_test_gr01.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vfill\eject
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vskip 5mm
+Here is another example.
+\vskip 5mm
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{1}{2^n+1}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 5in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compare $\ds\sum^{\infty}_{n=1}\ds\frac{1}{2^n+1}$ with $\ds\sum^{\infty}_{n=1}\ds\frac{1}{2^n}$ which is a convergent geometric series with $r=1/2$. Then we have 
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 4cm 0cm, clip=true, scale=0.75]{comparison_test_gr02.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+Here is another example.
+\vskip 5mm
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{1}{\ln(n)}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 5in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compare $\ds\sum^{\infty}_{n=1}\ds\frac{1}{\ln(n)}$ with $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n}$ which is the divergent Harmonic series. Then we have 
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 4cm 0cm, clip=true, scale=0.75]{comparison_test_gr03.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Limit Comparison Test:}
+
+Let's consider the following example.
+\[\ds\sum^{\infty}_{n=2}\ds\frac{1}{n^2-3}\]
+Our obvious direct comparison series is $\sum^{\infty}_{n=2}\frac{1}{n^2}$ which is a convergent $p$-series with $p=2$. However,
+\[\ds\frac{1}{n^2-3}>\ds\frac{1}{n^2}\]
+for all $n\ge 2$ and so our direct comparison is inconclusive. But it would be convenient to be able to use our knowledge about the convergence of $\sum^{\infty}_{n=2}\frac{1}{n^2}$. Fortunately, there is another comparison test.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{limit_comparison_thm.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+In our current example we have $a_n=1/(n^2-2)$ and $b_n=1/n^2$. Then we have
+\[L=\ds\lim_{n\to\infty}\ds\frac{a_n}{b_n}=\ds\lim_{n\to\infty}\ds\frac{1/(n^2-2)}{1/n^2}=\ds\lim_{n\to\infty}\ds\frac{n^2}{n^2-2}=1.\]
+Since $L>0$ and $\sum^{\infty}_{n=2}\frac{1}{n^2}$ is a convergent $p$-series we conclude that $\sum^{\infty}_{n=2}\frac{1}{n^2-3}$ converges by the Limit Comparison Test.
+\vskip 5mm
+
+
+\section*{Limit Comparison Test Examples:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{1}{\sqrt{n}+1}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+
+\vskip 5in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compare $\ds\sum^{\infty}_{n=1}\ds\frac{1}{\sqrt{n}+1}$ with $\ds\sum^{\infty}_{n=1}\ds\frac{1}{\sqrt{n}}$ which is the divergent $p$-series. But Direct comparison is inconclusive since for all positive $n$ we have
+\[\ds\frac{1}{\sqrt{n}+1}<\ds\frac{1}{\sqrt{n}}.\]
+Let's use the Limit Comparison Test with $a_n=1/(\sqrt{n}+1)$ and $b_n=1/\sqrt{n}$ and set up $\lim_{n\to\infty}\frac{a_n}{b_n}$.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[scale=0.8]{limit_comparison_gr01.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{2^n+1}{3^n}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+
+\vskip 4in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compare $\ds\sum^{\infty}_{n=1}\ds\frac{2^n+1}{3^n}$ with $\ds\sum^{\infty}_{n=1}\left(\ds\frac{2}{3}\right)^n$ which is a convergent geometric series with $r=2/3$. But Direct comparison is inconclusive since for all positive $n$ we have
+\[\ds\frac{2^n+1}{3^n}>\left(\ds\frac{2}{3}\right)^n.\]
+Let's use the Limit Comparison Test with $a_n=(2^n+1)/3^n$ and $b_n=$ and set up $\lim_{n\to\infty}\frac{a_n}{b_n}$.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{limit_comparison_gr02.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{\ln(n)}{n^2}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Noticing that $n>\ln(n)$ for sufficiently large $n$, we compare $\ds\sum^{\infty}_{n=1}\ds\frac{\ln(n)}{n^2}$ with $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n}$ which is the divergent Harmonic series. But Direct comparison is inconclusive since for all positive $n$ we have
+\[\ds\frac{\ln(n)}{n^2}>\ds\frac{n}{n^2}=\ds\frac{1}{n}.\]
+Let's use the Limit Comparison Test with $a_n=\ln(n)/n^2$ and $b_n=$ and set up $\lim_{n\to\infty}\frac{a_n}{b_n}$.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.8]{limit_comparison_gr03.jpg}\\
+\includegraphics[trim= 0cm 4cm 0cm 0cm , clip=true, scale=0.8]{limit_comparison_gr04.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\vfill\eject
+
+	\begin{boxsolutioncont}
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 4cm 16.5cm , clip=true, scale=0.8]{limit_comparison_gr04.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+	\end{boxsolutioncont}
+
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+\vskip 5mm
+
+We can see from this last example that sometime the comparison series is not obvious at first glance and some experimentation is required to find a series where comparison will be conclusive. This ends the notes on the Direct Comparison Test and the Limit Comparison Test.
+\vskip 1cm
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 5mm
+\hrule
+\vskip 5mm
+\begin{center}
+{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

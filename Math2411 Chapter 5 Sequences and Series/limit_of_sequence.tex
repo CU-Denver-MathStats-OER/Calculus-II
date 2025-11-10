@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{A Nice Limit Result}
+\def\topicshort{A Nice Limit}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\vskip 1cm
+
+In our guided lecture notes we considered the infinite series
+\[\ds\sum^{\infty}_{n=0}(-1)^{n+1}\ds\frac{\big(n!\big)^2}{(2n)!}.\]
+We showed the series converges by the Ratio Test but we also wanted to try the Alternating Series Test. The question is how to evaluate the limit
+\[\ds\lim_{n\to\infty}\ds\frac{\big(n!\big)^2}{(2n!)}\]
+without using the heavy machinery of Stirling's approximation $n!\approx\sqrt{2\pi n}\left(\frac{e}{n}\right)^n$?
+\vskip 5mm
+
+Instead we will use Bernoulli's Inequality.
+
+\begin{theorem}[Bernoulli] Let $x\ge -1$ be a real number and $r$ be any non-negative real number. Then we satisfy the following inequalities.
+	\begin{enumerate}
+		\item If $r\ge 1$, then $(1+x)^r\ge 1+rx$.
+		\item If $0\le r\le 1$, then $(1+x)^r\le 1+rx$.
+	\end{enumerate}
+
+\end{theorem} 
+
+To evaluate the limit we will consider the sequence $a_n=(2n)!/(n!)^2$ and first observe that
+\[\ds\frac{(2n)!}{\big(n!\big)^2}=\ds\frac{(2n)(2n-1)(2n-2)!}{n^2\cdot\big[(n-1)!\big]^2}=4\left(1-\ds\frac{1}{2n}\right)\ds\frac{\big[2(n-1)\big]!}{\big[(n-1)!\big]\big)^2}\]
+From this and an induction argument we see that
+\beq
+\ds\frac{(2n)!}{\big(n!\big)^2}&=&4^n\ds\prod^{n-1}_{k=0}\left(1-\ds\frac{1}{2k+2}\right)\\
+&=&\ds\frac{4^n}{2}\ds\prod^{n-1}_{k=1}\left(1-\ds\frac{1}{2k+2}\,\right)\\
+&=&\ds\frac{4^n}{2}\ds\prod^{n-1}_{k=1}\left(1-\ds\frac{1}{2}\left(\ds\frac{1}{k+1}\right)\,\right)\\
+&\ge&\ds\frac{4^n}{2}\ds\prod^{n-1}_{k=1}\left(1-\ds\frac{1}{k+1}\,\right)^{1/2}\quad\text{By Bernoulli's Inequality}\\
+&=&\ds\frac{4^n}{2\sqrt{n}}
+\eeq
+So we have the following inequalities.
+\[\ds\frac{(2n)!}{\big(n!\big)^2}\ge \ds\frac{4^n}{2\sqrt{n}}\quad\Longrightarrow\quad 0\le\ds\frac{\big(n!\big)^2}{(2n)!}\le \ds\frac{2\sqrt{n}}{4^n}. \]
+Now since $\ds\lim_{n\to\infty}\ds\frac{2\sqrt{n}}{4^n}=0$, we have by the Squeeze Theorem that $\ds\lim_{n\to\infty}\ds\frac{\big(n!\big)^2}{(2n)!}=0$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 5mm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

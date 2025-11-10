@@ -1,0 +1,439 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Taylor Series}
+\def\topicshort{Taylor Series}
+
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\, Introduction:}
+
+Our objective is to extend a Taylor polynomial for a function $f$ centered at a point $a$ to an infinite series called a {\bf\emph{Taylor series}}. First recall our definition of a Taylor polynomial.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{taylor_poly_def.jpg}
+%\captionof{}
+\label{fig:taylor_poly_def}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+Then a Taylor series is a power series with the same coefficients as a Taylor polynomial.
+\[\ds\sum^{\infty}_{n=0}\ds\frac{f^{(n)}(a)}{n!}(x-a)^n=f(a)+f'(a)(x-a)+\ds\frac{f''(a)}{2!}(x-a)^2+\ds\frac{f'''(a)}{3!}(x-a)^3+\cdots\]
+Since a Taylor series is just a power series all of our knowledge of power series applies to Taylor series. But with a Taylor series for a function $f(x)$ we have to make sure that the Taylor series actually converges to the correct function value $f(x)$. Fortunately we can determine this using the remainder formula. Recall the following. 
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{taylor_theorem.jpg}
+%\captionof{}
+\label{fig:taylor_theorem}
+\end{center}
+\end{minipage}
+
+\vfill\eject
+
+Then we have the following theorem.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 5mm 0cm 0cm, clip=true, scale=0.7]{taylor_series_conv_gr1.jpg}
+\includegraphics[scale=0.7]{taylor_series_conv_gr2.jpg}
+%\captionof{}
+\label{fig:taylor_series_converge_graphics}
+\end{center}
+\end{minipage}
+
+
+Let's work an example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 5mm
+\begin{example} Show that the Taylor series for $f(x)=\sin(x)$ centered at the point $a=0$ converges to $\sin(x)$ for all $x$-values.
+\vskip 1mm
+\note Recall the Taylor series for $f(x)=\sin(x)$: $\ds\sum^{\infty}_{n=0}(-1)^n\ds\frac{x^{2n+1}}{(2n+1)!}=x-\ds\frac{x^3}{3!}+\ds\frac{x^5}{5!}-\ds\frac{x^7}{7!}+\cdots$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+We could use the Ratio Test to check for convergence, but we want to know if the series converges to the actual function values. So we will use Taylor's Remainder Theorem which states that for all $x$-values and an $n^{th}$ partial sum $S_n(x)$ we have
+\[\big|R_n(x)\big|=\big|\sin(x)-S_n(x)\big|=\ds\frac{\left|f^{(n+1)}(c)\right|}{(n+1)!}\cdot|x|^{n+1}\]
+for some $c$ in between $x$ and $a$. But the derivatives of the sine function are bounded. That is, the absolute value of the $k^{th}$ derivative evaluated at some value $c$ always satisfies $\big|f^{(k)}(c)\big|\le 1$. So for all $x$-values we have
+\[0\le|R_n|\le\ds\frac{1}{(n+1)!}\cdot|x|^{n+1}\quad\Longrightarrow\quad 0\le\ds\lim_{n\to\infty}|R_n|\le\ds\lim_{n\to\infty}\ds\frac{1}{(n+1)!}\cdot|x|^{n+1}=0\]
+and so $\lim_{n\to\infty}R_n=0$ for all $x$-values and the Taylor series converges to $f(x)=\sin(x)$ for all $x$-values.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+\vskip 5mm
+	\begin{discussion}
+\vskip 5mm
+Fortunately, all of the Taylor series for the elementary functions we will be working with actually converge to the correct function values. But it is worth noting that there are functions whose Taylor series does not converge to the correct function values. For example, the Taylor series for 
+\[f(x)=\left\{\begin{array}{ccc}
+e^{-1/x^2}&:&x\not=0\\
+0&:&x=0
+\end{array}\right.\]
+is the zero Taylor series (since all of the derivatives at $a=0$ equal zero) and so does not converge to the actual function values when $x\not=0$. Showing the details is beyond the scope of this course. But looking at the graph of the function we can see that the graph function appears very ``flat" around $x=0$.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0mm 0cm 0cm, clip=true, scale=0.35]{exp_neg1overxsquared_gr1.jpg}
+%\includegraphics[trim= 0cm 0mm 0cm 0cm, clip=true, scale=0.4]{exp_neg1overxsquared_gr2.jpg}
+\captionof{figure}{Graph of $y=e^{-1/x^2}$}
+\label{fig:exp}
+\end{center}
+\end{minipage}
+\vskip 1cm
+Since we have already done so much work with power series in previous sections, for these notes we will simply provide a list of the most common and important Taylor series and show a few examples. Following this we will work one concrete example for the binomial series.
+\vspace*{5mm}
+	\end{discussion}
+
+\fi
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\section*{List of Taylor Series:}
+
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[trim= 0cm 13.3cm 0cm 0cm, clip=true, scale=0.7]{taylor_series_list.jpg}
+%%\caption{}
+%\end{center}
+%\end{figure}
+%
+%\vfill\eject
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.7]{taylor_series_list.jpg}
+%\caption{}
+\end{center}
+\end{figure}
+\vskip 5mm
+
+So we have the following expressions for some important numbers.
+
+\beq
+e&=&1+1+\ds\frac{1}{2!}+\ds\frac{1}{3!}+\ds\frac{1}{4!}+\ds\frac{1}{5!}+\cdots\\
+\\
+\pi&=&4\tan^{-1}(1)=4\left(1-\ds\frac{1}{3}+\ds\frac{1}{5}-\ds\frac{1}{7}+\ds\frac{1}{9}-\ds\frac{1}{11}+\cdots\right)\\
+\\
+\ln(2)&=&1-\ds\frac{1}{2}+\ds\frac{1}{3}-\ds\frac{1}{4}+\ds\frac{1}{5}=\ds\frac{1}{6}+\cdots\\
+\eeq
+
+\fi
+
+Let's now spend a little time with the binomial series.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifnum\longform=1
+\vfill\eject
+
+\fi
+
+\begin{example} Apply the Taylor series for $f(x)=(1+x)^r$ centered at the point $a=0$ to estimate the value of $\sqrt{1.5}$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+%\ifnum\longform=1
+%\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+%
+%\vfill\eject
+%
+%\fi
+
+\ifnum\longform=1
+	\begin{boxsolution}
+We have the following result (which we will not compute in these notes). The Taylor series for $f(x)=(1+x)^r$ is given as
+\vskip 2mm
+\[\ds\sum^{\infty}_{n=0}{r\choose n}x^n=1+rx+\ds\frac{r(r-1)}{2!}x^2+\cdots+\ds\frac{r(r-1)\cdots(r-n+1)}{n!}x^n+\cdots\]
+\vskip 2mm
+and has an interval of convergence $(-1,1)$. So a Taylor series for $\sqrt{1+x}$ is given by
+\vskip 2mm
+\[1+\ds\frac{1}{2}x+\ds\frac{(1/2)(-1/2)}{2!}x^2+\ds\frac{(1/2)(-1/2)(-3/2)}{3!}x^3+\ds\frac{(1/2)(-1/2)(-3/2)(-5/2)}{4!}x^4+\cdots\]
+\vskip 4mm
+If we use a degree$=3$ Taylor polynomial we get
+\[\sqrt{1.5}=\sqrt{1+1/2}\approx 1+\ds\frac{1}{2}\left(\ds\frac{1}{2}\right)-\ds\frac{1}{8}\left(\ds\frac{1}{2}\right)^2+\ds\frac{1}{16}\left(\ds\frac{1}{2}\right)^3\approx 1.2266\]
+\vskip 2mm
+A calculator gives a value of $\sqrt{1.5}=1.2247448714$ and so with just a few terms we are within two decimal places accuracy. Or using Taylor Remainder Theorem we could find that
+\[\big|R_3(0.5)\big|\le\ds\frac{15}{4!\cdot 2^4}(0.5)^4=0.00244.\]
+You are encourage to work out the details for yourself. You can also see that $p_3(x)$ appears to be a good approximating function when $x=1/2$.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0mm 0cm 0cm, clip=true, scale=0.8]{root_1plusx.jpg}
+\captionof{figure}{Graph of $y=\sqrt{1+x}$ \;versus\; $p_3(x)=1+\ds\frac{1}{2}x-\ds\frac{1}{8}x^2+\ds\frac{1}{16}x^3$.}
+\label{fig:exp}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ifnum\longform=1
+%\vfill\eject
+%
+%\fi
+
+\begin{example} Let's look at another application of the binomial series. In particular, we want to solve the equation for the period of an oscillating pendulum. If $T$ is the period, $L$ is the length of the pendulum, $g$ is acceleration due to gravity, $\theta_{_{max}}$ is the maximum angle of swing, and $k=\sin(\theta_{_{max}}/2)$ we have
+\[T=4\sqrt{\ds\frac{L}{g}}\ds\int^{\theta=\pi/2}_{\theta=0}\ds\frac{1}{\sqrt{1-k^2\sin^2(\theta)}}\,d\theta.\]
+\ifnum\longform=1
+\vfill\eject
+\fi
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0mm 0cm 0cm, clip=true, scale=0.35]{pendulum.jpg}
+\captionof{figure}{Oscillating Undamped Pendulum}
+\label{fig:pendulum}
+\end{center}
+\end{minipage}
+\vskip 5mm
+
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vskip 5mm
+We use the binomial series substituting $x=-k^2\sin^2(\theta)$ and $r=-1/2$ to get
+\[T=4\sqrt{\ds\frac{L}{g}}\ds\int^{\theta=\pi/2}_{\theta=0}1+\ds\frac{1}{2}k^2\sin^2(\theta)+\ds\frac{1\cdot 3}{2!\cdot 2^2}k^4\sin^4(\theta)+\cdots\,d\theta.\]
+It turns out that if $\theta_{_{max}}$ is small then we get a good approximation using only the first term of the infinite series (because the $k$-terms are very ``small"). This gives us the well-known formula
+\[T\approx4\sqrt{\ds\frac{L}{g}}\cdot\ds\frac{\pi}{2}=2\pi\sqrt{\ds\frac{L}{g}}\]
+Otherwise, we can use the first two terms in the infinite series.
+\[T\approx 4\sqrt{\ds\frac{L}{g}}\ds\int^{\theta=\pi/2}_{\theta=0}1+\ds\frac{1}{2}k^2\sin^2(\theta)\,d\theta.\]
+This is a good exercise to evaluate this trigonometric integral. After evaluation we get
+\[T\approx 2\pi\sqrt{\ds\frac{L}{g}}\left(1+\ds\frac{k^2}{4}\right).\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+
+\ifnum\longform=1
+\vskip 2mm
+Hopefully we now understand how powerful we have become with our new knowledge of power series. Additionally, power series are fairly easy to manipulate to discover power series for certain desired functions. Let's consider one more example along with an application.
+\vskip 5mm
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 5mm
+\begin{example} We can show that the function $f(x)=e^x$ can be represented as the following power series with interval of convergence $(-\infty,\infty)$.
+\[e^x=\ds\sum^{\infty}_{n=0}\ds\frac{x^n}{n!}=1+x+\ds\frac{x^2}{2!}+\ds\frac{x^3}{3!}+\ds\frac{x^4}{4!}+\ds\frac{x^5}{5!}+\cdots\]
+Can we use this series to find a Taylor series representation of the function $e^{-x^2}$? Can we then use this Taylor series to evaluate the integral $\ds\int^{x=1}_{x=0}e^{-x^2}\,dx$? Yes to both.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+\noindent{\bf\emph{\underline{Workspace Continued}:}}
+
+\vfill\eject
+
+	\begin{boxsolution}
+\vskip 5mm
+We have the power series representation
+\[e^{-x^2}=\ds\sum^{\infty}_{n=0}\ds\frac{\left(-x^2\right)^n}{n!}=\ds\sum^{\infty}_{n=0}(-1)^n\ds\frac{x^{2n}}{n!}=1-x^2+\ds\frac{x^4}{2!}-\ds\frac{x^6}{3!}+\ds\frac{x^8}{4!}-\ds\frac{x^{10}}{5!}+\cdots\]
+for all $x$-values. We can use this to solve the difficult (and important) problem of evaluating the following integral.
+\[\ds\int^{x=1}_{x=0}e^{-x^2}\,dx\]
+The difficulty is that there is no elementary antiderivative for the function $e^{-x^2}$ Fortunately, we can integrate power series and so we have
+\beq
+\ds\int^{x=1}_{x=0}e^{-x^2}\,dx&=&\ds\int^{x=1}_{x=0}\,\left(\,\ds\sum^{\infty}_{n=0}(-1)^n\ds\frac{x^{2n}}{n!}\,\right)\,dx\\
+\\
+&=&\ds\int^{x=1}_{x=0}1-x^2+\ds\frac{x^4}{2!}-\ds\frac{x^6}{3!}+\ds\frac{x^8}{4!}-\ds\frac{x^{10}}{5!}+\cdots\,dx\\
+\\
+&=&x-\ds\frac{x^3}{3}+\ds\frac{x^5}{5\cdot 2!}-\ds\frac{x^7}{7\cdot 3!}+\ds\frac{x^9}{9\cdot 4!}-\ds\frac{x^{11}}{11\cdot 5!}+\cdots\ds\Bigg|^{x=1}_{x=0}\\
+\\
+&=&\left(1-\ds\frac{1}{3}+\ds\frac{1}{5\cdot 2!}-\ds\frac{1}{7\cdot 3!}+\ds\frac{1}{9\cdot 4!}-\ds\frac{1}{11\cdot 5!}+\cdots\right)-\Big(0-0+0-0+0-0+\cdots\Big)\\
+\\
+&=&\ds\sum^{\infty}_{n=0}(-1)^n\ds\frac{1}{(2n+1)n!}
+\eeq
+This is an alternating series and so we can easily approximate the value of the integral and have an easy analysis of the error in our approximation. For example, consider the $6^{th}$ partial sum.
+\[S_6=\ds\sum^{6}_{n=0}(-1)^n\ds\frac{1}{(2n+1)n!}=1-\ds\frac{1}{3}+\ds\frac{1}{5\cdot 2!}-\ds\frac{1}{7\cdot 3!}+\ds\frac{1}{9\cdot 4!}-\ds\frac{1}{11\cdot 5!}+\ds\frac{1}{13\cdot 6!}=0.746836\]
+We know that the error can be analyzed as follows.
+\[|R_6|=\big|S-S_6\big|<\ds\frac{1}{15\cdot 7!}=0.0000132275.\]
+So we have
+\vskip 2mm
+\[0.746823<\ds\int^{x=1}_{x=0}e^{-x^2}\,dx<0.746849\]
+\vskip 2mm
+and our estimate is accurate to four decimal places.
+\vspace*{5mm}
+
+	\end{boxsolution}
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+	\begin{discussion}	
+\vskip 5mm
+Where this integral shows up is in probability and statistics applications. The normal distribution is one of the most important probability distributions and to calculate probabilities we integrate the following density function
+\[f(x)=\ds\frac{1}{\sqrt{2\pi\sigma^2}}e^{^{\frac{-(x-\mu)^2}{2\sigma^2}}}\] 
+See the following diagram.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{normal_dist.jpg}
+\captionof{figure}{Probabilites For a Normal Distribution as Area}
+\label{fig:powers_series_def}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+We can see that our knowledge of Taylor series makes us pretty powerful when it comes to solving certain difficult problems. There are many other applications that we do not have the time to cover in this course. Anyone interested is encouraged to research the various applications.
+\vspace*{5mm}
+	\end{discussion}
+	
+\fi
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

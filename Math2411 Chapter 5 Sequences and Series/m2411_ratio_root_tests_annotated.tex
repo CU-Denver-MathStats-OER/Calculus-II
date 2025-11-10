@@ -1,0 +1,475 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{The Ratio and Root Tests}
+\def\topicshort{Ratio and Root Tests}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\, Introduction:}
+
+Many important infinite series can not be evaluated using the techniques we have studied so far. For example, the following series does not satisfy the criteria of any of our current convergence tests. 
+\[\ds\sum^{\infty}_{n=0}\ds\frac{2^n}{n!}\]
+\vskip 5mm
+Our objective is to develop tests to handle this type of series. The first test is called the {\bf\emph{Ratio Test}}.
+
+\vskip 5mm
+
+\section*{The Ratio Test}
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{ratio_test_thm.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+Let's work a few examples.
+
+\vskip 5mm
+
+\section*{Ratio Test Examples:}
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=o}\ds\frac{2^n}{n!}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We use the Ratio Test and let
+\beq
+r&=&\ds\lim_{n\to\infty}\left|\ds\frac{a_{n+1}}{a_n}\right|\\
+&=&\ds\lim_{n\to\infty}\left|\ds\frac{2^{n+1}}{(n+1)!}\cdot\ds\frac{n!}{2^n}\right|\\
+&=&\ds\lim_{n\to\infty}\ds\frac{2}{n+1}\\
+&=&0
+\eeq
+Since $r=0<1$ the series converges absolutely by the Ratio Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vskip 5mm
+Here is another example.
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}\ds\frac{n^n}{n!}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We use the Ratio Test and let
+\beq
+r&=&\ds\lim_{n\to\infty}\left|\ds\frac{a_{n+1}}{a_n}\right|\\
+&=&\ds\lim_{n\to\infty}\left|\ds\frac{n^{n+1}}{(n+1)!}\cdot\ds\frac{n!}{n^n}\right|\\
+&=&\ds\lim_{n\to\infty}\left(\ds\frac{n+1}{n}\right)^n\\
+&=&e
+\eeq
+Since $r=e>1$ the series diverges by the Ratio Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Here is another example.
+
+\begin{example} Determine whether $\ds\sum^{\infty}_{n=1}(-1)^n\ds\frac{(n!)^2}{(2n)!}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We use the Ratio Test and let
+\beq
+r&=&\ds\lim_{n\to\infty}\left|\ds\frac{a_{n+1}}{a_n}\right|\\
+&=&\ds\lim_{n\to\infty}\left|(-1)^{n+1}\ds\frac{\big((n+1)!\big)^2}{(2n+2)!}\cdot(-1)^n\ds\frac{(2n)!}{(n!)^2}\right|\\
+&=&\ds\lim_{n\to\infty}\ds\frac{(n+1)^2}{(2n+1)(2n+2)}\\
+&=&\ds\frac{1}{4}
+\eeq
+Since $r=1/4<1$ the series converges absolutely by the Ratio Test.
+\vspace*{5mm}
+	\end{boxsolution}
+
+\vskip 5mm
+
+	\begin{discussion}
+\vspace*{5mm}
+You may ask yourself why we didn't use the Alternating Series Test? In fact, we have the tools to use the Alternating Series Test, but it will only determine convergence. What it does not tell us is whether we have absolute convergence or conditional convergence. One strength of the Ratio Test is that it tells us that we have absolute convergence, which is a much stronger form of convergence. Additionally, in this example it is much easier computationally to use the Ratio Test and so in my opinion it is the superior test for this example. I will provide the details for the Alternating Series Test as an optional section below for those who are curious about those details. 
+\vspace*{5mm}
+	\end{discussion}
+	
+\vskip 5mm
+
+\noindent{{\bf\emph{\underline{Optional Section}:}}} Let's try the Alternating Series Test and first show that the non-alternating component of the series terms is positive and decreasing. That is, show that $0\le b_{n+1}\le b_n$. Of course all terms are positive so we only need to check the right inequality. The following statements are all equivalent.
+\beq
+b_{n+1}&\le& b_n\\
+\ds\frac{b_{n+1}}{b_n}&\le& 1\\
+\ds\frac{\Big[(n+1)!\Big]^2\cdot(2n)!}{(2n+2)!\cdot\big(n!\big)^2}&\le& 1\\
+\ds\frac{(n+1)(n+1)}{(2n+2)(2n+1)}&\le&1\\
+\underbrace{\left(\ds\frac{n+1}{2n+2}\right)}_{\textcolor{red}{<1}}\underbrace{\left(\ds\frac{n+1}{2n+1}\right)}_{\textcolor{red}{<1}}&\le& 1
+\eeq
+
+\vfill\eject
+
+Since the last inequality is certainly true we have shown that $0\le b_{n+1}\le b_n$ and the non-alternating components of the series terms are positive and decreasing. 
+\vskip 5mm
+Next we show that $\lim_{n\to\infty}b_n=0$. This can be done as follows using Stirling's Approximation which states that 
+\[\ds\lim_{n\to\infty}\ds\frac{n!}{\sqrt{2\pi n}\left(\frac{n}{e}\right)^n}=1.\]
+
+\vskip 5mm
+
+Then we have
+\[\ds\lim_{n\to\infty}\ds\frac{\big(n!\big)^2}{(2n)!}=\ds\lim_{n\to\infty}\ds\frac{2\pi n\left(\frac{n}{e}\right)^{2n}}{\sqrt{4\pi n}\left(\frac{2n}{e}\right)^{2n}}=\ds\lim_{n\to\infty}\ds\frac{\sqrt{\pi n}}{4^n}=0.\]
+
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+\vskip 5mm
+Hopefully you're convinced that although the Alternating Series Test does apply in this example, the Ratio Test is the much preferred test for numerous reasons.
+\vskip 5mm
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Here is another example.
+
+\begin{example} Determine whether the $p$-series $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^p}$ converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We use the Ratio Test and let
+\beq
+r&=&\ds\lim_{n\to\infty}\left|\ds\frac{a_{n+1}}{a_n}\right|\\
+&=&\ds\lim_{n\to\infty}\left|\ds\frac{n^p}{(n+1)^p}\right|\\
+&=&\ds\lim_{n\to\infty}\ds\frac{n^p}{(n+1)^p}\\
+&=&1
+\eeq
+Since $r=1$ the Ratio Test is inconclusive. This makes sense because there are convergent $p$-series and divergent $p$-series. The main point here is that the Ratio Test will not be useful every infinite series. There are many series where the test will be inconclusive.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We have another test which can be useful when the Ratio Test is difficult to use. It is called the Root Test.
+
+\section*{The Root Test:}
+
+Consider the infinite series
+\[\ds\sum^{\infty}_{n=1}\ds\frac{\left(n^2+3n\right)^n}{(4n^2+5)^n}.\]
+The Ratio Test will require significant simplification to evaluate the limit. Fortunately, there is another test that is well-suited for this type of series. It is called the {\bf\emph{Root Test}}.
+\vskip 5mm
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.75]{root_test_thm.jpg}
+%\caption{}
+\end{center}
+\end{figure} 
+
+\vskip 1cm
+
+\section*{Root Test Examples:}
+
+
+Let's work through an example.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Determine if the infinite series $\ds\sum^{\infty}_{n=1}\ds\frac{\left(n^2+3n\right)^n}{(4n^2+5)^n}$ converges or diverges.
+
+
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We try the Root Test and compute the following.
+\beq
+\rho&=&\ds\lim_{n\to\infty}\sqrt[n]{\big|a_n\big|}\\
+&=&\ds\lim_{n\to\infty}\sqrt[n]{\left|\ds\frac{\left(n^2+3n\right)^n}{(4n^2+5)^n}\right|}\\
+&=&\ds\lim_{n\to\infty}\ds\frac{n^2+3n}{4n^2+5}\\
+&=&\ds\frac{1}{4}
+\eeq
+
+\vskip 5mm
+Since $\rho=1/4<1$ the series converges absolutely by the Root Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Determine if the infinite series $\ds\sum^{\infty}_{n=1}\ds\frac{\left(-12\right)^n}{n}$ converges or diverges.
+
+
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We try the Root Test and compute the following.
+\beq
+\rho&=&\ds\lim_{n\to\infty}\sqrt[n]{\big|a_n\big|}\\
+\\
+&=&\ds\lim_{n\to\infty}\sqrt[n]{\left|\ds\frac{\left(-12\right)^n}{n}\right|}\\
+\\
+&=&\ds\lim_{n\to\infty}\ds\frac{12}{n^{1/n}}\\
+\\
+&=&\ds\frac{12}{1}\\
+\\
+&=&12
+\eeq
+\vskip 5mm
+Since $\rho=12>1$ the series diverges by the Root Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Determine if the infinite series $\ds\sum^{\infty}_{n=1}\ds\frac{\left(-5\right)^{1+2n}}{2^{5n-3}}$ converges or diverges.
+
+
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We try the Root Test and compute the following.
+\beq
+\rho&=&\ds\lim_{n\to\infty}\sqrt[n]{\big|a_n\big|}\\
+&=&\ds\lim_{n\to\infty}\sqrt[n]{\left|\ds\frac{\left(-5\right)^{1+2n}}{2^{5n-3}}\right|}\\
+&=&\ds\lim_{n\to\infty}\left|\ds\frac{\left(-5\right)^{\frac{1}{n}+2}}{2^{5-\frac{3}{n}}}\right|\\
+&=&\left|\ds\frac{\left(-5\right)^{2}}{2^{5}}\right|\\
+&=&\ds\frac{25}{32}
+\eeq
+
+Since $\rho=25/32<1$ the series diverges by the Root Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's consider an example from the section on Alternating Series Test
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Determine if the infinite series $\ds\sum^{\infty}_{n=1}(-1)^{n+1}\left(\ds\frac{n}{n+1}\right)^{n^2}$ converges or diverges.
+
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We try the Root Test and compute the following.
+\beq
+\rho&=&\ds\lim_{n\to\infty}\sqrt[n]{\big|a_n\big|}\\
+&=&\ds\lim_{n\to\infty}\sqrt[n]{\left|(-1)^{n+1}\left(\ds\frac{n}{n+1}\right)^{n^2}\right|}\\
+&=&\ds\lim_{n\to\infty}\left(\ds\frac{n}{n+1}\right)^{n}\\
+&=&\ds\lim_{n\to\infty}\ds\frac{1}{\left(\ds\frac{n+1}{n}\right)^{n}}\\
+&=&\ds\frac{1}{e}\\
+\eeq
+
+Since $\rho=1/e<1$ the series converges absolutely by the Root Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Choosing a Convergence Test}
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{choosing_a_test.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage} 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

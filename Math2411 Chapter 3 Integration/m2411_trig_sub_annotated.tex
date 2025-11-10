@@ -1,0 +1,452 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Trigonometric Substitution}
+\def\topicshort{Trig-Sub}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+Our objective is to integrate function involving square roots of differences and sums of squares.
+\[\sqrt{a^2-x^2}\qquad\sqrt{x^2-a^2}\qquad\sqrt{x^2+a^2}\]
+\vskip 5mm
+We will need a few basic trig identities.
+\beq
+\sin^2(x)+\cos^2(x)=1&&\sin(2x)=\sin^2(x)=\ds\frac{1-\cos(2x)}{2}\\
+\cos^2(x)=\ds\frac{1+\cos(2x)}{2}&&\tan^2(x)=\sec^2(x)-1
+\eeq
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Integrals involving $\sqrt{a^2-x^2}$:}
+
+Let’s consider an example together. The general strategy is to make a substitution $x=a\sin(\theta)$.
+\vskip 2mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{trig_sub_gr07.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+Then our square root quantity is converted into a simple trig function. Here is a right triangle for reference.
+\vskip 2mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.55]{trig_sub_gr01.jpg}
+\captionof{figure}{Reference triangle for $\sqrt{a^2-x^2}$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vfill\eject
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Evaluate $\ds\int\sqrt{9-x^2}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We let $x=3\sin(\theta)$ and construct our reference triangle.
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{trig_sub_gr08.jpg}
+\captionof{figure}{Reference triangle for $\sqrt{9-x^2}$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+Then we have
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{trig_sub_gr09.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+Let's now have you work an example. 
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate the integral $\ds\int x^3\sqrt{1-x^2}\,dx$.
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{trig_sub_gr10.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+We can also solve his using $u$-sub. See if you can solve this using $u$-sub.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We let $u=1-x^2$ so that $du=2x\,dx$.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{trig_sub_gr11.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Integrals involving $\sqrt{x^2+a^2}$:}
+
+Let's consider integrals with a term $\sqrt{x^2+a^2}$. We let $x=a\tan(\theta)$ and build a reference triangle.
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{trig_sub_gr03.jpg}
+\captionof{figure}{Reference triangle for $\sqrt{x^2+a^2}$}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 2mm
+We can use the following problem solving strategy.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{trig_sub_gr04pt1.jpg}\\
+\includegraphics[scale=0.6]{trig_sub_gr04pt2.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\begin{example} Calculate the length of the curve $y=x^2$ on the interval $[0,1/2]$. Our arclength formula gives us
+\[s=\ds\int^{x=b}_{x=a}\sqrt{1+\big[f'(x)\big]^2}\,dx=\ds\int^{x=1/2}_{x=0}\sqrt{1+4x^2}\,dx.\]
+This looks like a tricky integral since there is no obvious $u$-substitution. We try a trig-sub.
+We let $x=\frac{1}{2}\tan(\theta)$ so that $dx=\frac{1}{2}\sec^2(\theta)\,d\theta$. Now continue on your own.
+\vskip 5mm
+\note Notice that the quantity $\sqrt{1+4x^2}$ suggests a reference triangle with leg lengths of $1$ and $2x$ giving a hypotenuse with length of $\sqrt{1+4x^2}$. Build your own reference triangle.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=0
+\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+
+\vfill\eject
+
+\fi
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Now we have
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{trig_sub_gr12.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 2mm
+Notice that even in trig-sub we {\bf\emph{change our limits of integration}} after the change of variables. Let's try another example
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Evaluate the integral $\ds\int\ds\frac{1}{\sqrt{1+x^2}}\,dx$.
+\vskip 5mm
+Start by letting $x=\tan(\theta)$ and forming the reference triangle.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.8]{trig_sub_gr14.jpg}
+\captionof{figure}{Reference triangle for $\sqrt{1+x^2}$}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 2mm
+Now solve the integral by yourself.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.8]{trig_sub_gr15.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Integrals involving $\sqrt{x^2-a^2}$:}
+
+
+\begin{example} Evaluate the integral $\ds\int^{x=5}_{x=3}\sqrt{x^2-9}\,dx$.
+\vskip 5mm
+The geometry suggests we let $x=3\sec(\theta)$ and so then have $dx=3\sec(\theta)\tan(\theta)\,d\theta$.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{trig_sub_gr05.jpg}
+\captionof{figure}{Reference triangle for $\sqrt{x^2-a^2}$}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+Notice there are different reference triangles depending on whether the $x$-values are positive (so we have  $x>a$) or negative (so we have $x<-a$). The main consequences is when $x$ is positive we have $\sqrt{x^2-a^2}=a\tan(\theta)$. When $x$ is negative we have $\sqrt{x^2-a^2}=-a\tan(\theta)$.
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{trig_sub_gr06.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.62]{trig_sub_gr16.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's try an example on your own.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate the integral $\ds\int\ds\frac{1}{\sqrt{x^2-4}}\,dx$, assuming that $x<-2$.
+\vskip 1mm
+\note The domain of the integrand $f(x)=1/\sqrt{x^2-4}$ is $\big(-\infty,-2\big)\cup\big(2,\infty\big)$.
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill
+
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

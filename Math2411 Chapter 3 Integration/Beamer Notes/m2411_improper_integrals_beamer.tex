@@ -1,0 +1,646 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+
+%\mode<presentation>
+%{
+%  \usetheme{Pittsburgh}
+%  \setbeamercovered{transparent}
+%}
+
+\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+%\usepackage{times}
+%\usepackage[normalem]{ulem}
+%\usepackage{listings}
+
+\setbeamertemplate{footline}[frame number]
+
+
+\usepackage{amsmath,amssymb,amsthm,latexsym,graphicx,hyperref,bbm,rotating}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Defined Fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\font\minihelv=phvr at 6pt
+\font\helv=phvr at 10pt
+\font\medhelv=phvr at 16pt
+\font\bighelv=phvr at 20pt
+\font\hugehelv=phvr at 36pt
+\font\mybigfont=phvr at 16pt
+\font\mymediumfont=phvr at 14pt
+\font\mediumhelv=phvr at 14pt
+\font\mybfit=ptmbi at 12pt
+
+
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{H01}
+%\def\classterm{Spring 2025}
+%\def\instructor{Dr. Robert Rostermundt}
+
+
+\input{classinfo}  % Class Specific Information for title header
+\input{latexmacros}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Improper Integrals}
+\subtitle{Math\classnum\;\classtitle\;Lecture - \classterm}
+\author{Instructor: \instructor}
+\institute{University of Colorado Denver}
+\date{}
+%\begin{figure}
+%\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.35]{cycloid_regular_pendulum.jpg}
+%\end{figure}}
+
+
+\newcommand\Mydiv[2]{%
+$\strut#1$\kern.25em\smash{\raise.3ex\hbox{$\big)$}}$\mkern-8mu
+        \overline{\enspace\strut#2}$}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+%\def\topic{Improper Integrals}
+%\def\topicshort{Improper Integrals}
+%
+%	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+%	Section\;\classsec\;-\;\classterm\\
+%	\topic}
+%	\author{University of Colorado Denver / College of Liberal Arts 	and Sciences}
+%	\date{Department of Mathematics - Dr. \instructor}
+%
+%	\markright{Math\classnum\;-\;\classtitleshort,\;\topicshort, UCD, \classterm, Dr. \instructor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{\titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+Our objective is to evaluate integrals over infinite intervals or to integrate functions unbounded functions, such as those with a vertical asymptote. For example,
+\[\ds\int^{\infty}_{x=1}\ds\frac{1}{x^2}\,dx\quad\text{or}\quad\ds\int^{x=1}_{x=0}\ds\frac{1}{x}\,dx\]
+\vskip 5mm
+See the graphs in the following figure to get a geometric perspective.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.45]{improper_integral_gr06.jpg}
+\qquad
+\includegraphics[scale=0.45]{improper_integral_gr07.jpg}
+\captionof{figure}{Integral With an Infinite Interval and Integrand With a Vertical Asymptote}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+Before we dig into the details we should probably consider the idea of non-terminating addition. In fact, normally, when we think of addition we think of a process which terminates, or comes to an end. For example
+\[1+6+18+2+10=37.\]
+Even our experience with integration can be considered a terminating addition process.  The definite integral
+\[\ds\int^{x=b}_{x=a}f(x)\,dx\]
+can be interpreted as adding up area under the graph of $y=f(x)$ starting at $x=a$ and finishing at $x=b$. See the following Figure \ref{fig:area_under_curve}.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.5]{definite_integral_graphic.png}
+\captionof{figure}{Adding Up Area Under the Graph $y=f(x)$}
+\label{fig:area_under_curve}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+So what about non-terminating addition? It turns out we have already encountered non-terminating addition. For example, we should recall that we can write $1/3=0.33\overline{3}$. That can be written as follows:
+\[\ds\frac{1}{3}=\ds\frac{3}{10}+\ds\frac{3}{100}+\ds\frac{3}{1000}+\ds\frac{3}{10000}+\cdots.\]
+I hope that nobody would protest about assigning the value $1/3$ to the sum on the right. And if you're paying attention you might notice it is a non-terminating sum. That is where we are headed.
+\vskip 5mm
+Here's another example based on one of Xeno's paradoxes. It states that motion is impossible. You've probably seen the argument.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.2]{xeno_paradox.jpg}
+\captionof{figure}{An Illustration of Xeno's Paradox}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+
+\vskip 5mm
+
+The logic goes as follows. In order to travel from one point to another point I must first travel $1/2$ the distance, and then I must travel half of the remaining distance, or $1/4$ the total distance. Continuing in this fashion I would next have to travel $1/8$ the total distance, and then $1/16$ of the total distance, etc.
+Since we can always cut the remaining distance in half, there are infinitely many steps to take and thus it is impossible to move from one point to another. We can describe the process in the paradox with an infinite non-terminating sum.
+\[\ds\frac{1}{2}+\ds\frac{1}{4}+\ds\frac{1}{8}+\ds\frac{1}{16}+\ds\frac{1}{32}+\cdots\]
+\vskip 2mm
+Now, of course, we know that motion is possible. So perhaps it makes sense to assign a value to the above sum. Any thoughts?
+\vskip 5mm
+I think everyone would agree that the natural value to assign to the sum is $1$. As we take more and more steps our total distance is approaching $1$. So we write
+\[1=\ds\frac{1}{2}+\ds\frac{1}{4}+\ds\frac{1}{8}+\ds\frac{1}{16}+\ds\frac{1}{32}+\cdots\]
+
+\vfill\eject
+
+A little thought should convince you that this sum is really no different than assigning the value $1/3$ to the following sum.
+\vskip 5mm
+\[\ds\frac{1}{3}=\ds\frac{3}{10}+\ds\frac{3}{100}+\ds\frac{3}{1000}+\ds\frac{3}{10000}+\cdots\]
+\vskip 5mm
+\noindent{\bf\emph{\underline{The Question}:}} So what does this have to do with integration?
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Integrals with Infinite Integration Limits:}
+
+It turns out that many applications in mathematics require integration over an infinite interval. For example, in probability theory we might consider the integral
+\[\ds\int^{\infty}_{x=0}\ds\frac{1}{1+x^2}\,dx.\]
+Here we are adding up area under the graph $y=1/(1+x^2)$ starting at $x=0$. But we do not have a right endpoint to the interval and so the addition process does not terminate.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{cuachy_integral.png}
+\captionof{figure}{An Integral with Infinite Interval}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+\noindent{\bf\emph{\underline{Question}:}} So how should we deal with such an integral? maybe we should approach this as we did with the non-terminating sums above?
+\vskip 1cm
+Suppose we need to evaluate $\ds\int^{\infty}_{x=a}f(x)\,dx$.
+\vskip 1cm
+We will start with a proper Riemann integral
+\[\ds\int^{x=t}_{x=a}f(x)\,dx\] 
+and consider what happens to the value of the integral as the value $t$ increases.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{improper_integral_gr01.jpg}
+\captionof{figure}{Dealing with an Integral with Infinite Interval of Integration}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+Formally we write
+\[\ds\int^{\infty}_{x=a}f(x)\,dx=\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=a}f(x)\,dx.\]
+\vskip 5mm
+Continuing with the example from above we have
+\[\ds\int^{\infty}_{x=0}\ds\frac{1}{1+x^2}\,dx=\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=0}\ds\frac{1}{1+x^2}\,dx.\]
+Let's formalize this with a two step process.
+\vskip 5mm
+	\begin{itemize}
+		\item[$\bullet$] {\bf\emph{Step \#1}:} Evaluate the proper integral $\ds\int^{x=t}_{x=0}\ds\frac{1}{1+x^2}\,dx$.
+\beq
+\ds\int^{x=t}_{x=0}\ds\frac{1}{1+x^2}\,dx&=&\tan^{-1}(x)\ds\Bigg|^{x=t}_{x=0}\\
+&=&\tan^{-1}(t)-\tan^{-1}(0)\\
+&=&\tan^{-1}(t)
+\eeq
+
+		\item[$\bullet$] {\bf\emph{Step \#2}:} Evaluate the limit as $t\to\infty$.
+\[\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=a}f(x)\,dx=\ds\lim_{t\to\infty}\tan^{-1}(t)=\ds\frac{\pi}{2}\]
+
+	\end{itemize}
+
+So as the value $t$ increases the value of the integral is approaching $\pi/2$ and so we say the improper integral converges to $\pi/2$ and we write
+\[\ds\int^{\infty}_{x=0}\ds\frac{1}{1+x^2}\,dx=\ds\frac{\pi}{2}.\] 
+
+Let’s consider an example together. 
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate $\ds\int^{\infty}_{x=1}\ds\frac{1}{x}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vspace*{2in}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We start by evaluating the proper integral $\ds\int^{x=t}_{x=1}\ds\frac{1}{x}\,dx$. This is easily seen to give
+\[\ds\int^{x=t}_{x=1}\ds\frac{1}{x}\,dx=\ln(t)\]
+Next we evaluate the limit.
+\[\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=1}\ds\frac{1}{x}\,dx=\ds\lim_{t\to\infty}\ln(t)=\infty\]
+
+Since this limit is not finite, the value of the integral is not approaching any finite value as $t$ increases and we say the improper integral diverges. That means we can not assign any finite value to this improper integral.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's have you try an example on your own.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate $\ds\int^{\infty}_{x=1}\ds\frac{1}{x^2}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We start by evaluating the proper integral $\ds\int^{x=t}_{x=1}\ds\frac{1}{x^2}\,dx$. This is easily seen to give
+\[\ds\int^{x=t}_{x=1}\ds\frac{1}{x^2}\,dx=1-\ds\frac{1}{t}\]
+Next we evaluate the limit.
+\[\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=1}\ds\frac{1}{x^2}\,dx=\ds\lim_{t\to\infty}1-\ds\frac{1}{t}=1\]
+\vskip 5mm
+Since this limit is finite, the value of the integral is approaching a finite value as $t$ increases and we say the improper integral converges to $1$. That means we can write
+\[\ds\int^{\infty}_{x=1}\ds\frac{1}{x^2}\,dx=1.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's have you try another important example on your own.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} For which positive values $p$ does the integral $\ds\int^{\infty}_{x=1}\ds\frac{1}{x^p}\,dx$ converge?.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We start by assuming $p\not=1$ and evaluating the proper integral $\ds\int^{x=t}_{x=1}\ds\frac{1}{x^p}\,dx$. This is easily seen to give
+\[\ds\int^{x=t}_{x=1}\ds\frac{1}{x^p}\,dx=\ds\frac{x^{1-p}}{1-p}\ds\bigg|^{x=t}_{x=1}=\ds\frac{t^{1-p}}{1-p}-\ds\frac{1}{1-p}\]
+Next we evaluate the limit.
+\[\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=1}\ds\frac{1}{x}\,dx=\ds\lim_{t\to\infty}\ds\frac{t^{1-p}}{1-p}-\ds\frac{1}{1-p}.\]
+If $p>1$ then $1-p<0$ and the quantity $t^{1-p}=1/t^{p-1}\to 0$ and the limit is finite. That is, when $p>1$ we have
+\[\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=1}\ds\frac{1}{x}\,dx=\ds\frac{1}{p-1}\]
+and the improper integral converges to the value $1/(p-1)$.
+\vskip 5mm
+However, if $p<1$ then $1-p>0$ and the quantity $t^{1-p}\to\infty$ and the limit is infinite. So in this case the improper integral diverges.
+\vskip 5mm
+We have already seen that the improper integral diverges when $p=1$. So we can say the improper integral converges when $p>1$ and diverges when $p\le 1$.
+\vskip 5mm
+Moreover, when $p>1$ we can write
+\[\ds\int^{\infty}_{x=1}\ds\frac{1}{x^p}\,dx=\ds\frac{1}{p-1}.\]
+\vskip 5mm
+For example,
+\[\ds\int^{\infty}_{x=1}\ds\frac{1}{x^{5/3}}\,dx=\ds\frac{1}{5/3-1}=\ds\frac{3}{2}\;\text{since }p=5/3>1.\]
+\vskip 5mm
+Another example could be
+\[\ds\int^{\infty}_{x=1}\ds\frac{1}{x^3/4}\,dx=\infty\;\text{since }p=3/4\le 1.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's move onto the next topic.
+
+\ifnum\longform=1
+\vfill\eject
+
+\fi
+
+\section*{Integrals of Functions with Discontinuities:}
+
+In our previous calculus experience we have always integrated continuous functions. But what if our function $f$ is not continuous on the interval $[a,b]$? Perhaps there is a vertical asymptote at $x=a$ or at $x=b$.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{improper_integral_gr02.jpg}
+\captionof{figure}{Dealing with an Integral of a Discontinuous Function}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 1cm
+
+We capture the strategy in the following definition.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{improper_integral_gr03.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+
+\vfill\eject
+
+Let's work a concrete example.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate $\ds\int^{x=1}_{x=0}\ds\frac{1}{\sqrt{x}}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Notice there is a discontinuity (vertical asymptote) at $x=0$. So we start by evaluating the proper integral $\ds\int^{x=1}_{x=t}\ds\frac{1}{\sqrt{x}}\,dx$ where $0<t<1$. This is easily seen to give
+\[\ds\int^{x=1}_{x=t}\ds\frac{1}{\sqrt{x}}\,dx=2\Big(1-\sqrt{t}\Big)\]
+Next we evaluate the limit.
+\[\ds\lim_{t\to 0^{+}}\ds\int^{x=1}_{x=t}\ds\frac{1}{\sqrt{x}}\,dx=\ds\lim_{t\to 0^{+}}2\Big(1-\sqrt{t}\Big)=2\]
+\vskip 5mm
+Since this limit is finite, the value of the integral is approaching a finite value as $t$ approaches zero and we say the improper integral converges to $2$. That means we can write
+\[\ds\int^{x=1}_{x=0}\ds\frac{1}{\sqrt{x}}\,dx=2.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's have you try another example on your own.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate $\ds\int^{x=1}_{x=0}\ds\frac{1}{x}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Notice there is a discontinuity (vertical asymptote) at $x=0$. So we start by evaluating the proper integral $\ds\int^{x=1}_{x=t}\ds\frac{1}{x}\,dx$ where $0<t<1$. This is easily seen to give
+\[\ds\int^{x=1}_{x=t}\ds\frac{1}{x}\,dx=-\ln(t)\]
+Next we evaluate the limit.
+\[\ds\lim_{t\to 0^{+}}\ds\int^{x=1}_{x=t}\ds\frac{1}{x}\,dx=\ds\lim_{t\to 0^{+}}-\ln(t)=\infty\]
+\vskip 5mm
+Since this limit is infinite, the value of the integral is not approaching a finite value as $t$ approaches zero and we say the improper integral diverges (to $\infty$). That means we can write
+\[\ds\int^{x=1}_{x=0}\ds\frac{1}{x}\,dx=\infty.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's have you try an important example.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Important Examples:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate $\ds\int^{x=1}_{x=-1}\ds\frac{1}{x^3}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Notice there is a discontinuity (vertical asymptote) at $x=0$. 
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.45]{improper_integral_gr04.jpg}
+\captionof{figure}{\hfill Improper Integral $\ds\int^{x=1}_{x=-1}\frac{1}{x^3}\,dx$}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+It is tempting to use symmetry. In fact, if we use symmetry arguments from Calculus I what would believe is the value of the improper integral? Does the integral converge?
+\vskip 1cm
+Since there is a discontinuity at $x=0$ we will write the improper integral as
+\[\ds\int^{x=1}_{x=-1}\frac{1}{x^3}\,dx=\ds\int^{x=0}_{x=-1}\frac{1}{x^3}\,dx+\ds\int^{x=1}_{x=0}\frac{1}{x^3}\,dx\] 
+\vskip 5mm
+Consider the integral from $x=0$ to $x=1$. We start by evaluating the proper integral $\ds\int^{x=1}_{x=t}\ds\frac{1}{x^3}\,dx$ where $0<t<1$. This is easily seen to give
+\[\ds\int^{x=1}_{x=t}\ds\frac{1}{x^3}\,dx=-\ds\frac{1}{2x^2}\,\ds\bigg|^{x=1}_{x=t}=\ds\frac{1}{2t^2}-\ds\frac{1}{2}.\]
+\vskip 5mm
+Next we evaluate the limit.
+\[\ds\lim_{t\to 0^{+}}\ds\int^{x=1}_{x=t}\ds\frac{1}{x^3}\,dx=\ds\lim_{t\to 0^{+}}\ds\frac{1}{2t^2}-\ds\frac{1}{2}=\infty\]
+\vskip 5mm
+Since this limit is infinite, the value of the integral is not approaching a finite value as $t$ approaches zero and we say the improper integral diverges (to $\infty$). That means we can write
+\[\ds\int^{x=1}_{x=0}\ds\frac{1}{x^3}\,dx=\infty.\]
+\vskip 5mm
+By symmetry we can be assured that the integral from $x=-1$ to $x=0$ also diverges.
+\[\vdots\]
+%\vspace*{5mm}
+	\end{boxsolution}
+
+\vfill\eject
+
+	\begin{boxsolutioncont}
+\vspace*{5mm}
+\[\vdots\]
+In this case,
+\[\ds\int^{x=0}_{x=-1}\frac{1}{x^3}\,dx=-\infty.\]
+But $\infty-\infty$ is an indeterminate form and so we can not say the improper integral converges. In fact, since at least one of the integrals diverges we must say the original improper integral diverges. So we have to be careful about applying symmetry arguments to improper integrals. See point 3 in the definition given on page 8.
+\vspace*{5mm}
+	\end{boxsolutioncont}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's have you try another important example.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate $\ds\int^{\infty}_{-\infty}\ds\frac{x}{1+x^2}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We look at a graphic view of the problem. 
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.45]{improper_integral_gr05.jpg}
+\captionof{figure}{\hfill Improper Integral $\ds\int^{\infty}_{-\infty}\frac{x}{1+x^2}\,dx$}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 1cm
+
+It is tempting to use symmetry. In fact, if we use symmetry arguments from Calculus I what would believe is the value of the improper integral? Does the integral converge?
+\vskip 5mm
+We will write the improper integral as
+\[\ds\int^{\infty}_{-\infty}\frac{x}{1+x^2}\,dx=\ds\int^{x=0}_{-\infty}\frac{x}{1+x^2}\,dx+\ds\int^{\infty}_{x=0}\frac{x}{1+x^2}\,dx\] 
+\vskip 5mm
+Consider the integral from $x=0$ to $+\infty$. We start by evaluating the proper integral $\ds\int^{x=t}_{x=0}\ds\frac{x}{1+x^2}\,dx$ where $0<t$. This is easily seen to give
+\[\ds\int^{x=t}_{x=0}\ds\frac{x}{1+x^2}\,dx=-\ds\frac{1}{2}\ln(1+x^2)\,\ds\bigg|^{x=t}_{x=0}=\ds\frac{1}{2}\ln(1+t^2).\]
+\vskip 5mm
+Next we evaluate the limit.
+\[\ds\lim_{t\to\infty}\ds\int^{x=t}_{x=0}\ds\frac{x}{1+x^2}\,dx=\ds\lim_{t\to\infty}\ds\frac{1}{2}\ln(1+t^2)=\infty\]
+\vskip 5mm
+Since this limit is infinite, the value of the integral is not approaching a finite value as $t$ increases and we say the improper integral diverges (to $\infty$). That means we can write
+\[\ds\int^{\infty}_{x=0}\ds\frac{x}{1+x^2}\,dx=\infty.\]
+\vskip 5mm
+By symmetry we can be assured that the integral on the interval $(-\infty,0)$ also diverges. 
+\[\vdots\]
+%\vspace*{5mm}
+	\end{boxsolution}
+
+\vfill\eject
+
+	\begin{boxsolutioncont}
+\vspace*{5mm}
+\[\vdots\]
+In this case,
+\[\ds\int^{x=0}_{-\infty}\frac{x}{1+x^2}\,dx=-\infty.\]
+But $\infty-\infty$ is an indeterminate form and so we can not say the improper integral converges. In fact, since at least one of the integrals diverges we must say the original improper integral diverges. So we have to be careful about applying symmetry arguments to improper integrals. 
+\vspace*{5mm}
+	\end{boxsolutioncont}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Direct Comparison:}
+
+Consider the following example.
+
+\begin{example} Determine whether the following improper integral converges or diverges.
+\[\ds\int^{\infty}_{x=2}\ds\frac{x^3}{x^4-x-1}\,dx\]
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.4]{improper_comparison_gr1.jpg}
+\captionof{figure}{Area under the curve $y=\frac{x^3}{x^4-x-1}$}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We would like to avoid using partial fractions on the integrand because it is difficult to factor degree=4 polynomials. In fact, all of the zeros to this polynomial are quite ugly. One of the zeros is
+{\tiny
+\beq
+x&=&-\ds\frac{1}{2}\sqrt{-4\left(\ds\frac{2}{3(9+\sqrt{849})}\right)^{1/3}+\ds\frac{\left(\ds\frac{1}{2}(9+\sqrt{849})\right)^{1/3}}{3^{2/3}}}+\cdots\\
+&&\cdots+\ds\frac{1}{2}\sqrt{4\left(\ds\frac{2}{3(9+\sqrt{849})}\right)^{1/3}-\ds\frac{\left(\ds\frac{1}{2}(9+\sqrt{849})\right)^{1/3}}{3^{2/3}}-\ds\frac{2}{\sqrt{-4\left(\ds\frac{2}{3(9+\sqrt{849})}\right)^{1/3}+\ds\frac{\left(\ds\frac{1}{2}(9+\sqrt{849})\right)^{1/3}}{3^{2/3}}}}}
+\eeq
+}
+So let's find a useful improper integral for a comparison. We can use the following fact that for all $x\ge 2$ we have
+\[\ds\frac{x^3}{x^4-x-1}>\ds\frac{x^3}{x^4}=\ds\frac{1}{x}.\]
+\vskip 5mm
+Looking at the following graphic, it follows that
+\[\ds\int^{x=t}_{x=2}\ds\frac{x^3}{x^4-x-1}\,dx>\ds\int^{x=t}_{x=2}\ds\frac{1}{x}\,dx\]
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.5]{improper_comparison_gr2.jpg}
+\captionof{figure}{Area under the curve $y=\frac{x^3}{x^4-x-1}$ versus $y=\frac{1}{x}$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 1cm
+
+Because $\ds\int^{\infty}_{x=2}\ds\frac{1}{x}\,dx$ diverges to $\infty$, we can conclude that $\ds\int^{\infty}_{x=2}\ds\frac{x^3}{x^4-x-1}\,dx$ also diverges to $\infty$ by direct comparison.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

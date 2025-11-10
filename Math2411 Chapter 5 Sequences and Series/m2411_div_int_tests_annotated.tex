@@ -1,0 +1,517 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Divergence and Integral Tests}
+\def\topicshort{Div. and Int. Tests}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\, Introduction:}
+
+Our objective is to study some basic tests to determine whether an infinite series converges. So to get started, we recall geometric series
+\[\ds\sum^{\infty}_{n=0}cr^n=c=cr+cr^2+cr^3+\cdots\]
+We were able to find a formula for the $k^{th}$ partial sum $s_k$ and use this to determine when the series converged and to what value does it converge.
+\[\ds\lim_{k\to\infty}s_k=\ds\lim_{k\to\infty}\,c\cdot\left(\ds\frac{1-r^{k-1}}{1-r}\right)=\ds\frac{c}{1-r}\quad\text{if }-1<r<r.\] 
+For all other values of $r$ the geometric series diverges.
+\vskip 5mm
+Unfortunately, a formula for the $k^{th}$ partial sum $s_k$ is usually too difficult to find. So we need other methods to check for convergence or divergence.
+
+\section*{Divergence Test:}
+
+Can you think of a necessary condition on the terms of the series $a_n$ for convergence of $\sum^{\infty}_{n=1}a_n$? 
+\vskip 1cm
+
+Suppose that a sequence $\sum^{\infty}_{n=1}a_n$ converges. Then $\lim_{k\to\infty}s_k=L$ for some finite number $L$. Then we have
+\[\ds\lim_{k\to\infty}a_k=\ds\lim_{k\to\infty}\Big(s_k-s_{k-1}\Big)=L-L=0.\]
+So if a series converges we conclude that the terms in the series much converge to zero. This is logically equivalent to the statement of the following theorem.
+\vskip 5mm
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.7]{div_test_thm.jpg}
+%\caption{}
+\end{center}
+\end{figure} 
+
+\note The converse of the theorem is not true. That is, if $\lim_{n\to\infty}a_n=0$, we can conclude nothing about the convergence or divergence of the series. For example, $\lim_{n\to\infty}1/n=0$ while the series $\sum 1/n$ diverges. We will soon see that even though $\lim_{n\to\infty}1/n^2=0$ the series $\sum 1/n^2$ converges.
+\vskip 5mm
+
+\section*{Divergence Test Examples:}
+
+\begin{example} Apply the divergence test to $\ds\sum^{\infty}_{n=0}\ds\frac{n}{3n-1}$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\ifnum\longform=1
+\vskip 1in
+	\else
+\vskip 1.5in
+
+\fi
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We see that 
+\[\ds\lim_{n\to\infty}a_n=\ds\lim_{n\to\infty}\ds\frac{n}{3n-1}=\ds\frac{1}{3}\not=0.\]
+\vskip 5mm
+So the series diverges by the Divergence Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vskip 5mm
+Here is another example.
+\vskip 5mm
+
+\begin{example} Apply the divergence test to $\ds\sum^{\infty}_{n=0}\ds\frac{1}{n^4}$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\ifnum\longform=1
+\vskip 1in
+	\else
+\vskip 1.5in
+
+\fi
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We see that 
+\[\ds\lim_{n\to\infty}a_n=\ds\lim_{n\to\infty}\ds\frac{1}{n^4}=0.\]
+\vskip 5mm
+So the Divergence Test is inconclusive.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+Here is another example.
+\vskip 5mm
+
+\begin{example} Apply the divergence test to $\ds\sum^{\infty}_{n=0}e^{1/n^2}$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 2in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We see that 
+\[\ds\lim_{n\to\infty}a_n=\ds\lim_{n\to\infty}e^{1/n^2}=e^0=1.\]
+\vskip 5mm
+So the series diverges by the Divergence Test.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Integral Test:}
+
+The Integral Test is an important and powerful test and is based on the logic of direct comparison. 
+\vskip 5mm
+Let's return to a familiar example $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n}$ and use the improper integral $\ds\int^{\infty}_{x=1}\ds\frac{1}{x}\,dx$ for comparison.
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{int_test_gr1.jpg}
+\captionof{figure}{Comparison Method for Integral Test}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+We can see from the graphic that
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{int_test_gr2.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+Then since $\lim_{k\to\infty}\ln(1+k)=\infty$ we must have $\lim_{k\to\infty}S_k=\infty$ and the original infinite series diverges by the Integral Test.
+
+\vskip 5mm
+
+Let's consider another example with $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^2}$.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.5]{int_test_gr3.jpg}
+\captionof{figure}{Comparison Method for Integral Test}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\ifnum\longform=1
+\vskip 1cm
+	\else
+\vfill\eject
+
+\fi
+
+We can see from the graphic that
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{int_test_gr4.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+We will use an important fact about infinite sequences. If a sequence $\{S_k\}$ is increasing and bounded then it must converge. In this example is is clear that
+\[S_k=\ds\sum^{k}_{n=1}\ds\frac{1}{n^2}\]
+is an increasing sequence. That is, $S_{k}\ge S_{k-1}$. We also see from above that the sequence of partial sums ${S_k}$ is bounded above by $2$. Therefore, the sequence of partial sums $\{S_k\}$ converges and we say the infinite series converges by the Integral Test.
+\vskip 5mm
+This process can be summed up by the following theorem.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{int_test_thm.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage} 
+
+\vskip 1cm
+
+Let's consider a few examples.
+
+\section*{Integral Test Examples:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Apply the Integral Test to $\ds\sum^{\infty}_{n=1}\ds\frac{1}{\sqrt{2n-1}}$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We will compare
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 4cm 0cm, clip=true, scale=0.75]{int_test_gr5.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+We now look to an important type of series called a $p$-series.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{pseries_def.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage} 
+\vskip 5mm
+
+Fortunately we can come to a general solution about $p$-series.
+\vskip 5mm
+\begin{center}
+A $p$-series $\sum^{\infty}_{n=1}\frac{1}{n^p}$ converges when $p>1$ and diverges when $p\le 1$.
+\end{center}
+
+Consider a few examples.
+
+	\begin{enumerate}
+			\item $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^{5/4}}$
+\vskip 2mm
+Since $p=5/4>1$ the infinite series converges as a $p$-series.
+			\item $\ds\sum^{\infty}_{n=1}\ds\frac{1}{\sqrt{n}}$
+\vskip 2mm
+Since $p=1/2\le 1$ the infinite series diverges as a $p$-series.
+			\item $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3}$
+\vskip 2mm
+Since $p=3>1$ the infinite series converges as a $p$-series.
+	\end{enumerate}
+
+\ifnum\longform=1
+\vskip 2mm
+\note Observe that we do not necessarily know the the value of a convergent $p$-series. 
+\vskip 2mm
+Let's argue our result about $p$-series.
+
+\fi
+
+\vskip 5mm
+
+\ifnum\longform=1
+	\begin{discussion}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{pseries_proof.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vspace*{5mm}
+
+	\end{discussion}
+	
+\fi
+
+\section*{Estimation of Series Value:}
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 5.5cm 0cm 0cm, clip=true, scale=0.7]{series_value_estimate_gr1.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vfill\eject
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 2.3cm 3.3cm, clip=true, scale=0.7]{series_value_estimate_gr1.jpg}\\
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.7]{series_value_estimate_gr2.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 1cm
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\qquad\qquad\includegraphics[trim= 0cm 0cm 2.3cm 3.3cm, clip=true, scale=0.8]{error_graphic.jpg}
+\captionof{figure}{Visualization of Partial Sum Estimate}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+
+\vskip 1cm
+
+We can see that 
+\beq
+R_N&=&a_{N+1}+a_{N+2}+a_{N+3}+\cdots\le\ds\int^{\infty}_{x=N}f(x)\,dx\\
+R_N&=&a_{N+1}+a_{N+2}+a_{N+3}+\cdots\ge\ds\int^{\infty}_{x=N+1}f(x)\,dx\\
+\eeq
+So the integral is either an overestimate of $R_N$ or an underestimate of $R_n$.
+
+\vskip 1cm
+
+Let's work an example.
+
+\vfill\eject
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Consider the infinite series $\sum^{\infty}_{n=1}\frac{1}{n^3}$. It turns out that, even though we know the series converges as a $p$-series, to this day mathematicians have been unable to determine an explicit form the value of the series. So we must estimate the value. Let's use the partial sum $S_{10}$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vskip 4in
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We can compute the following.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0.1cm 0cm, clip=true, scale=0.75]{series_estimate_example.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+\[\vdots\]
+\vspace*{5mm}
+	\end{boxsolution}
+
+\vfill\eject
+
+	\begin{boxsolutioncont}
+\vspace*{5mm}
+\[\vdots\]
+Then we have the error for our calculation as
+\[R_{10}<\ds\frac{1}{2(10)^2}=0.005\]
+So we conclude that
+\[1.19253<\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3}<1.20253\]
+If we want a more accurate estimation we simply need to add more terms. For example, if we want our error $R_N<0.00001$ we would could solve
+\[R_N<\ds\frac{1}{2N^2}<\ds\frac{1}{100000}\quad\Longrightarrow\quad N>\sqrt{50000}\approx 223.6\]
+Then the partial sum $S_{224}=\sum^{224}_{n=0}\frac{1}{n^3}$ would be within $0.00001$ of the true value of the series. After computing $S_{224}$ we conclude
+\[1.20204<\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3}<1.20206\]
+In fact, since the partial sums are increasing we can do better and conclude
+\[S_{224}<\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3}<S_{224}+0.00001\quad\Longrightarrow\quad 1.202046983<\ds\sum^{\infty}_{n=1}\ds\frac{1}{n^3}<1.202056983\] 
+Since the series converges we can continue to add more and more terms and become closer and closer to the true value of the series.
+\vspace*{5mm}
+	\end{boxsolutioncont}
+	
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+\vskip 5mm
+This concludes our notes on the Divergence Test and the Integral Test.
+\vskip 1cm
+
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,284 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+
+%\mode<presentation>
+%{
+%  \usetheme{Pittsburgh}
+%  \setbeamercovered{transparent}
+%}
+
+\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+%\usepackage{times}
+%\usepackage[normalem]{ulem}
+%\usepackage{listings}
+
+\setbeamertemplate{footline}[frame number]
+
+
+\usepackage{amsmath,amssymb,amsthm,latexsym,graphicx,hyperref,bbm,rotating}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Defined Fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\font\minihelv=phvr at 6pt
+\font\helv=phvr at 10pt
+\font\medhelv=phvr at 16pt
+\font\bighelv=phvr at 20pt
+\font\hugehelv=phvr at 36pt
+\font\mybigfont=phvr at 16pt
+\font\mymediumfont=phvr at 14pt
+\font\mediumhelv=phvr at 14pt
+\font\mybfit=ptmbi at 12pt
+
+
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{H01}
+%\def\classterm{Spring 2025}
+%\def\instructor{Dr. Robert Rostermundt}
+
+
+\input{classinfo}  % Class Specific Information for title header
+\input{latexmacros}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Taylor Polynomial Graphs and Approximations}
+\subtitle{Math\classnum\;\classtitle\;Lecture - \classterm}
+\author{Instructor: \instructor}
+\institute{University of Colorado Denver}
+\date{}
+%\begin{figure}
+%\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.35]{cycloid_regular_pendulum.jpg}
+%\end{figure}}
+
+
+\newcommand\Mydiv[2]{%
+$\strut#1$\kern.25em\smash{\raise.3ex\hbox{$\big)$}}$\mkern-8mu
+        \overline{\enspace\strut#2}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\frame{\titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\S}{\mathbb{S}} % For defining a set S 
+
+%\begin{tabular}{ccc}
+%&&$x$\\
+%&\multicolumn{2}{c}{\Mydiv{x^2+1}{x^3+6}}\\
+%&&\qquad\,\underline{$x^3+1$}\\
+%\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section[????]{????}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection[]{??????}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\sin(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{center}
+\includegraphics[scale=0.4]{sinxplot.pdf}
+\end{center}
+\vskip 5mm
+Taylor Polynomial for $f(x)=\sin(x)$ centered at $a=0$.
+\beq
+p(x)&=&\ds\sum^{n}_{k=0}(-1)^k\ds\frac{x^{2k+1}}{(2k+1)!}\\
+&=&x-\ds\frac{x^3}{3!}+\ds\frac{x^5}{5!}+\cdots+(-1)^n\ds\frac{x^{2n+1}}{(2n+1)!}
+\eeq
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\sin(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item Taylor Polynomial of degree 1 for $f(x)=\sin(x)$ is $p(x)=x$.
+\item Taylor polynomial approximation of $\sin(1)$ equals $p(1)=1$.
+\item True function value equals $\sin(1)=0.841471$.
+\item Approximation error equals $p(1)-\sin(1)=0.158529$.
+\end{itemize}
+\vspace*{5mm}
+\begin{center}
+\includegraphics[scale=0.4]{sinxapproxdeg1.pdf}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\sin(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item Taylor Polynomial of degree 7 for $f(x)=\sin(x)$ is $p(x)=x-\ds\frac{x^3}{6}+\ds\frac{x^5}{120}-\ds\frac{x^7}{5040}$.
+\item Taylor polynomial approximation of $\sin(1)$ equals $p(1)=0.841468$.
+\item True function value equals $\sin(1)=0.841471$.
+\item Approximation error equals $p(1)-\sin(1)=-2.73084\times 10^{-6}$.
+\end{itemize}
+\vspace*{5mm}
+\begin{center}
+\includegraphics[scale=0.4]{sinxapproxdeg7.pdf}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\sin(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item Taylor Polynomial of degree 15 for $f(x)=\sin(x)$ is $p(x)=x-\ds\frac{x^3}{6}+\ds\frac{x^5}{120}-\cdots+\ds\frac{x^{15}}{1,307,674,368,000}$.
+\item Taylor polynomial approximation of $\sin(1)$ equals $p(1)=0.841471$.
+\item True function value equals $\sin(1)=0.841471$.
+\item Approximation error equals $p(1)-\sin(1)=-2.77556\times 10^{-15}$.
+\end{itemize}
+\vspace*{5mm}
+\begin{center}
+\includegraphics[scale=0.4]{sinxapproxdeg15.pdf}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\log(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\includegraphics[scale=0.4]{logxplot.pdf}
+\end{center}
+\vskip 5mm
+Taylor Polynomial for $f(x)=\log(x)$ centered at $a=1$.
+\beq
+p(x)&=&\ds\sum^{n}_{k=1}(-1)^{k+1}\ds\frac{(x-1)^{k}}{k}\\
+&=&(x-1)-\ds\frac{(x-1)^2}{2}+\ds\frac{(x-1)^3}{3}+\cdots+(-1)^n\ds\frac{(x-1)^n}{n}
+\eeq
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\log(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item Taylor Polynomial of degree 7 for $f(x)=\log(x)$ is $p(x)=x-1$.
+\item Taylor polynomial approximation of $\log(1.9)$ equals $p(1.9)=0.9$.
+\item True function value equals $\log(1.9)=0.641854$.
+\item Approximation error equals $p(1.9)-\log(1.9)=0.258146$.
+\vskip 2mm
+\item Taylor polynomial approximation of $\log(2.1)$ equals $p(2.1)=1.1$.
+\item True function value equals $\log(2.1)=0.741937$.
+\item Approximation error equals $p(2.1)-\log(2.1)=0.358063$.
+\end{itemize}
+\vspace*{2mm}
+\begin{center}
+\includegraphics[scale=0.35]{logxapproxdeg1.pdf}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\log(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item Taylor Polynomial of degree 7 for $f(x)=\log(x)$ is $p(x)=(x-1)-\ds\frac{(x-1)^2}{2}+\ds\frac{(x-1)^3}{3}+\cdots+\ds\frac{(x-1)^7}{7}$.
+\item Taylor polynomial approximation of $\log(1.9)$ equals $p(1.9)=0.671828$.
+\item True function value equals $\log(1.9)=0.641854$.
+\item Approximation error equals $p(1.9)-\log(1.9)=0.0299737$.
+\vskip 2mm
+\item Taylor polynomial approximation of $\log(2.1)$ equals $p(2.1)=0.877872$.
+\item True function value equals $\log(2.1)=0.741937$.
+\item Approximation error equals $p(2.1)-\log(2.1)=0.135934$.
+\end{itemize}
+\vspace*{2mm}
+\begin{center}
+\includegraphics[scale=0.35]{logxapproxdeg7.pdf}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$f(x)=\log(x)$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item Taylor Polynomial of degree 50 for $f(x)=\log(x)$ is $p(x)=(x-1)-\ds\frac{(x-1)^2}{2}+\ds\frac{(x-1)^3}{3}+\cdots-\ds\frac{(x-1)^{50}}{50}$.
+\item Taylor polynomial approximation of $\log(1.9)$ equals $p(1.9)=0.641806$.
+\item True function value equals $\log(1.9)=0.641854$.
+\item Approximation error equals $p(1.9)-\log(1.9)=-0.0000483119$.
+\vskip 2mm
+\item Taylor polynomial approximation of $\log(2.1)$ equals $p(2.1)=-0.47615$.
+\item True function value equals $\log(2.1)=0.741937$.
+\item Approximation error equals $p(2.1)-\log(2.1)=-1.21809$.
+\end{itemize}
+\vspace*{2mm}
+\begin{center}
+\includegraphics[scale=0.35]{logxapproxdeg50.pdf}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

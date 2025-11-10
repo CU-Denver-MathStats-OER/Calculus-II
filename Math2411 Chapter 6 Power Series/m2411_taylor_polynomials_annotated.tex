@@ -1,0 +1,548 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Taylor Polynomials}
+\def\topicshort{Taylor Polys}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+Our objective is to approximate general functions using polynomials. Many of the functions that we work with in everyday applications are quite difficult or impossible to evaluate exactly. Examples could be $\sin(x)$, $\cos(x)$, $\tan^{-1}(x)$, $e^x$, $\ln(x)$, etc. Now sometimes we can easily handle these functions. Suppose you were asked to evaluate $\sin(\pi/6)$. This is a familiar angle measure for the sine function and we immediately know that $\sin(\pi/6)=1/2$. Even some unfamiliar angle measures can be substituted in the sine function and be evaluated. For example, to evaluate $\sin(\pi/12)$ we could use a half angle identity.
+\[\sin^2(\theta)=\ds\frac{1-\cos(2\theta)}{2}\quad\Longrightarrow\quad \sin(\pi/12)=\sqrt{\ds\frac{1-\cos(\pi/6)}{2}}=\ds\frac{\sqrt{2-\sqrt{3}}}{2}.\]
+But what if we were asked to evaluate $\sin(1)$ and write as a decimal, fraction, or an expression involving radicals? The angle 1 radians is not a familiar input for the sine function and so must be approximated. Similarly, suppose you are asked to write $\ln(e)$ as a decimal. This is an easy question as we know $\ln(e)=1$. Similarly, we could easily state that $\ln\left(e^7\right)=7\ln(e)=7$. But what about the exact value of $\ln(4)$ as a decimal, fraction, or expression involving radicals? We might try to write $\ln(4)=2\ln(2)$. But now we are stuck and need an approximation of $\ln(2)$. Our focus in this section is developing a formal method to make these approximations. Before we develop the method let's look at some examples using the sine function. We are going to look at the graph $y=\sin(x)$ compared to the graphs of various polynomial functions.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.4]{sin_taylor_poly_deg1.jpg}\qquad
+\includegraphics[scale=0.4]{sin_taylor_poly_deg3.jpg}\qquad
+\includegraphics[scale=0.4]{sin_taylor_poly_deg7.jpg}\\
+\vskip 5mm
+\includegraphics[scale=0.4]{sin_taylor_poly_deg13.jpg}\qquad
+\includegraphics[scale=0.4]{sin_taylor_poly_deg21.jpg}\qquad
+\includegraphics[scale=0.4]{sin_taylor_poly_deg25.jpg}
+\captionof{figure}{Various Polynomial Approximations of the Sine Function}
+\label{fig:sin_polys}
+\end{center}
+\end{minipage}
+
+\vfill\eject
+
+The previous Figure \ref{fig:sin_polys}. shows approximating polynomials of varying degrees, from a first degree linear polynomial approximation to a degree 25 polynomial approximation. Before we move on, let's look at the graph $y=e^x$ compared to the graphs of various polynomial functions.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.4]{exp_taylor_poly_deg1.jpg}\qquad
+\includegraphics[scale=0.4]{exp_taylor_poly_deg3.jpg}\qquad
+\includegraphics[scale=0.4]{exp_taylor_poly_deg7.jpg}\\
+\captionof{figure}{Various Polynomial Approximations of the Exponential Function}
+\label{fig:exp_polys}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+The previous figure shows approximating polynomials of varying degrees, from a first degree linear polynomial approximation to a degree 7 polynomial approximation. For example, the degree 7 polynomial is given by
+\[p_{_7}(x)=1+x+\ds\frac{x^2}{2}+\ds\frac{x^3}{6}+\ds\frac{x^4}{24}+\ds\frac{x^5}{120}+\ds\frac{x^6}{720}+\ds\frac{x^7}{5040}.\]
+Then, for certain $x$-values, we could approximate $e^x\approx p_{_7}(x)$. So
+\[e=e^1\approx p(1)=2+\ds\frac{1}{2}+\ds\frac{1}{6}+\ds\frac{1}{24}+\ds\frac{1}{120}+\ds\frac{1}{720}+\ds\frac{1}{5040}=2.718253968\]
+\vskip 5mm
+The above polynomials are called {\bf\emph{Taylor polynomials}}. Each of these polynomials is {\bf\emph{centered}} at some point $x=a$. This will be a point where we have lots of information about the function, especially information about derivatives. The idea is to match derivatives for the function $f(x)$ and the polynomial function. The more derivatives we match, our intuition suggests that we should have a better approximation. This is because derivatives control the shape of the graph. Our general polynomial will have the form
+\[p_{_n}(x)=c_0+c_1(x-a)+c_2(x-a)^2+\cdots+c_n(x-a)^n.\]
+Then we want
+\beq
+f(a)&=&p(a)\\
+f'(a)&=&p'(a)\\
+f''(a)&=&p''(a)\\
+&\vdots&\\
+f^{(n)}(a)&=&p^{(n)}(a)
+\eeq
+Taking derivatives and solving for the coefficients $c_0,c_1,\dots,c_n$ gives us the following formula for the $n^{th}$ Taylor polynomial centered at $x=a$.
+
+\vfill\eject
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{taylor_poly_def.jpg}
+%\captionof{figure}{}
+\label{fig:taylor_polys_def}
+\end{center}
+\end{minipage}
+
+\vskip 2mm
+\note For those unfamiliar with the factorial function, we define $n!=n\cdot(n-1)\cdot(n-2)\cdots 3\cdot 2\cdot 1$. And for various reasons we also set $0!=1$.
+\vskip 5mm
+Let's try an example together.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Taylor Polynomial Examples:}
+
+\vskip 5mm
+\begin{example} Find a degree 3 Taylor polynomial for $f(x)=e^x$ centered at $a=0$. Then find a general formula for an $n^{th}$ degree Taylor polynomial.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{2mm}
+We compute derivatives and find
+\[f(0)=f'(0)=f''(0)=\cdots=f^{(n)}(0)=1.\]
+Then we have the following.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{exp_taylor_poly_formula.jpg}
+\captionof{figure}{Building a Taylor Polynomial for the Exponential Function}
+\label{fig:exp_polys_formula}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{exp_taylor_poly_family.jpg}
+\captionof{figure}{A Family of Taylor Polynomials for the Exponential Function}
+\label{fig:exp_polys_family}
+\end{center}
+\end{minipage}
+
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+\vskip 1cm
+	\else
+\vfill\eject
+
+\fi
+
+Let's try another example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vfill\eject
+
+\fi
+
+\begin{example} Find a Taylor polynomial formula for $f(x)=\sin(x)$ centered at $a=0$. 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compute derivatives and find
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{sin_taylor_poly_derivatives.jpg}
+\captionof{figure}{The First Four Derivatives for $f(x)=\sin(x)$.}
+\label{fig:exp_polys_family}
+\end{center}
+\end{minipage}
+\vskip 5mm
+Then we have the following.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{sin_taylor_poly_formula.jpg}
+\captionof{figure}{Building a Taylor Polynomial for $f(x)=\sin(x)$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+We can see that all the Taylor polynomials have odd degree so we are only interested in $p_{_1}(x), p_{_3}(x), p_{_5}(x)$, etc.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.45]{sin_taylor_poly_family.jpg}
+\captionof{figure}{A Family of Taylor Polynomials for $f(x)=\sin(x)$}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+Let's try another example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\begin{example} Find a Taylor polynomial formula for $f(x)=\ln(x)$ centered at $a=1$. 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compute derivatives and find
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 6cm 0cm ,clip=true, scale=0.75]{log_taylor_poly_formula.jpg}
+\captionof{figure}{Building a Taylor Polynomial for $f(x)=\ln(x)$.}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vskip 5mm
+Look at the graphs of the first three Taylor polynomials for $f(x)=\ln(x)$ centered at $a=1$.
+\vskip 1cm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{log_taylor_poly_family.jpg}
+\captionof{figure}{A Family of Taylor Polynomials for $f(x)=\ln(x)$}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+
+Let's try another example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\begin{example} Find a Taylor polynomial formula for $f(x)=\tan^{-1}(x)$ centered at $a=0$. 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We compute derivatives and find
+\vskip 2mm
+\beq
+f(x)=\tan^{-1}(x)&\qquad&f(0)=\tan^{-1}(0)=0\\
+f'(x)=\ds\frac{1}{1+x^2}&\qquad&f'(0)=\ds\frac{1}{1+0^2}=1\\
+f''(x)=\ds\frac{-2x}{(1+x^2)^2}&\qquad&f''(0)=\ds\frac{0}{1+0^2}=0\\
+f'''(x)=\ds\frac{-2(1+x^2)^2+8x(1+x^2)}{(1+x^2)^4}&\qquad&f'''(0)=-2\\
+&\vdots&\\
+\eeq
+We might feel discouraged at the increasing complexity of the derivatives and the difficulty in finding a pattern. Fortunately there is a backdoor for this problem. Recall the calculus relationship
+\[\tan^{-1}(x)=\ds\int\ds\frac{1}{1+x^2}\,dx+C\]
+It turns out that if we can find a Taylor polynomial for $g(x)=\ds\frac{1}{1+x^2}$ then we can use this relationship. It is a good exercise to show that a Taylor polynomial for $h(x)=\ds\frac{1}{1-x}$ is given as $q(x)=1+x+x^2+x^3+\cdots+x^n$. Then 
+\[g(x)=\ds\frac{1}{1+x^2}=h\left(-x^2\right)\approx q\left(-x^2\right)=1-x^2+x^4-x^6+\cdots+(-1)^{n}x^{2n}.\]
+Then if $\tan^{-1}(x)\approx p(x)$, meaning that $p(x)$ is a Taylor polynomial for $\tan^{-1}(x)$, then we can find $p(x)$ by integrating the polynomial $q(x)$ for $g(x)=1/(1+x^2)$. That is,
+\[p(x)=\ds\int q(x)\,dx=\ds\int 1-x^2+x^4-x^6+\cdots+(-1)^{n}x^{2n}\,dx=x-\ds\frac{x^3}{3}+\ds\frac{x^5}{5}-\cdots+(-1)^n\ds\frac{x^{2n+1}}{2n+1}+C.\]
+Setting $p(0)=0$ gives us that $C=0$ and we have a Taylor polynomial for $\tan^{-1}(x)$.
+\[p(x)=x-\ds\frac{x^3}{3}+\ds\frac{x^5}{5}-\cdots+(-1)^n\ds\frac{x^{2n+1}}{2n+1}\]
+\vskip 5mm
+Now suppose that we wanted an approximation of $pi$. Remembering that $\tan^{-1}(1)=\pi/4$ we have
+\[\pi=4\tan^{-1}(1)\approx 4\left(1-\ds\frac{1}{3}+\ds\frac{1}{5}-\ds\frac{1}{7}+\cdots+(-1)^n\ds\frac{1}{2n+1}\right).\]
+So letting $n=5$ we have
+\[\pi=4\tan^{-1}(1)\approx 4\left(1-\ds\frac{1}{3}+\ds\frac{1}{5}-\ds\frac{1}{7}+\cdots-\ds\frac{1}{11}\right).\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+Let's try another example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Use the fact that $\cos(x)=\ds\frac{d}{dx}\big[\sin(x)\big]$ to find the formula for a Taylor polynomial for $f(x)=\cos(x)$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Recall the calculus relationship
+\[\ds\frac{d}{dx}\big[\sin(x)\big]=\cos(x).\]
+It turns out that if we can find a Taylor polynomial for $g(x)=\sin(x)$ then we can use this relationship. It is a good exercise to show that a Taylor polynomial for $f(x)=\sin(x)$ is given as $p(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots+(-1)^n\frac{x^{2n+1}}{(2n+1)!}$. Then if $p(x)$ is a Taylor polynomial for $g(x)=\sin(x)$ we have 
+\[p(x)=\ds\frac{d}{dx}\big[q(x)\big]=\ds\frac{d}{dx}\left[x-\ds\frac{x^3}{3!}+\ds\frac{x^5}{5!}-\ds\frac{x^7}{7!}+\cdots+(-1)^n\ds\frac{x^{2n+1}}{(2n+1)!}\right]=1-\ds\frac{x^2}{2!}+\ds\frac{x^4}{4!}-\cdots+(-1)^n\ds\frac{x^{2n}}{2n}.\]
+We have a Taylor polynomial for $f(x)=\cos(x)$.
+\[p(x)=1-\ds\frac{x^2}{2!}+\ds\frac{x^4}{4!}-\ds\frac{x^6}{6!}+\cdots+(-1)^n\ds\frac{x^{2n}}{2n}\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+
+\vskip 1cm
+
+\section*{The Error in Our Approximations:}
+
+\vskip 5mm
+
+Anytime we are working with approximations we would like to have a sense of the error in our approximation. Fortunately, there are various theorems concerning the error of a Taylor polynomial approximation. We state the main theorem.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{taylor_theorem.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+The proof of this theorem (which is provided in the text) relies on the well-known Mean-Value Theorem. And the theorem itself gives a formal method to give bounds on the error of our approximation. But in these notes we want to focus on an intuitive idea. It feels like the higher the degree of the Taylor polynomial (meaning more derivatives have been matched at the point $a$) the better the approximation. Lets look at some numbers in the next two figures.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{sin1_error_deg1_gr01.jpg}\qquad
+\includegraphics[scale=0.65]{sin1_error_deg5_gr02.jpg}\\
+%\includegraphics[scale=0.4]{sin1_error_deg11_gr03.jpg}\\
+%\vskip 5mm
+%\includegraphics[scale=0.4]{sin_taylor_poly_deg13.jpg}\qquad
+%\includegraphics[scale=0.4]{sin_taylor_poly_deg21.jpg}\qquad
+%\includegraphics[scale=0.4]{sin_taylor_poly_deg25.jpg}
+\captionof{figure}{Degree=1 and Degree=5 Polynomial Approximations of $\sin(1)$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+We can see as the degree of the polynomial increases from $n=1$ to $n=5$ to $n=11$, the error in the approximation for $\sin(1)$ decreases as follows:
+\[R_1=0.158529\qquad R_5=0.000195682\qquad R_{11}=-1.59828*10^{-10}\]
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+%\includegraphics[scale=0.65]{sin1_error_deg1_gr01.jpg}\qquad
+%\includegraphics[scale=0.65]{sin1_error_deg5_gr02.jpg}\\
+\includegraphics[scale=0.65]{sin1_error_deg11_gr03.jpg}\\
+%\vskip 5mm
+%\includegraphics[scale=0.4]{sin_taylor_poly_deg13.jpg}\qquad
+%\includegraphics[scale=0.4]{sin_taylor_poly_deg21.jpg}\qquad
+%\includegraphics[scale=0.4]{sin_taylor_poly_deg25.jpg}
+\captionof{figure}{Degree=11 Polynomial Approximations of $\sin(1)$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 1cm
+
+So perhaps, as the degree of the polynomial increases the error will tend towards zero? 
+
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Question}:}} If we want to have no error, how many terms of the polynomial should we include? What does your intuition say?
+
+\vfill\eject
+
+Lets look at another example using the natural logarithm and approximations of $x=1.9$ and $x=2.1$.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.65]{log_error_deg1_gr01.jpg}\qquad
+\includegraphics[scale=0.65]{log_error_deg8_gr02.jpg}\\
+%\includegraphics[scale=0.4]{sin1_error_deg11_gr03.jpg}\\
+\vskip 5mm
+%\includegraphics[scale=0.55]{log_error_deg30_gr03.jpg}\qquad
+%\includegraphics[scale=0.55]{log_error_deg55_gr04.jpg}\qquad
+%\includegraphics[scale=0.4]{sin_taylor_poly_deg25.jpg}
+\captionof{figure}{Degree=1 and Degree=8 Polynomial Approximation of $\ln(1.9)$ and $\ln(2.1)$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+We have the following errors when $x=1.9$:
+\[R_1(1.9)=0.258146\qquad R_8(1.9)=-0.0238347\qquad R_{30}(1.9)=0.000657618\qquad R_{55}(1.9)=0.0000259593\]
+These error magnitudes are decreasing as the degree increases. This is what we expected to see from our intuition.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+%\includegraphics[scale=0.7]{log_error_deg1_gr01.jpg}\qquad
+%\includegraphics[scale=0.7]{log_error_deg8_gr02.jpg}\\
+\vskip 5mm
+\includegraphics[scale=0.6]{log_error_deg30_gr03.jpg}\qquad
+\includegraphics[scale=0.6]{log_error_deg55_gr04.jpg}\qquad
+\captionof{figure}{Degree=30 and Degree=55 Polynomial Approximations of $\ln(1.9)$ and $\ln(2.1)$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+We have the following errors when $x=2.1$:
+\[R_1(2.1)=0.358063\qquad R_8(2.1)=-0.132014\qquad\; R_{30}(2.1)=-0.299831\qquad\quad R_{55}(2.1)=1.78496\qquad\]
+Here the error magnitudes are increasing as the degree increases. This is not what we expected and so might be surprising given our earlier intuition.
+\vskip 5mm
+So the issue is not as simple as it may seem at first glance. Why are the approximations seemingly improving when $0<x<2$ and becoming worse when $x>2$? This is a question we will be able to answer, but only after we consider the possibility of including infinitely many terms instead of using a finite degree polynomial. We will deal with this formally in the next few sections.
+ 
+\vskip 1cm
+ 
+\fi
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 5mm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

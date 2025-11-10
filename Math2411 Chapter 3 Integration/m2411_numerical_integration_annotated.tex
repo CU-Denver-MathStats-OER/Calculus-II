@@ -1,0 +1,496 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Numerical Integration}
+\def\topicshort{Numerical Integration}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+Our objective is to estimate integrals rather than evaluate them directly using antiderivatives. The antiderivatives of many functions either cannot be expressed or cannot be expressed easily in closed form (that is, in terms of known functions). Consequently, rather than evaluate definite integrals of these functions directly, we can use certain techniques to approximate their values. This is known as {\bf\emph{numerical integration}}. In this section we explore several of these
+techniques. 
+\vskip 5mm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{The Midpoint Rule:}
+
+When we first studied definite integrals we used Riemann sums as an initial estimation for the area between the graph of a function and the $x$-axis. One type of Riemann sum we used is a {\bf\emph{Midpoint Riemann Sum}}.
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{midpointsum.jpg}
+\captionof{figure}{Midpoint Riemann Sum Estimation of Area}
+\label{fig:midpointsum}
+\end{center}
+\end{minipage}
+\vskip 5mm
+Then we would have
+\[\ds\int^{x=b}_{x=a}f(x)\,dx\approx f(m_1)\cdot\Delta x+f(m_2)\cdot\Delta x f(m_3)\cdot\Delta x+f(m_4)\cdot\Delta x,\;\text{where }\Delta x=(b-a)/4.\]
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{midpoint_rule.jpg}
+%\captionof{figure}{Midpoint Riemann Sum Estimation of Area}
+\label{fig:midpointrule}
+\end{center}
+\end{minipage}
+
+\vfill\eject
+
+Let’s consider an example together. 
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Estimate $\ds\int^{\infty}_{x=1}x^2\,dx$ using $M_4$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+\ssol 
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 3mm 0cm 0cm 0cm, clip=true, scale=0.9]{midpoint_xsquared.jpg}
+%\captionof{figure}{Midpoint Riemann Sum Estimation of Area}
+%\label{fig:}
+\end{center}
+\end{minipage}
+
+\fi
+
+\end{example}
+
+Let's have you try an example on your own.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Estimate the arclength of $y=x^2/2$ when $1\le x\le 4$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+\ifnum\longform=1
+\ssol 
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 1mm 0cm 0cm 0cm, clip=true, scale=0.9]{midpoint_arclength.jpg}
+%\captionof{figure}{Midpoint Riemann Sum Estimation of Area}
+%\label{fig:}
+\end{center}
+\end{minipage}
+
+\fi
+
+\end{example}
+
+There are other techniques besides the midpoint rule.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{The Trapezoid Rule:}
+
+One observation about the midpoint rule is that the top of the rectangles do not match the graph of the function very well which might create large errors. One attempt to fix this is to use trapezoids instead of rectangles.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.6]{trapezoids.jpg}
+\captionof{figure}{Trapezoid Estimation of Area}
+\label{fig:trapezoids}
+\end{center}
+\end{minipage}
+\vskip 1cm
+So we have $\ds\int^{x=b}_{x=a}f(x)\,dx\approx\ds\sum^{n}_{k=1}Area\big(\,Trapezoid_{_k}\,\big)$.
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+\fi
+
+Fortunately, the area of a trapezoid is very easy to compute. If a trapezoid has two heights $h_1$ and $h_2$ a base with length $b$, then 
+\[Area\big(\,Trapezoid\,\big)=\ds\frac{b}{2}\big(h_1+h_2\big).\]
+This means we have
+\beq
+\ds\sum^{n}_{k=1}Area\big(\,Trapezoid_{_k}\,\big)&=&\ds\frac{\Delta x}{2}\Big(\,f(x_0)+f(x_1)\Big)+\ds\frac{\Delta x}{2}\Big(\,f(x_1)+f(x_2)\Big)+\cdots\ds\frac{\Delta x}{2}\Big(\,f(x_{n-1})+f(x_n)\Big)\\
+&=&\ds\frac{\Delta x}{2}\Big(f(x_0)+\underbrace{f(x_1)+f(x_1)}_{\textcolor{red}{2f(x_1)}}+\underbrace{f(x_2)+f(x_2)}_{\textcolor{red}{2f(x_2)}}+\cdots+\underbrace{f(x_{n-1}+f(x_{n-1})}_{\textcolor{red}{2f(x_{n-1})}}+f(x_n)\Big)
+\eeq 
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.7]{trapezoid_rule.jpg}
+%\captionof{figure}{}
+\label{fig:trapezoidrule}
+\end{center}
+\end{minipage}
+\vskip 5mm
+\begin{discussion}
+\vspace*{2mm}
+Before we work any examples, we should observe that
+\[T_n=\ds\frac{1}{2}\Big(L_n+R_n\Big)\]
+where $L_n$ is a left Riemann sum and $R_n$ is a right Riemann sum. Moreover, the trapezoidal rule tends to
+overestimate the value of a definite integral over intervals where the function is concave up and to
+underestimate the value of a definite integral over intervals where the function is concave down. On the other
+hand, the midpoint rule tends to average out these errors somewhat by partially overestimating and partially underestimating
+the value of the definite integral over these same types of intervals. This leads us to hypothesize that, in general, the
+midpoint rule tends to be more accurate than the trapezoidal rule. In fact, as we will see later, the theoretical upper bound for error with the midpoint rule $M_n$ is one half the theoretical upper bound for the error with a trapezoid rule $T_n$.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.55]{midpoint_trapezoid_compare.jpg}
+\captionof{figure}{Trapezoid vs. Midpoint estimation of Area}
+\label{fig:trapezoidvsmidpoint}
+\end{center}
+\end{minipage}
+\vspace*{2mm}
+\end{discussion}
+\vskip 5mm
+Let’s consider an example together. 
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Estimate $\ds\int^{\infty}_{x=1}x^2\,dx$ using $T_4$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+\ssol 
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.9]{trapezoid_xsquared.jpg}
+%\captionof{figure}{Trapezoid Estimation of Area}
+\label{fig:trapezoidxsquared}
+\end{center}
+\end{minipage}
+\fi
+
+\end{example}
+
+So what about the error for these approximations? Do we have any tools to analyze the error? We define our error as follows in two ways.
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.85]{error_defs.jpg}
+%\captionof{figure}{Trapezoid Estimation of Area}
+\label{fig:errordef}
+\end{center}
+\end{minipage}
+\vskip 2mm
+Here is a result about analyzing the magnitude of our error.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.85]{error_theorem.jpg}
+%\captionof{figure}{Trapezoid Estimation of Area}
+\label{fig:errorthm}
+\end{center}
+\end{minipage}
+ 
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Estimate $\ds\int^{\infty}_{x=1}e^{x^2}\,dx$ to within 0.01 using the midpoint rule..
+
+\vfill\eject
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+\ssol 
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.9]{example_error.jpg}
+%\captionof{figure}{Trapezoid Estimation of Area}
+\label{fig:errorcalc}
+\end{center}
+\end{minipage}
+\vspace*{2mm}
+
+\begin{discussion}
+\vspace*{2mm}
+We might have been tempted to round $8.24$ down and choose $n=8$, but this would be incorrect because we
+must have an integer greater than or equal to $8.24$. We need to keep in mind that the error estimates provide an
+upper bound only for the error. The actual estimate may, in fact, be a much better approximation than is indicated
+by the error bound.
+\vskip 5mm
+\end{discussion}
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+\noindent{\bf\emph{\underline{Question}:}} Can you think of an issue that we have with both the Midpoint Rule and Trapezoid Rule approximations?
+\vskip 1.3in
+
+\noindent{\bf\emph{\underline{Answer}:}} We are approximating curved graphs using straight lines having zero curvature. With the midpoint rule, we estimated areas of regions under curves by using rectangles. In a sense, we approximated the curve with piecewise constant functions. With the trapezoidal rule, we approximated the curve by using piecewise linear functions. 
+
+\ifnum\longform=1
+\vfill\eject
+		\else
+\vskip 5mm	
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Simpson's Rule:}
+
+What if we used piecewise quadratic functions. That is, on subintervals of $[a,b]$ use the graph of a quadratic function (meaning a parabola) to approximate the graph $y=f(x)$. This technique is known as {\bf\emph{Simpson's Rule}}.
+\vskip 1mm
+\note In order to make this process work we need an even number of subintervals and we use the endpoints of two adjacent intervals to build our parabolas as seen in Figure \ref{fig:simpsons} provided below.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.75]{simpsons.jpg}
+\captionof{figure}{Simpson's Estimation of Area}
+\label{fig:simpsons}
+\end{center}
+\end{minipage}
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.8]{simpsons_rule.jpg}
+%\captionof{figure}{}
+%\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm 
+The derivation of this formula is not too difficult but is very tedious. You can check the text for a derivation if you are interested. Let’s now consider an example together. 
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Estimate the arclength of the graph $y=x^2/2$ where $1\le x\le 4$ using $S_6$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+%\ifnum\longform=0
+%\noindent{\bf\emph{\underline{Workspace Cont}:}}
+%
+%\vfill\eject
+%
+%\fi
+
+\ifnum\longform=1
+
+\ssol 
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 2mm 0cm 0cm 0cm, clip=true, scale=0.9]{simpsons_example.jpg}
+%\captionof{figure}{}
+%\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+So what about the theoretical error for Simpson's Rule? Our geometric intuition suggests it should be much smaller for the same number of subintervals.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0mm 0cm 0cm 0cm, clip=true, scale=0.85]{simpsons_error.jpg}
+%\captionof{figure}{}
+%\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Give the theoretical error bound for $\ds\int^{x=4}_{x=1}\sqrt{1+x^2}\,dx$ using $S_6$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+\ssol In this problem we have $n=6$, $n^4=1296$, and $(b-a)^5=3^5=243$. Next we have $f'(x)=x/\sqrt{1+x^2}$ which has a maximum value $M=4/\sqrt{17}\approx 0.970143$ at $x=4$. Then we have
+\[\text{Error in }S_6\le\ds\frac{M(b-a)^5}{180n^4}=\ds\frac{4}{\sqrt{17}}\cdot\ds\frac{243}{180\cdot 1296}=0.00101057.\] 
+Our approximation using $S_6$ is within two decimal places of accuracy. If we were to use $M_6$ our theoretical error bound would be
+\[\text{Error in }M_6=\ds\frac{M(b-a)^3}{24n^2}=\ds\frac{4}{\sqrt{17}}\cdot\ds\frac{27}{24\cdot 36}=0.0058678.\]
+As you can see, the theoretical error bound is improved with Simpson's Rule.
+\vskip 2mm
+\note Just because the error bound for $S_6$ is smaller than the error bound for $M_6$ {\bf\emph{DOES NOT}} mean that $S_6$ give a better approximation for this integral 
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's have you try an example on your own.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Use $S_2$ to estimate $\ds\int^{x=1}_{x=0}x^3\,dx$ and give a bound for the error.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill
+
+\ifnum\longform=1
+\newpage
+\ssol  
+\vskip 2mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 2mm 0cm 0cm 0cm, clip=true, scale=0.9]{simpsons_zeroerror.jpg}
+%\captionof{figure}{}
+%\label{fig:}
+\end{center}
+\end{minipage}
+
+\fi
+
+\end{example}
+
+\ifnum\longform=1
+\vskip 1cm
+\begin{discussion}
+\vspace*{2mm}
+In later chapters we will see there are other ways to estimate integrals using power series. But one advantage of the techniques in these notes is the explicit theoretical error bounds for each of the three approximation methods. For even more on numerical integration the interested student should consider a course in numerical analysis.
+\vskip 2mm
+\end{discussion}
+\fi
+
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 5mm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,443 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Partial Fractions}
+\def\topicshort{Partial Fractions}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\, Introduction:}
+
+Our objective is to integrate rational functions where $u$-sub or algebraic manipulations are not helpful or clear. Let's look at some examples. 
+\vskip 5mm
+\[\int\ds\frac{x^2+4x-1}{x^3+6x^2-3x+7}\,dx\qquad\int\ds\frac{2}{x^2+4x+8}\,dx\]
+The first integral can be solved using $u$-substitution letting $u=x^3+6x^2-3x+7$ so that $du=\left(3x^2+12x-3\right)\,dx$. We then have
+\beq
+\int\ds\frac{x^2+4x-1}{x^3+6x^2-3x+7}\,dx&=&\ds\frac{1}{3}\int\ds\frac{3\big(x^2+4x-1\big)}{x^3+6x^2-3x+7}\,dx\\
+&=&\ds\frac{1}{3}\int\ds\frac{3x^2+12x-3}{x^3+6x^2-3x+7}\,dx\\
+&=&\ds\frac{1}{3}\ds\int\ds\frac{du}{u}\\
+&=&\ds\frac{1}{3}\ln|u|+C\\
+&=&\ds\frac{1}{3}\ln\left|x^3+6x^2-3x+7\right|+C
+\eeq
+
+The second integral can be solved by algebraic manipulations, a $u$-sub, and a known antiderivative.
+\beq
+\int\ds\frac{2}{x^2+4x+8}\,dx&=&\int\ds\frac{2}{x^2+4x+4+4}\,dx\\
+&=&\int\ds\frac{2}{(x+2)^2+4}\,dx\\
+&=&\ds\int\ds\frac{2}{u^2+4}\,du\qquad\text{(Letting }u=x+2)\\
+&=&\tan^{-1}(u/2)+C\\
+&=&\tan^{-1}\left(\ds\frac{x+2}{2}\right)+C
+\eeq
+
+But some integrals of rational expressions resist any $u$-sub or algebraic manipulations. For example,
+\[\ds\int\ds\frac{2x+5}{x^2+4x-5}\,dx.\]
+
+\vfill\eject
+
+We can not turn this into a log-form by $u$-substitution since with $u=x^2+4x-5$ we have $du=\left(2x+4\right)\,dx$ and the numerator is not a scalar multiple of the denominator.
+
+\vskip 5mm
+
+So we split up the integral.
+\[\ds\int\ds\frac{2x+5}{x^2+4x-5}\,dx=\ds\int\ds\frac{2x+4}{x^2+4x-5}\,dx+\ds\int\ds\frac{1}{x^2+4x-5}\,dx\]
+The first integral is a simple $u$-substitution. But what about the second integral. We could try to complete the square as follows.
+\beq
+\ds\int\ds\frac{1}{x^2+4x-5}\,dx&=&\ds\int\ds\frac{1}{x^2+4x-4-1}\,dx\\
+&=&\ds\int\ds\frac{1}{(x-2)^2-1}\,dx\\
+&=&\ds\int\ds\frac{1}{u^2-1}\,du\qquad\text{(Letting }u=x-2)
+\eeq
+But the new integral is not in a familiar form. So it looks like we need a new strategy. We will use the following algebraic fact. It is a good exercise to check this equality.
+\[\ds\frac{2x+5}{x^2+4x-5}=\ds\frac{7}{6(x-1)}+\ds\frac{5}{6(x+5)}\]
+Now we have the following.
+\beq
+\ds\int\ds\frac{2x+5}{x^2+4x-5}\,dx&=&\ds\int\ds\frac{7}{6(x-1)}+\ds\frac{5}{6(x+5)}\,dx\\
+&=&\ds\frac{7}{6}\ds\int\ds\frac{1}{x-1}\,dx+\ds\frac{5}{6}\ds\int\ds\frac{1}{x+5}\,dx\\
+&=&\ds\frac{7}{6}\ln|x-1|+\ds\frac{5}{6}\ln|x+5|+C\\
+\eeq
+So if we can break apart a complicated rational expression into a sum of simpler rational expressions, often the new expressions will be easier to handle as far as integration.
+
+\section*{Partial Fractions Method}
+
+Let's see how the previous fraction was decomposed into simpler fractions. 
+\vskip 5mm
+
+\noindent{\bf\emph{Step \#1}:} Factor the denominator.
+\[x^2+4x-5=(x-1)(x+5)\]
+Do you notice anything about these factors?
+\vskip 1.5cm
+
+\noindent{\bf\emph{Step \#2}:} Try to break up the fraction so that the parts correspond to the factors.
+\[\ds\frac{2x+5}{x^2+4x-5}=\ds\frac{2x+5}{(x-1)(x+5)}=\ds\frac{A}{x-1}+\ds\frac{B}{x+5}\]
+
+\vskip 5mm
+
+\noindent{\bf\emph{Step \#3}:} Solve for $A$ and $B$. That is, find values of $A$ and $B$ that satisfy the previous equality. This is the crux of the process. We start by combining terms on the RHS and then seeting numerators equal.
+\[\ds\frac{2x+5}{(x-1)(x+5)}=\ds\frac{A(x+5)+B(x-1)}{(x-1)(x+5)}\quad\xRightarrow[\stackrel{\text{\textcolor{red}{Set Numerators}}}{\text{\tiny\textcolor{red}{Equal}}}]{}\quad 2x+5=A(x+5)+B(x-1)\]
+\vskip 5mm
+Methods to solve for $A$ and $B$:
+\begin{itemize}
+\item[$\bullet$] {\bf\emph{\underline{Method of Strategic Substitution}:}} Set $x=1$ and substitute to get
+\[7=6A\quad\Longrightarrow\quad A=7/6.\]
+Next set $x=-5$ and substitute to get
+\[-5=-6B\quad\Longrightarrow\quad B=5/6.\]
+So we have
+\[\ds\frac{2x+5}{x^2+4x-5}=\ds\frac{A}{x-1}+\ds\frac{B}{x+5}=\ds\frac{7}{6(x-1)}+\ds\frac{5}{6(x+5)}.\]
+
+\vskip 1cm
+
+\item[$\bullet$] {\bf\emph{\underline{Method of Equating Coefficients}:}} Expand both sides and equate coefficients.
+\[2x+5=(A+B)x+(5B-A)\]
+We see that
+\beq
+A+B&=&2\\
+5A-B&=&1\\
+\eeq
+Solving this system of equations gives us $A=7/6$ and $B=5/6$.
+So we have
+\[\ds\frac{2x+5}{x^2+4x-5}=\ds\frac{A}{x-1}+\ds\frac{B}{x+5}=\ds\frac{7}{6(x-1)}+\ds\frac{5}{6(x+5)}.\]
+
+\end{itemize}
+
+The partial fractions decomposition is an algebraic technique to simplify an integral. There is no calculus involved in the partial fractions.
+\vskip 5mm
+
+Let's work an example on your own.
+
+\section*{Partial Fractions Examples}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Evaluate $\ds\int\ds\frac{x+3}{x^3-x^2-2x}\,dx$
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Workspace}:}} 
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We start by factoring the denominator and breaking apart to get
+{\small
+\[\ds\frac{x+3}{x^3-x^2-2x}=\ds\frac{x+3}{x(x-2)(x+1)}=\ds\frac{A}{x}+\ds\frac{B}{x-2}+\ds\frac{C}{x+1}=\ds\frac{A(x+1)(x-2)+Bx(x+1)+Cx(x-2)}{x(x-2)(x+1)}\]
+}
+After putting the pieces back together we get
+\[\xRightarrow[\stackrel{\text{\textcolor{red}{Set Numerators}}}{\text{\tiny\textcolor{red}{Equal}}}]{}\quad x+3=A(x+1)(x-2)+Bx(x+1)+Cx(x-2)\quad\text{\textcolor{red}{(Eqn. 3.8)}}\]
+We now solve equation 3.8 for $A$, $B$, and $C$ using one of our described methods.
+\vskip 1cm
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\qquad\includegraphics[trim= 0cm 1cm 0cm 0cm, clip=true, scale=0.65]{partial_fractions_gr01.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vskip 1cm
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\qquad\includegraphics[scale=0.65]{partial_fractions_gr02.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+
+\vspace*{5mm}
+	\end{boxsolution}
+
+\vfill\eject
+
+	\begin{boxsolutioncont}
+\[\vdots\]
+Now we're ready for the integral.
+\vskip 2mm
+\beq
+\ds\int\ds\frac{x+3}{x^3-x^2-2x}\,dx&=&-\ds\int\ds\frac{1}{x}\,dx+\ds\frac{4}{3}\ds\int\ds\frac{1}{x-2}\,dx-\ds\frac{1}{3}\ds\int\ds\frac{1}{x+1}\,dx\\
+\\
+&=&-\ln|x|+\ds\frac{4}{3}\ln|x-2|-\ds\frac{1}{3}\ln|x+1|+C
+\eeq
+\vspace*{5mm}
+	\end{boxsolutioncont}
+\vskip 5mm
+
+\fi 
+
+\end{example}
+
+Let's work another example together.
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Evaluate $\ds\int\ds\frac{x-2}{(2x-1)^2(x-1)}\,dx$
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Workspace}:}} 
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+The denominator is already factored. Then we notice that the factor $(2x-1)$ is a repeated factor. In fact it's repeated twice and so this factor gives us two pieces, one for each power, as follows.
+\[\ds\frac{x-2}{(2x-1)^2(x-1)}=\underbrace{\ds\frac{A}{2x-1}+\ds\frac{B}{(2x-1)^2}}_{\stackrel{\text{\textcolor{red}{Repeated factors require}}}{\text{\tiny\textcolor{red}{multiple components}}}}+\ds\frac{C}{x-1}=\ds\frac{A(2x-1)(x-1)+B(x-1)+C(2x-1)^2}{(2x-1)^2(x-1)}\]
+After putting the pieces back together we can solve an equation.
+\[\xRightarrow[\stackrel{\text{\textcolor{red}{Set Numerators}}}{\text{\tiny\textcolor{red}{Equal}}}]{}\quad x-2=A(2x-1)(x-1)+B(x-1)+C(2x-1)^2\]
+We now solve the equation for $A$, $B$, and $C$ using one of our described methods. Equating coefficients we get $A=2$, $B=3$, $C=-1$. Then we have
+\beq
+\ds\int\ds\frac{x-2}{(2x-1)^2(x-1)}\,dx&=&2\ds\int\ds\frac{1}{2x-1}\,dx+3\ds\int\ds\frac{1}{(2x-1)^2}\,dx-\ds\int\ds\frac{1}{x-1}\,dx\\
+&=&\ln|2x-1|-\ds\frac{3}{2(2x-1)}-\ln|x-1|+C
+\eeq
+\vspace*{2mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.6]{partial_fractions_gr03.jpg}
+\includegraphics[trim= 0cm 2.5cm 0cm 0cm, clip=true, scale=0.602]{partial_fractions_gr04.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vfill\eject
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 11cm, clip=true, scale=0.6]{partial_fractions_gr04.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\fi
+
+\end{example}
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{example} Evaluate $\ds\int\ds\frac{2x-3}{x^3+x}\,dx$
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Workspace}:}} 
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+The denominator needs to be factored. 
+\[x^3+x=x(x^2+1)\]
+Then we notice that the factor $(x^2+1)$ is a quadratic factor. Looking at the previous table, item c., we break apart as follows.
+\[\ds\frac{2x-3}{x^3+x}=\ds\frac{2x-3}{x(x^2+1)}=\underbrace{\ds\frac{Ax+B}{x^2+1}}_{\stackrel{\text{\textcolor{red}{Quadratic factors require}}}{\text{\tiny\textcolor{red}{Linear Numerator}}}}+\ds\frac{C}{x}=\ds\frac{(Ax+B)x+C(x^2+1)}{x(x^2+1)}\]
+After putting the pieces back together we can solve an equation.
+\[\xRightarrow[\stackrel{\text{\textcolor{red}{Set Numerators}}}{\text{\tiny\textcolor{red}{Equal}}}]{}\quad 2x-3=(Ax+B)x+C(x^2+1)\]
+We now solve the equation for $A$, $B$, and $C$ using one of our described methods. Equating coefficients we get $A=3$, $B=2$, $C=-3$. Then we have
+\beq
+\ds\int\ds\frac{2x-3}{x^3+x}\,dx&=&\ds\int\ds\frac{3x+2}{x^2+1}\,dx-3\ds\int\ds\frac{1}{x}\,dx\\
+&=&\ds\frac{3}{2}\underbrace{\ds\int\ds\frac{2x}{x^2+1}\,dx}_{\stackrel{\text{\textcolor{red}{This is a}}}{\text{\tiny\textcolor{red}{Log-Form}}}}+2\underbrace{\ds\int\ds\frac{1}{x^2+1}\,dx}_{\stackrel{\text{\textcolor{red}{Arctangent}}}{\text{\tiny\textcolor{red}{Form}}}}-3\underbrace{\ds\int\ds\frac{1}{x}\,dx}_{\stackrel{\text{\textcolor{red}{Log}}}{\text{\tiny\textcolor{red}{Form}}}}\\
+&=&\ds\frac{3}{2}\ln(x^2+1)+2\tan^{-1}(x)-3\ln|x|+C\\
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+Let's have you work another example independently.
+ 
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example} Evaluate $\ds\int\ds\frac{1}{x^3-8}\,dx$
+\vskip 2mm
+\hint Since $x=2$ is a zero of $x^3-8$, in order to factor the denominator divide $x-2$ into $x^3-8$.
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Workspace}:}} 
+
+\vfill\eject
+
+\noindent{\bf\emph{\underline{Workspace Continued}:}} 
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 2cm 0cm, clip=true, scale=0.7]{partial_fractions_gr05.jpg}
+\vskip 5mm
+\includegraphics[trim= 0cm 0cm 2cm 0cm, clip=true, scale=0.7]{partial_fractions_gr06.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi 
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{What if Numerator Degree is Too Large?}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+For partial fractions to work the degree of the numerator MUST BE smaller than the degree of the denominator! 
+
+\begin{example} Evaluate $\ds\int\ds\frac{x^2+3x+1}{x^2-4}\,dx$
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Workspace}:}} 
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 0.6cm 0cm, clip=true, scale=0.69]{partial_fractions_gr07.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi 
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

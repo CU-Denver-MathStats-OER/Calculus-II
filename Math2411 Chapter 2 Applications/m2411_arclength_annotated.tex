@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Arclength}
+\def\topicshort{Arclength}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction}
+
+Suppose that we want to determine the arclength along a 2D curve $y=f(x)$ where $a\le x\le b$. We start with an estimation using straight lines.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.7]{arclength_gr1.jpg}
+\caption{Estimating arclength using straight line segments}
+\end{center}
+\end{figure}
+
+The total arclength will be approximated as the sum of the lengths of all line segments. If we write $\Delta s_k$ for the actual length along the $k^{th}$ segment of the curve and $l_k$ the length of the $k^{th}$ line segment
+we have
+\[Arclength\approx\ds\sum^{n}_{k=1}l_k\]
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{arclength_gr2.jpg}
+\caption{Length of the $i^{th}$ line segment}
+\end{center}
+\end{figure}
+
+Our approximation can be written as follows.
+ 
+\beq
+\Delta s_k&\approx&\sqrt{\big(\Delta x_k\big)^2+\big(\Delta y_k\big)^2}\\
+&=&\sqrt{1+\left(\ds\frac{\Delta y_k}{\Delta x_k}\right)^2}\,\Delta x_k\\
+&=&\sqrt{1+\left(f'(x^{*}_k\right)^2}\,\Delta x_k\qquad\text{by Mean Value Theorem}
+\eeq
+
+So we have
+\[\text{Total Length}\approx\ds\sum^{n}_{k=1}\sqrt{1+\left(f'(x^{*}_k\right)^2}\,\Delta x_k\quad\xRightarrow[\text{\textcolor{red}{Let $\Delta x\to 0$}}]{\stackrel{\text{\textcolor{red}{Approximation}}}{\text{\textcolor{red}{\tiny Improves}}}}\quad \text{Total Length}=\ds\int^{x=b}_{x=a}\sqrt{1+\big[f'(x)\big]^2}\,dx.\]
+
+As $\Delta x\to 0$ we have $l_k\to\Delta s_k$ and $\Delta s_k\to 0$ and an improved approximation. So we can write the differential
+\[ds=\sqrt{1+\left(f'(x^{*}_k\right)^2}\,dx\]
+and the integral can be written in two different forms as
+\[s=\ds\int^{x=b}_{x=a}\sqrt{1+\big[f'(x)\big]^2}\,dx\quad\text{or}\quad s=\ds\int_{\mathcal{C}}ds.\]
+
+
+Start with a concrete example.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example} Find the arclength on the curve $y=2x^{3/2}$ when $0\le x\le 1$. 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+While not necessary, we can start by graphing the curve.
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{arclength_gr3.jpg}
+\captionof{figure}{Graph of $y=2x^{3/2}$ on interval $[0,1]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+We can now set up the integral.
+
+\vfill\eject
+
+\beq
+s&=&\ds\int^{x=b}_{x=a}\sqrt{1+\big[f'(x)\big]^2}\,dx\\
+\\
+&=&\ds\int^{x=1}_{x=0}\sqrt{1+\left[3x^{1/2}\right]^2}\,dx\\
+\\
+&=&\ds\int^{x=1}_{x=0}\sqrt{1+9x}\,dx\\
+\\
+&=&\ds\frac{1}{9}\ds\int^{u=10}_{u=1}\sqrt{u}\,du\quad\big(\text{Letting }u=1+9x\big)\\
+\\
+&=&\ds\frac{1}{9}\cdot\ds\frac{2}{3}u^{3/2}\,\ds\Bigg|^{u=10}_{u=1}\\
+\\
+&=&\ds\frac{2}{27}\Big[\,10\sqrt{10}-1\,\Big]\\
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+Now try setting up an example on your own.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Find the arclength on the curve $y=\sin(3x)$ when $0\le x\le \pi$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+
+\noindent{\bf\emph{\underline{Workspace Cont}:}}
+
+\vspace*{3in}
+
+	\begin{boxsolution}
+\vspace*{5mm}
+We set up the integral.
+\[s=\ds\int^{x=\pi}_{x=0}\sqrt{1+\big[3\cos(3x)\big]^2}\,dx=\ds\int^{x=\pi}_{x=0}\sqrt{1+9\cos^2(3x)}\,dx\approx 6.9872 .\] 
+Usually the integral will be too difficult to evaluate by hand and so we will simply set up the integral and allow a computer to estimate the value of the integral.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}
+{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

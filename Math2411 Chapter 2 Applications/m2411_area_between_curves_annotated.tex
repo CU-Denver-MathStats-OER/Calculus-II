@@ -1,0 +1,370 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Area Between Curves}
+\def\topicshort{Area Between Curves}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction}
+
+Suppose that we want to determine the area between two curves $y=f(x)$ and $y=g(x)$ on an
+interval $[a,b]$.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{area_between_curves_gr1.jpg}
+\caption{Region between graphs $y=f(x)$ and $y=g(x)$ on the interval $[a,b]$}
+\end{center}
+\end{figure}
+
+It is very natural to approach the problem by subtracting the area below the lower graph
+(in this example $y=g(x)$) from the area under the upper graph (in this example $y=f(x)$)
+to have
+\[\text{Area}=\ds\int^{x=b}_{x=a}f(x)\,dx-\ds\int^{x=b}_{x=a}g(x)\,dx\quad\xRightarrow[\stackrel{\text{\textcolor{red}{By Properties}}}{\text{\textcolor{red}{of Integrals}}}]{}\quad\text{Area}=\ds\int^{x=b}_{x=a}f(x)-g(x)\,dx.\]
+
+Another more general approach is to create a familiar type estimate of the area using
+rectangles.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{area_between_curves_gr2.jpg}
+\caption{Estimated area between graphs $y=f(x)$ and $y=g(x)$ on the interval $[a,b]$.}
+\end{center}
+\end{figure}
+
+If we improve the estimate by letting the number of rectangles increase we have the same
+formula that we just saw above.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{area_between_curves_gr3.jpg}
+\end{center}
+\end{figure}
+%\vspace*{5mm}
+If we label the upper graph as $y=upper(x)$ and the lower graph as $y=lower(x)$, we can
+rewrite the formula 2.1 and also interpret the integral geometrically (as we’ve seen before)
+as a sum of the areas of ``very, very, thin" rectangles.
+
+\[\ds\int^{x=b}_{x=a}\big[upper(x)-lower(x)\big]\,dx\quad\xRightarrow[]{\text{\textcolor{red}{Can Be Interpreted As}}}\quad\stackrel{\stackrel{\text{\textcolor{red}{\large Sum}}}{\downarrow}}{\int^{x=b}_{x=a}}\;\underbrace{\stackrel{\stackrel{\text{\textcolor{red}{Rectangle Height}}}{\downarrow}}{\;\big[upper(x)-lower(x)\big]\;}\;\;\stackrel{\stackrel{\text{\textcolor{red}{Rectangle Width}}}{\downarrow}}{dx}}_{\text{\textcolor{blue}{Rectangle Area}}}\]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Area Between Curves Examples:}
+
+Let’s work some examples.
+\vskip 2mm
+
+\begin{example}
+
+Find the area between the curves $y=9-x^2/4$ and $y=6-x$.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.6]{area_between_curves_gr4.jpg}
+\caption{Region between graphs $y=9-x^2/4$ and $y=6-x$.}
+\end{center}
+\end{figure}
+\vspace*{5mm}
+Start by finding the interval. At which $x$-values do the curves intersect?
+
+\vfill\eject
+
+We solve the following equation.
+
+\beq
+9-x^2/4&=&6-x\\
+x^2-4x-12&=&0\\
+(x-6)(x+2)&=&0
+\eeq
+
+So the interval will be $[-2,6]$. On this interval the upper graph is $y=9-x^2/4$ and the
+lower graph is $y=6-x$ and so the integral is
+\[\text{Area}=\ds\int^{x=b}_{x=a}\big[upper(x)-lower(x)\big]\,dx=\ds\int^{x=6}_{x=-2}\left[\left(9-\ds\frac{x^2}{4}\right)-\Big(6-x\Big)\right]\,dx\]
+We evaluate the integral.
+
+\beq
+\ds\int^{x=6}_{x=-2}\left[\left(9-\ds\frac{x^2}{4}\right)-\Big(6-x\Big)\right]\,dx&=&\ds\int^{x=6}_{x=-2}\left[-\ds\frac{x^2}{4}+x+3\right]\,dx\\
+\\
+&=&-\ds\frac{x^3}{12}+\ds\frac{x^2}{2}+3x\ds\Bigg|^{x=6}_{x=-2}\\
+\\
+&=&\left(-\ds\frac{6^3}{12}+\ds\frac{6^2}{2}+3\cdot 6\right)-\left(-\ds\frac{(-2)^3}{12}+\ds\frac{(-2)^2}{2}+3\cdot(-2)\right)\\
+\\
+&=&\ds\frac{64}{3}
+\eeq
+
+So the area between the two graphs is Area=64=3. 
+ 
+\end{example}
+
+Let’s have you try an example on your own.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}
+
+Find the area between the curves $y=x+4$ and $y=3-x/2$ on the interval $[1,4]$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.4]{area_between_curves_gr5.jpg}
+\captionof{figure}{Region between graphs $y=x+4$ and $y=3-x/2$ on interval $[1,4]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+Since the interval $[1,4]$ is given we need to identify the upper graph and lower
+graph. Then we have to solve the integral
+\beq
+\ds\int^{x=b}_{x=a}\big[upper(x)-lower(x)\big]\,dx&=&\ds\int^{x=4}_{x=1}\left[\left(3-\ds\frac{x}{2}\right)-\Big(x+4\Big)\right]\,dx\\
+\\
+&=&\ds\int^{x=4}_{x=1}\left[1+\ds\frac{3x}{2}\right]\,dx\\
+\\
+&=&x+\ds\frac{3x^2}{4}\ds\Bigg|^{x=4}_{x=1}\\
+\\
+&=&\left(4+\ds\frac{3\cdot 4^2}{4}\right)-\left(1+\ds\frac{3\cdot 1^2}{4}\right)\\
+\\
+&=&\ds\frac{57}{4}
+\eeq
+
+So the area between the two graphs is Area$=57/4$. Let’s have you try another example on your own.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example}
+
+Find the area between the curves $y=\sin(x)$ and $y=\cos(x)$ on the interval $[0,\pi]$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.45]{area_between_curves_gr6.jpg}
+\captionof{figure}{Region between graphs $y=\sin(x)$ and $y=\cos(x)$ on interval $[0,\pi]$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+Since the interval $[0,\pi]$ is given we need to identify the upper graph and lower
+graph. But since the graphs cross we consider two intervals. Where do the graphs cross?
+We solve $\sin(x)=\cos(x)$ when $0\le x\le\pi$. They functions are equal at $x=\pi/4$ and
+so we have two intervals $[0,\pi/4]$ and $[\pi/4,\pi]$. On $[0,\pi/4]$ we have the upper function as
+$y=\cos(x)$ and the lower function as $y=\sin(x)$. On the second interval $[\pi/4,\pi]$ we have
+the upper function as $y=\sin(x)$ and the lower function as $y=\cos(x)$. We will need two
+integrals.
+\vskip 5mm
+We evaluate as follows.
+{\small
+\beq
+\text{Area}&=&\ds\int^{x=\pi/4}_{x=0}\big[\cos(x)-\sin(x)\big]\,dx+\ds\int^{x=\pi}_{x=\pi/4}\big[\sin(x)-\cos(x)\big]\,dx\\
+\\
+&=&\Big[\sin(x)+\cos(x)\ds\Big]^{x=\pi/4}_{x=0}+\Big[-\cos(x)-\sin(x)\ds\Big]^{x=\pi}_{x=\pi/4}\\
+\\
+&=&\left[\left(\sin\left(\ds\frac{\pi}{4}\right)+\left(\ds\frac{\pi}{4}\right)\right)-\Big(\sin(0)+\cos(0)\Big)\right]+\left[\Big(-\cos(\pi)-\sin(\pi)\Big)-\Big(-\cos\left(\ds\frac{\pi}{4}\right)-\sin\left(\ds\frac{\pi}{4}\right)\Big)\right]\\
+\\
+&=&\left[\left(\ds\frac{\sqrt{2}}{2}+\ds\frac{\sqrt{2}}{2}\right)-\Big(0+1\Big)\right]+\left[\Big(-(-1)-0\Big)-\left(-\ds\frac{\sqrt{2}}{2}-\ds\frac{\sqrt{2}}{2}\right)\right]\\
+\\
+&=&\Big[\sqrt{2}-1\Big]+\Big[1+\sqrt{2}\Big]\\
+\\
+&=&2\sqrt{2}
+\eeq
+}
+So the area between the two graphs is Area$=2\sqrt{2}$. 
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let’s have you try another example on your own.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example}
+Find the area between the curves $y=\sqrt{x}$ and $y=3/2-x/2$ and $y=0$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+
+\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+
+\vfill\eject
+
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{area_between_curves_gr7.jpg}
+\captionof{figure}{Region between graphs $y=\sqrt{x}$ and $y=3/2-x/2$ and $y=0$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+You might notice that integrating with respect to x will require two integrals because the
+graphs cross. How about using the variable $y$. Look at the following diagram.
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{area_between_curves_gr8.jpg}$\quad\Longrightarrow\quad$\includegraphics[scale=0.6]{area_between_curves_gr9.jpg}
+\captionof{figure}{Estimating the area of a region using the variable $y$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+If we write the equations in terms of $y$ we have $y=\sqrt{x}\iff x=y^2$ and $y=3/2-x/2\iff x=3-2y$. The intersection point of the two graphs is $(x,y)=(1,1)$ we can now solve the single integral.
+\beq
+\text{Area}&=&\ds\int^{y=d}_{y=c}\big[upper(y)-lower(y)\big]\,dy\\
+\\
+&=&\ds\int^{y=1}_{y=0}\left[\Big(3-2y\Big)-\Big(y^2\Big)\right]\,dy\\
+\\
+&=&3y-y^2-\ds\frac{y^3}{3}\ds\Bigg|^{y=1}_{y=0}\\
+\\
+&=&\ds\frac{5}{3}
+\eeq
+So we have Area$=5/3$.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

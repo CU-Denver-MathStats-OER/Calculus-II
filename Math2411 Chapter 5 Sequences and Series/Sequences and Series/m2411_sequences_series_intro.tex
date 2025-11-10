@@ -1,0 +1,531 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[UTF8, a4, 11pt]{ctexart}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage[final]{pdfpages}
+
+
+\usepackage[top=1in, bottom=1in, left=1in, right=2in]{geometry}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{-2cm}
+%\addtolength{\oddsidemargin}{-1cm}
+%\addtolength{\evensidemargin}{2cm}
+\parindent=0in
+
+
+%\input{classinfo}
+\input{latexmacros}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\printsol{0}
+\def\classnum{2411}
+\def\classtitle{Calculus II}
+\def\classtitleshort{Calc 2}
+\def\classsec{001}
+\def\instructor{Rostermundt}
+\def\classterm{Fall 2024}
+\def\topic{Sequences and Series}
+\def\topicshort{Separable ODEs}
+%\def\hmwknum{\#2}
+
+%\begin{figure}[h]
+%\begin{center}
+%\includegraphics[scale=0.6]{area_between_curves_gr1.jpg}
+%\caption{Region between graphs $y=f(x)$ and $y=g(x)$ on the interval $[a,b]$}
+%\end{center}
+%\end{figure}
+
+\ifnum\printsol=0
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	Section\;\classsec\;\classterm\\
+	Introduction to \topic}
+	\author{University of Colorado Denver / College of Liberal Arts 	and Sciences}
+	\date{Department of Mathematics - Dr. \instructor}
+
+	\markright{Math\classnum\;-\;\classtitleshort,\;\topicshort, UCD, \classterm, Dr. \instructor}
+
+		\else
+
+
+%	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+%	%Section\;\classsec\;-\;
+%	\classterm\\
+%	Calculus I Review Solutions}
+%	\author{University of Colorado Denver / College of Liberal Arts 	and Sciences}
+%	\date{Department of Mathematics - Dr. \instructor}
+%
+%	\markright{Math\classnum\;-\;\classtitleshort,\;Calc I Review Solutions, UCD, 		\classterm, Dr. \instructor}
+
+\fi 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+Our objective is to study the basics of {\bf\emph{infinite sequences}} and {\bf\emph{infinite series}}. So to get started, what is an infinite sequence?
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.6]{sequence_def.jpg}
+%\caption{}
+\end{center}
+\end{figure} 
+
+\section*{Sequence Examples:}
+
+\begin{ex}
+
+Consider the sequence $\{a_n\}$ where $a_n=2^n$ for natural numbers $n$. 
+\[\big\{2^n\big\}_{n\in\N}=\big\{2,4,8,16,32,\dots\big\}\]
+Notice that we will use curly set brackets for sequence notation. And as above we can describe a sequence either by some explicit rule, or by listing enough of the sequence elements to understand the pattern (if there is indeed a pattern). Here is a graph of the sequence.
+\vskip 5mm
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.4]{sequence_graph_gr01.jpg}
+\caption{Graph of the sequence where $a_n=2^n$.}
+\end{center}
+\end{figure}
+
+\end{ex}
+
+\vfill\eject
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Here is another example.
+\vskip 5mm
+
+\begin{ex} The Fibonnaci sequence is one of the most famous sequences in all of mathematics. This is defined recursively as follows.
+\[a_{n}=a_{n-1}+a_{n-2},\quad\text{where }a_0=a_1=1\]
+Notice that the sequence is not defined as an explicit formula involving $n$. That is, we are not given a rule $a_n=f(n)$. Rather, the $n^{th}$ term in the sequence is determined by the previous two terms. Here is the sequence.
+\[\big\{1,1,2,3,5,8,13,21,34,\dots\big\}\]
+
+%\begin{figure}[h]
+%\begin{center}
+%\includegraphics[scale=0.7]{separable_ode_gr05.jpg}
+%\caption{Examples of Differential Equations in the Form $y'=F(x,y)$.}
+%\end{center}
+%\end{figure}
+
+\end{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+Here is another simpler example.
+\vskip 5mm
+
+\begin{ex} Define a sequence as follows so that $a_n=\ds\frac{n}{n^2+1}$.
+\[\big\{a_n\big\}_{n\in\N}=\left\{\ds\frac{1}{2},\ds\frac{2}{5},\ds\frac{3}{10},\ds\frac{4}{17},\dots\right\}\]
+
+%\begin{figure}[h]
+%\begin{center}
+%\includegraphics[scale=0.7]{separable_ode_gr05.jpg}
+%\caption{Examples of Differential Equations in the Form $y'=F(x,y)$.}
+%\end{center}
+%\end{figure}
+
+\end{ex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+Here is another example.
+\vskip 5mm
+
+\begin{ex} Here is is one of the most important sequences in all of mathematics. Let $k$ be any real number and define
+\[a_n=\left(1+\ds\frac{k}{n}\right)^n\]
+So we have
+\[\big\{a_n\big\}^{\infty}_{n=1}=\left\{1+k, \left(1+\ds\frac{k}{2}\right)^2, \left(1+\ds\frac{k}{3}\right)^3,\left(1+\ds\frac{k}{4}\right)^4,\dots\right\}\]
+
+\end{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\section*{Limiting Values of Sequences:}
+
+The main question we will ask about sequences is whether of not the sequence converges to some value or diverges.
+\vskip 5mm
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.7]{sequence_converge_def1.jpg}
+%\caption{}
+\end{center}
+\end{figure}
+\vskip 5mm
+There is a nice graphic that reflects this idea.
+\vskip 5mm
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{sequence_converge_graphic.jpg}
+\caption{Graphic Representation of a Sequence $\{a_n\}$ Converging to $L$.}
+\end{center}
+\end{figure}
+\vskip 5mm
+The above definition is a somewhat informal definition that we will use in this class. However, we should realize that this definition can be formalized to be perfectly precise as follows.
+\vskip 5mm
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.7]{sequence_converge_def2.jpg}
+%\caption{}
+\end{center}
+\end{figure}
+\vskip 5mm
+We will not be working with this formal definition in this class. So how will we determine if a sequence converges or diverges? We will be exclusively evaluating explicit sequences and the following theorem will be our main tool for determining convergence or divergence.
+\vskip 5mm
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.7]{sequence_converge_thm1.jpg}
+%\caption{}
+\end{center}
+\end{figure}
+
+This theorem tells us that we can use all of our previous knowledge of function limits to evaluate sequence limits.
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{ex} Determine if the sequence $\{a_n\}$, where $a_n=n/(n^2+1)$, converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ssol We see that $a_n=f(n)$ for the function $f(x)=x/(x^2+1)$. Then our knowledge of growth rates tells us that
+\[\ds\lim_{x\to\infty}f(x)=\ds\lim_{x\to\infty}\ds\frac{x}{x^2+1}=0.\]
+Therefore, the sequence $\{a_n\}$ converges to zero.
+\vskip 5mm
+Alternatively we could apply L'Hopital's rule.
+\beq
+\ds\lim_{x\to\infty}\ds\frac{x}{x^2+1}&=&\ds\frac{\infty}{\infty}\quad\text{form}\\
+\\
+&\downarrow&\text{by L'Hopital's Rule}\\
+\\
+\ds\lim_{x\to\infty}\ds\frac{x}{x^2+1}&=&\ds\lim_{x\to\infty}\ds\frac{1}{2x}=\ds\frac{1}{\infty}\quad\text{form}
+\eeq
+So $\ds\lim_{n\to\infty}a_n=\ds\lim_{n\to\infty}\ds\frac{n}{n^2+1}=0$.
+
+\end{ex}
+
+\vskip 5mm
+Let's consider another example.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{ex} Determine if the sequence $\{a_n\}$, where $a_n=2n^3/(5n^3-n^2+1)$, converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ssol We see that $a_n=f(n)$ for the function $f(x)=2x^3/(5x^3-x^2+1)$. Then our knowledge of growth rates tells us that
+\[\ds\lim_{x\to\infty}f(x)=\ds\lim_{x\to\infty}\ds\frac{x}{x^2+1}=\ds\frac{2}{5}.\]
+Therefore, the sequence $\{a_n\}$ converges to $2/5$.
+\vskip 5mm
+Alternatively we could apply algebraic techniques.
+\beq
+\ds\lim_{x\to\infty}\ds\frac{2x^3}{5x^3-x^2+1}&=&\ds\lim_{x\to\infty}\,\ds\frac{x^3}{x^3}\cdot\left(\ds\frac{2}{5-\ds\frac{1}{x}+\ds\frac{1}{x^3}}\right)\\
+&=&\ds\lim_{x\to\infty}\ds\frac{2}{5-\ds\frac{1}{x}+\ds\frac{1}{x^3}}\\
+&=&\ds\frac{2}{5-0+0}\\
+\\
+&=&\ds\frac{2}{5}
+\eeq
+So $\ds\lim_{n\to\infty}a_n=\ds\lim_{n\to\infty}\ds\frac{2n^3}{5n^3-n^2+1}=\ds\frac{2}{5}$.
+
+\end{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 5mm
+Let's try another example.
+\vskip 5mm
+
+\begin{ex} Determine if the sequence $\{a_n\}^{\infty}_{n=1}$, where $a_n=7n/\ln(n+1)$, converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ssol We see that $a_n=f(n)$ for the function $f(x)=7x/\ln(x+1)$. Then our knowledge of growth rates tells us that
+\[\ds\lim_{x\to\infty}f(x)=\ds\lim_{x\to\infty}\ds\frac{7x}{\ln(x+1)}=\infty.\]
+So the sequence $\{a_n\}$ diverges to $\infty$.
+\vskip 5mm
+Alternatively we could apply L'Hopital's rule.
+\beq
+\ds\lim_{x\to\infty}\ds\frac{7x}{\ln(x+1)}&=&\ds\frac{\infty}{\infty}\quad\text{form}\\
+\\
+&\downarrow&\text{by L'Hopital's Rule}\\
+\\
+\ds\lim_{x\to\infty}7(x+1)&=&\infty
+\eeq
+So $\ds\lim_{n\to\infty}a_n=\ds\lim_{n\to\infty}\ds\frac{7n}{\ln(n+1)}=\infty$ and the sequence diverges.
+
+\end{ex}
+
+\vskip 5mm
+Let's try another extremely important example.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{ex} Determine if the sequence $\{a_n\}^{\infty}_{n=1}$, where $a_n=\left(1+\ds\frac{k}{n}\right)^n$, converges or diverges.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ssol We see that $a_n=f(n)$ for the function $f(x)=\left(1+\ds\frac{k}{x}\right)^x$. Then our knowledge of limits from Calculus I tells us that
+\[\ds\lim_{x\to\infty}f(x)=\ds\lim_{x\to\infty}\left(1+\ds\frac{k}{x}\right)^x=e^k.\]
+So the sequence $\{a_n\}$ converges to the exponential $e^k$.
+\vskip 5mm
+Alternatively we could apply L'Hopital's rule to verify the above limit, but from this point on we will define
+\[\ds\lim\left(1+\ds\frac{k}{n}\right)^n:=e^k.\]
+
+\end{ex}
+\vskip 5mm
+
+And now one more example that will be important for us in this course.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{ex} Determine if the sequence $\{a_n\}^{\infty}_{n=1}$, where $a_n=cr^n$ for some real numbers $r$ and $c$, converges or diverges. This sequence is called a {\bf\emph{geometric sequence}}.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ssol The sequence is listed as
+\[\{a_n\}^{\infty}_{n=0}=\big\{c,cr,cr^2,cr^3,cr^4,\dots\big\}.\]
+The defining property of this sequence is the common ration between consecutive terms.
+
+\[\dots,cr^{k-1},\underbrace{cr^k,cr^{k+1}}_{a_{k+1}=ra_{k}},\dots\]
+The limiting value of this sequence depends on the value of $r$.
+	\begin{itemize}
+		\item[$\bullet$] If $-1<r<1$, then $\ds\lim_{k\to\infty}a_k=\ds\lim_{k\to\infty}cr^k=0$.
+		\item[$\bullet$] If $r=1$, then $\ds\lim_{k\to\infty}a_k=\ds\lim_{k\to\infty}c1^k=c$.
+		\item[$\bullet$] If $r>1$, then $\ds\lim_{k\to\infty}a_k=\ds\lim_{k\to\infty}cr^k=\infty$.
+		\item[$\bullet$] If $r\le -1$, then $\ds\lim_{k\to\infty}a_k=\ds\lim_{k\to\infty}cr^k$ does not exist.
+	\end{itemize}
+
+
+
+
+\end{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\section*{Infinite Series:}
+
+Next we will be studying {\bf\emph{infinite series}}. So what is an infinite series? It is simply a non-terminating discrete sum. We can think of it as an infinite sum of the terms in an infinite sequence. 
+\vskip 5mm
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.7]{series_converge_def.jpg}
+%\caption{}
+\end{center}
+\end{figure} 
+
+\vskip 5mm
+
+\section*{Infinite Series Examples:}
+
+
+
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{ex} Determine if the following infinite series converges.
+\[\ds\frac{3}{10}+\ds\frac{3}{100}+\ds\frac{3}{1000}+\ds\frac{3}{10000}+\cdots\] 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ssol Recognizing this series as corresponding to the decimal expansion of $1/3$ we can see that the series will converge to $1/3$. But let's be more formal and use the given definition.
+\[s_k=\ds\frac{3}{10}+\ds\frac{3}{10^2}+\ds\frac{3}{10^3}+\cdots+\ds\frac{3}{10^k}.\]
+Multiplying both sides by $1/10$ we have
+\[s_k/10=\ds\frac{3}{10^2}+\ds\frac{3}{10^3}+\ds\frac{3}{10^4}+\cdots+\ds\frac{3}{10^{k+1}}.\]
+It follows that
+\[s_k-\ds\frac{s_k}{10}=\ds\frac{9s_k}{10}=\ds\frac{3}{10}-\ds\frac{3}{10^{k+1}}\quad\Longrightarrow\quad s_k=\ds\frac{10}{9}\left(\ds\frac{3}{10}-\ds\frac{3}{10^{k+1}}\right)=\ds\frac{1}{3}-\ds\frac{1}{3\cdot 10^k}.\]
+To keep things as concrete as possible let's see what this means. If we have added $k=5$ terms then the $5^{th}$ partial sum is
+\[s_5=\ds\frac{1}{3}-\ds\frac{1}{3\cdot 10^5}=0.33333.\]
+If we have added $k=10$ terms then the $10^{th}$ partial sum is
+\[s_{10}=\ds\frac{1}{3}-\ds\frac{1}{3\cdot 10^{10}}=0.3333333333.\]
+If we have added $k=100$ terms then the $100^{th}$ partial sum is
+\[s_{100}=\ds\frac{1}{3}-\ds\frac{1}{3\cdot 10^{100}}=0.\underbrace{33333\dots 3333}_{\text{One Hundred 3's}}.\]
+It should be clear that as we add more and more terms we are getting arbitrarily close to the value $1/3$.
+\vskip 5mm
+More formally,
+\[\ds\lim_{k\to\infty}s_k=\ds\lim_{k\to\infty}\ds\frac{1}{3}-\ds\frac{1}{3\cdot 10^k}=\ds\frac{1}{3}-0=\ds\frac{1}{3}.\] 
+So the infinite series converges to $s=1/3$.
+\end{ex}
+
+\vskip 5mm
+This example is a specific case of what's known as a geometric series. Let's consider the general case for a geometric series (one of the most important sequences).
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{ex} Determine if the following infinite series converges.
+\[\ds\sum^{\infty}_{n=0}cr^n=c+cr+cr^2+cr^3+cr^4+\cdots\] 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+
+\vfill\eject
+
+\ssol Let's be very careful and use the formal definition.
+\[s_k=c+cr+cr^2+cr^3+cr^4+\cdots+ cr^k.\]
+Multiplying both sides by $1/10$ we have
+\[rs_k=cr+cr^2+cr^3+cr^4+\cdots+cr^{k+1}.\]
+It follows that
+\[s_k-\ds\frac{s_k}{10}=(1-r)s_k=c-cr^{k+1}\quad\Longrightarrow\quad s_k=c\left(\ds\frac{1-r^{k+1}}{1-r}\right).\]
+Now formally,
+\[\ds\lim_{k\to\infty}s_k=\ds\lim_{k\to\infty}c\left(\ds\frac{1-r^{k+1}}{1-r}\right)=c\left(\ds\frac{1}{1-r}\right) \quad\text{if}\quad -1<r<1.\] 
+Otherwise the limit does not exist. So the geometric series converges to $s=\ds\frac{c}{1-r}$ only when $|r|<1$. In this case, we write
+\[\ds\sum^{\infty}_{n=0}cr^k=\ds\frac{c}{1-r}.\] 
+Otherwise, the series diverges. This is a fact that should be memorized from this point onwards.
+
+\end{ex}
+
+\vskip 5mm
+Let's try another important example.
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{ex}  Determine if the infinite series $\ds\sum^{\infty}_{n=1}\ds\frac{1}{n}$ converges or diverges.
+\vskip 3mm
+\note This is an important infinite series known as the {\bf\emph{Harmonic Series}}.
+%\vskip 5mm
+%\noindent{\bf\emph{\underline{Workspace}:}}
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ssol Let's group terms of the sum as follows.
+\[\ds\sum^{\infty}_{n=1}\ds\frac{1}{n}=1+\ds\frac{1}{2}+\underbrace{\ds\frac{1}{3}+\ds\frac{1}{4}}_{\ge 1/2}+\underbrace{\ds\frac{1}{5}+\cdots+\ds\frac{1}{8}}_{\ge 1/2}+\underbrace{\ds\frac{1}{9}+\cdots+\ds\frac{1}{16}}_{\ge 1/2}+\underbrace{\ds\frac{1}{17}+\cdots+\ds\frac{1}{32}}_{\ge 1/2}+\cdots\]
+It is easy to see that the sequence of partial sums $\big\{s_k\big\}$ is increasing and not bounded above. Therefore we have
+\[\ds\lim_{k\to\infty}s_k=\infty\]
+and the infinite series diverges to $\infty$.
+
+\end{ex}
+
+\vskip 5mm
+
+We will discover that for most infinite series it may be practically impossible to discover a formula for the $k^{th}$ partial sum. So we will need to spend a good deal of time developing tests for convergence and divergence of infinite series that don't require knowledge of any formula for the partial sums. This content will occupy a good deal of time in the next part of the course. See you there.
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\begin{ex} Determine if the following infinite series converges. 
+%\vskip 5mm
+%\noindent{\bf\emph{\underline{Workspace}:}}
+%
+%\vfill\eject
+%
+%\ssol 
+%
+%
+%\end{ex}
+%
+%\vskip 5mm
+%Let's try another example.
+%\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 5mm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

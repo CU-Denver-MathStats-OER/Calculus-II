@@ -1,0 +1,708 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Integration by Parts}
+\def\topicshort{Integration by Parts}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+\[\ds\int xe^{x^2}\,dx\qquad\text{versus}\qquad\ds\int xe^{x}\,dx\]
+
+We need a technique to evaluate integrals of products, where $u$-sub does not work. Something like a ``product rule" for integration.
+
+\[\ds\frac{d}{dx}\big[u(x)v(x)\big]=u'(x)v(x)+u(x)v'(x)\quad\xRightarrow[\stackrel{\text{\textcolor{red}{Integrate both sides}}}{\text{\textcolor{red}{with respect to x}}}]{}\quad u(x)v(x)=\ds\int u'(x)v(x)\,dx+\ds\int u(x)v'(x)\,dx\]
+
+We can rewrite this as
+
+\[\ds\int u(x)v'(x)\,dx=u(x)v(x)-\ds\int v(x)u'(x)\,dx\]
+
+or in differential form (by suppressing the variable $x$).
+
+\[\ds\int \underbrace{u(x)}_{\text{Write as }u\;\;}\underbrace{v'(x)\,dx}_{\text{Write as }dv}=\underbrace{u(x)v(x)}_{\text{Write as }uv}-\ds\int \underbrace{v(x)}_{\text{Write as }v\;\;}\underbrace{u'(x)\,dx}_{\text{Write as }dv}=\ds\int udv=uv-\ds\int vdu.\]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Integration by Parts Examples:}
+
+Let’s work an example together.
+\vskip 2mm
+
+\begin{example}
+
+Evaluate the integral $\ds\int xe^{x}\,dx$ 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Choose $u(x)=x$ and $v'(x)=e^x$ so that $u'(x)=\frac{d}{dx}[x]=1$ and then we have $v(x)=\int e^x\,dx = e^x$ \\\\ 
+So we have that
+\[\ds\int xe^{x}\,dx=xe^x-\int e^x\cdot 1\,dx=xe^x-e^x+C=e^x(x-1)+C.\]
+So 
+\[\int xe^x\,dx=xe^x-e^x+C=e^x(x-1)+C.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose we had decided to choose $u(x)=e^x$ and $v'(x)=x$. Then $u'(x)=e^x$ and $v(x)=x^2/2$. Check the solution using integration by parts. What do you notice?
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+If we choose $u(x)=e^x$ and $v'(x)=x$. Then $u'(x)=e^x$ and $v(x)=x^2/2$ and we have
+\[\ds\int xe^{x}\,dx=\ds\frac{1}{2}x^2e^x-\ds\frac{1}{2}\ds\int x^2e^x\,dx.\]
+This expression is correct, but the new integral produced by parts is more complicated.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Question}:}} Can you think of a criteria for choosing $u(x)$ and $v'(x)$?
+\vskip 2cm
+\begin{itemize}
+	\item[$\bullet$] We want our new integral to be simpler (or at the least not more complicated)! As a general rule, if there is a polynomial term such as a $x^k$, we will choose $u(x)=x^k$ because its derivative is simpler:
+\[\ds\frac{d}{dx}\left[x^k\right]=kx^{k-1}.\]
+\end{itemize}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+
+Later, we will see examples where we don't make this choice. But first, try this next example on your own.
+\vskip 5mm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example}
+
+Evaluate the integral $\ds\int 2x\sin{x}\,dx $
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Choose $u(x)=2x$, and $v'(x)=\sin{x}$. So that $u'(x)=\frac{d}{dx}[2x]=2$ and $v(x)= \int\sin{x}\,dx = -\cos{x}$ \\\\ Then we have that: 
+\beq
+\int x\sin{x}\,dx &=&2x\big(-\cos(x)\big)-\int-2\cos{x}\,dx\\
+&=&-2x\cos{x}+2\int\cos{x}\,dx\\
+&=&-2x\cos{x}+2\sin{x}+C\\
+\eeq
+So the integral evaluates to: $$\int x\sin{x}\,dx=-2x\cos{x}+2\sin{x}+C$$
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's try another example on your own.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example}
+
+Evaluate the integral using integration by parts $\ds\int x\sqrt{x+1}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+You may notice that you can solve this integral using u-sub from calculus I. You can also use integration by parts. So for the sake of practice, let's use integration by parts to solve this integral. \\\\ 
+Choose $u(x)=x$ and $v'(x)=\sqrt{x+1}$. So that $u'(x)=\frac{d}{dx}[x]=1$ and $v(x)=\int\sqrt{x+1}\,dx=\frac{2}{3}(x+1)^{\frac{3}{2}}$ \\\\
+So we have that that 
+\beq
+\int x\sqrt{x+1}\,dx&=&x\cdot\ds\frac{2}{3}(x+1)^{\frac{3}{2}}-\int\ds\frac{2}{3}(x+1)^{\frac{3}{2}}\cdot1\,dx\\
+&=&\frac{2}{3}x(x+1)^{\frac{3}{2}}-\ds\frac{2}{3}\cdot\frac{2}{5}(x+1)^{\frac{5}{2}}\\
+\eeq
+So the integral evaluates to
+\[\int x\sqrt{x+1}\,dx=\ds\frac{2}{3}x(x+1)^{\frac{3}{2}}-\frac{4}{15}(x+1)^{\frac{5}{2}}+C.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let’s have you try another example on your own.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example}
+
+Evaluate the integral using integration by parts $\ds\int x\ln(x)\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Suppose we choose $u(x)=x$ and $v'(x)=\ln(x)$. Then $u'(x)=\frac{d}{dx}[x]=1$. But we don't know $\int\ln(x)\,dx$. So it looks like we have no choice but to try $u(x)=\ln(x)$ and $v'(x)=x$. Then $u'(x)=\frac{d}{dx}[\ln(x)]=1/x$ and $v(x)=\int x\,dx=x^2/2$. Then we have  
+\beq
+\int x\ln(x)\,dx&=&\ds\frac{1}{2}x^2\ln(x)-\ds\frac{1}{2}\int\ds\frac{1}{x}\cdot x\,dx\\
+&=&\ds\frac{1}{2}x^2\ln(x)-\ds\frac{1}{2}\int 1\,dx\\
+\eeq
+So the integral evaluates to
+\[\int x\ln(x)\,dx=\ds\frac{1}{2}x^2\ln(x)-\frac{x}{2}+C.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+So if we our unable to integrate our choice of $v'(x)$ then we have to make another choice. Some people prefer a helpful mnemonic device to make these choice. Here is a popular one for choosing $u(x)$.
+\vskip 1cm
+{\large\bf\emph{\underline{Choosing a $u(x)$}:}} We begin integration by parts problems by choosing a u. A helpful mnemonic device to help you choose a u is "LIATE". This does not always work, but is a good way to start a problem if you're stuck. Choose $u(x)$ by which terms comes first: \\\\
+L: Logarithmic functions \\
+I: Inverse trigonometric functions \\
+A: Algebraic functions (things like $x^2, x^3$) \\
+T: Trigonometric functions (such as $\sin{x}, \cos{x}, \tan{x}$) \\
+E: Exponential functions (such as $e^x, 3^x)$\\
+\vskip 5mm
+Let’s have you try another example on your own.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example}
+
+Evaluate the integral $\ds\int x^2\sin{(10x)}\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+
+\noindent{\bf\emph{\underline{Workspace Cont}:}}
+
+\vfill\eject
+
+	\begin{boxsolution}
+\vspace*{5mm}
+Choose $u(x)=x^2$ and $v'(x)=\sin{(10x)}$. So that $u'(x)=\frac{d}{dx}[x^2]=2x$ and $v(x)=\int \sin{(10x)}\,dx=-\frac{1}{10}\cos{(10x)}$. \\\\
+It follows that 
+\beq
+\ds\int x^2\sin{(10x)}\,dx&=&x^2\Big(-\ds\frac{1}{10}\cos{(10x)}\Big)-\int-\ds\frac{1}{10}\cos{(10x)}\cdot2x\,dx.\\
+&=&-\frac{x^2}{10}\cos{(10x)}+\frac{1}{5}\int x\cos(10x)\,dx\\
+\eeq
+\noindent{\bf\emph{\underline{Observation}:}} Our new integral produced by parts is indeed simpler. (How?) So we now choose a strategy to evaluate the second integral. Here it looks like integration by parts is needed to solve $\int x\cos{(10x)} dx$.
+\vskip 2mm
+To solve this integral choose $u(x)=x$, and $v'(x)=\cos{(10x)}$. So that $u'(x)=1$ and $v(x)=\frac{1}{10}\sin{(10x)}$. It follows that 
+\[\ds\int x\cos{(10x)}\,dx=\frac{1}{10}x\sin{(10x)}-\frac{1}{10}\int \sin{(10x)}\,dx = \frac{x}{10}\sin{(10x)}+\frac{1}{10}\cos{(10x)}.\]
+Putting it altogether we have that
+\beq
+\ds\int x^2\sin{(10x)}\,dx&=&-\frac{x^2}{10}\cos{(10x)}+\frac{1}{5}\left(\frac{x}{10}\sin{(10x)}+\frac{1}{10}\cos{(10x)}\right)+C\\
+&=&-\frac{x^2}{10}\cos{(10x)}+\frac{x}{50}\sin{(10x)}+\frac{1}{500}\cos{(10x)}+C\\
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\section*{The Tabular Method}
+
+
+\begin{example}
+
+Evaluate the integral $\ds\int x^2e^{3x}\,dx$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+
+\noindent{\bf\emph{\underline{Workspace Cont}:}}
+
+\vfill\eject
+
+	\begin{boxsolution}
+\vspace*{5mm}
+We have
+\beq
+\ds\int x^2e^{3x}\,dx&=&\ds\frac{1}{3}x^2e^{3x}-\ds\frac{2}{3}\ds\int xe^{3x}\,dx\\
+&=&\ds\frac{1}{3}x^2e^{3x}-\ds\frac{2}{3}\left(\ds\frac{1}{3}xe^{3x}-\ds\frac{1}{3}\ds\int e^{3x}\,dx\right)\\
+&=&\ds\frac{1}{3}x^2e^{3x}-\ds\frac{2}{9}xe^{3x}-\ds\frac{2}{27}e^{3x}+C\\
+\eeq
+We will keep track of the previous steps using a table.
+
+\vfill\eject
+
+\vskip 5mm
+\[\begin{array}{c|ccccc}
+\text{Step\;\#}&u&&v'&&\text{Results}\\
+\hline   
+&&&&&\\
+1&x^2&&e^{3x}&&\\
+&&&&&\\
+&&\searrow\,\text{\tiny $\times$}&&\xrightarrow[\text{\textcolor{red}{Result after one step}}]{}&\ds\frac{1}{3}x^2e^{3x}-\ds\int2x\cdot\ds\frac{1}{3}e^{3x}\,dx\\
+&&&&&\\
+2&2x&\xleftrightarrow[\text{\textcolor{red}{Integrate}}]{\text{\huge\textcolor{blue}{-}}}&\ds\frac{1}{3}e^{3x}&&\\
+&&&&&\\
+&&\searrow_{\;\text{\huge\textcolor{blue}{-}}}\text{\tiny $\times$}&&\xrightarrow[\text{\textcolor{red}{Result after two steps}}]{}&\ds\frac{1}{3}x^2e^{3x}-\ds\frac{2}{9}x e^{3x}+\ds\int 2\cdot\ds\frac{1}{9}e^{3x}\,dx\\
+&&&&&\\
+3&2&\xleftrightarrow[\text{\textcolor{red}{Integrate}}]{}&\ds\frac{1}{9}e^{3x}&&\\
+&&&&&\\
+&&\searrow\,\text{\tiny $\times$}&&\xrightarrow[\text{\textcolor{red}{Result after three steps}}]{}&\ds\frac{1}{3}x^2e^{3x}-\ds\frac{2}{9}x e^{3x}+\ds\frac{2}{27}e^{3x}+C\\
+&&&&&\\
+&0&\xleftrightarrow[\text{\textcolor{red}{Integrate}}]{\text{\huge\textcolor{blue}{-}}}&\ds\frac{1}{27}e^{3x}&\ds\int 0\,dx=C&\\
+\end{array}\]
+\vskip 5mm
+Let's put this in a more compact and readable table.
+\[\vdots\]
+\vspace*{5mm}
+	\end{boxsolution}
+	
+\vskip 5mm
+
+	\begin{boxsolutioncont}
+\vspace*{5mm}
+\[\vdots\]
+\vskip 5mm
+\[\begin{array}{ccccc}
+u&&v'&\;\;&+/-\\
+\hline   
+&&&&\\
+x^2&&e^{3x}&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+2x&&\ds\frac{1}{3}e^{3x}&&-\\
+&\searrow\,\text{\tiny $-$}&&\\
+2&&\ds\frac{1}{9}e^{3x}&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+0&&\ds\frac{1}{27}e^{3x}&&-\\
+\end{array}\]
+\vskip 5mm
+We build the table by differentiating down the $u$-column until we reach zero, and integrating down the $v'$ column. Then reading the products by the arrows and changing signs every other term we arrive at the answer.
+\vskip 2mm
+\[\ds\int x^2e^{3x}\,dx=\ds\frac{1}{3}x^2e^{3x}-\ds\frac{2}{9}x e^{3x}+\ds\frac{2}{27}e^{3x}+C\]
+\vspace*{5mm}
+	\end{boxsolutioncont}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example}
+
+Evaluate the integral $\ds\int x^4\cos(5x)\,dx$ using the tabular method.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+
+\noindent{\bf\emph{\underline{Workspace Cont}:}}
+
+\vfill\eject
+
+	\begin{boxsolution}
+\vspace*{5mm}
+We choose $u(x)=x^4$ and $v'(x)=\cos(5x)$
+\vskip 5mm
+Now complete the table.
+\vskip 5mm
+\[\begin{array}{ccccc}
+u&&v'&\;\;&+/-\\\\
+\hline   
+&&&&\\
+x^4&&\cos(5x)&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+4x^3&&\ds\frac{1}{5}\sin(5x)&&-\\
+&\searrow\,\text{\tiny $-$}&&\\
+12x^2&&-\ds\frac{1}{25}\cos(5x)&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+24x&&-\ds\frac{1}{125}\sin(5x)&&-\\
+&\searrow\,\text{\tiny $-$}&&&\\
+24&&\ds\frac{1}{625}\cos(5x)&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+0&&\ds\frac{1}{3125}\sin(5x)&&-\\
+\end{array}\]
+\vskip 5mm
+We can now read off the answer.
+\vskip 2mm
+\[\ds\int x^4\cos(5x)\,dx=\ds\frac{1}{5}x^4\sin(5x)+\ds\frac{4}{25}x^3\cos(5x)-\ds\frac{12}{125}x^2\sin(5x)-\ds\frac{24}{625}x\cos(5x)+\ds\frac{24}{3125}\sin(5x)+C\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+
+\section*{Definite Integrals Using Integration By Parts}
+
+We have the following formula.
+\[\ds\int^{x=b}_{x=a}u(x)v'(x)\,dx=u(x)v(x)\ds\Bigg|^{x=b}_{x=a}-\ds\int^{x=b}_{x=a}v(x)u'(x)\,dx\]
+The notation in this formula often leads to some confusion. So let's consider an example.
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}
+
+Evaluate the integral $\ds\int^{x=\pi/3}_{x=0} 2x\sin{x}\,dx$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We have already found the antiderivative earlier. We'll use this. 
+\[\int x\sin{x}\,dx=-2x\cos{x}+2\sin{x}+C\]
+Then the definite integral evaluates to: 
+\beq
+\ds\int^{x=\pi/3}_{x=0} 2x\sin{x}\,dx&=&-2x\cos{x}+2\sin{x}\,\ds\Bigg|^{x=\pi/3}_{x=0}\\
+\\
+&=&\left(-2\cdot\ds\frac{\pi}{3}\cdot\cos(\pi/3)+2\sin(\pi/3)\right)-\Big(0+0\Big)\\
+\\
+&=&-\ds\frac{\pi}{3}+\sqrt{3}
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Let's try another example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example}
+
+Evaluate the integral $\ds\int^{x=\pi/12}_{x=0}\ds\frac{x^2}{\sec(4x)}\,dx$
+\vskip 3mm
+\hint Can you rewrite $1/\sec(4x)$?
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We find the antiderivative by parts first seeing that $1/\sec(4x)=\cos(4x)$. 
+
+\[\begin{array}{ccccc}
+u&&v'&\;\;&+/-\\
+\hline   
+&&&&\\
+x^2&&\cos(4x)&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+2x&&\ds\frac{1}{4}\sin(4x)&&-\\
+&\searrow\,\text{\tiny $-$}&&\\
+2&&-\ds\frac{1}{16}\cos(4x)&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+0&&-\ds\frac{1}{64}\sin(4x)&&-\\
+\end{array}\]
+
+\vskip 2mm
+
+Now we have
+\vskip 2mm
+\beq
+\ds\int^{x=\pi/12}_{x=0}\ds\frac{x^2}{\sec(4x)}\,dx&=&\ds\frac{x^2}{4}\sin(4x)+\ds\frac{x}{8}\cos(4x)-\ds\frac{1}{32}\sin(4x)\ds\Bigg|^{x=\pi/12}_{x=0}\\
+\\
+&=&\left[\;\ds\frac{\pi^2}{576}\cdot\sin\left(\ds\frac{\pi}{3}\right)+\ds\frac{\pi}{96}\cdot\cos\left(\ds\frac{\pi}{3}\right)-\ds\frac{1}{32}\sin\left(\ds\frac{\pi}{3}\right)\;\right]-\left[0+0-\ds\frac{1}{32}\sin(0)\right]\\
+\\
+&=&\left(\ds\frac{\pi^2}{576}\right)\cdot\left(\ds\frac{\sqrt{3}}{2}\right)+\left(\ds\frac{\pi}{96}\right)\cdot\left(\ds\frac{1}{2}\right)-\left(\ds\frac{1}{32}\right)\cdot\left(\ds\frac{\sqrt{3}}{2}\right)\\
+\\
+&=&\ds\frac{\pi^2\sqrt{3}}{1152}+\ds\frac{\pi}{192}-\ds\frac{\sqrt{3}}{64}\approx 0.004
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\section*{Some Interesting and Important Examples}
+
+\begin{example}
+
+Evaluate the integral $\ds\int e^x\sin{x}\,dx$ 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+
+\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+
+\vfill\eject
+
+	\begin{boxsolution}
+\vspace*{5mm}
+Choose $u(x)=e^x$, and $v'(x)=\sin{x}$. So that $u'(x)=e^x$ and $v(x)=-\cos{x}$. Then we have
+\[\int e^x\sin{x}\,dx=-e^x\cos{x}+\int e^xcos(x)\,dx.\]
+We will need to use integration by parts to solve $\int e^x\cos{x}\,dx$. So choose $u(x)=e^x$ and $v'(x)=\cos{x}$. So that $u'(x)=e^x$ and $v(x)=\sin{x}$. It follows that \[\int e^x\cos{x}\,dx=e^x\sin{x}-\int e^x\sin{x}\,dx.\] 
+Putting it together we have
+\[\int e^x\sin{x}\,dx=-e^x\cos{x}+e^x\sin{x}-\int e^x\sin{x}\,dx.\] 
+\vskip 5mm
+
+Or if you prefer using the tabular method:
+\[\begin{array}{ccccc}
+u&&v'&\;\;&+/-\\\\
+\hline   
+&&&&\\
+e^x&&\sin(x)&&+\\
+&\searrow\,\text{\tiny $+$}&&&\\
+e^x&&-\cos(x)&&-\\
+&\searrow\,\text{\tiny $-$}&&\\
+\\
+e^x&\xleftrightarrow[\text{\textcolor{red}{Integrate}}]{+}&-\sin(x)&&+\\
+\end{array}\]
+Remember we can exit the tabular algorithm whenever we want (such as the third row) using integration. Then reading off the table we have
+\[\int e^x\sin{x}\,dx=-e^x\cos{x}+e^x\sin{x}-\int e^x\sin{x}\,dx.\] 
+
+\vskip 2mm
+
+It may appear that we have simply gone in a circle. But we can add $\int e^x\sin{x}\,dx$ on each side of the equation to obtain:
+\[2\int e^x\sin{x}\,dx=-e^x\cos{x}+e^x\sin{x}+C.\]
+
+Therefore
+\vskip 2mm
+\[\int e^x\sin{x}\,dx=\frac{e^x\sin{x}-e^x\cos{x}}{2}+C.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vfill\eject
+
+\fi
+
+\begin{example}
+
+Evaluate the integral $\ds\int\ln(x)\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We can write $\ln(x)=1\cdot\ln(x)$ and then choose $u(x)=\ln(x)$ and $v'(x)=1$ giving us $u'(x)=1/x$ and $v(x)=x$.
+\[\ds\int\ln(x)\;dx=x\ln(x)-\ds\int 1\,dx=x\ln(x)-x+C.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+Now see if you can use the same idea on another example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1cm
+
+\begin{example}
+
+Evaluate the integral $\ds\int\tan^{-1}(x)\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We can write $\tan^{-1}(x)=1\cdot\tan^{-1}(x)$ and then choose $u(x)=\tan^{-1}(x)$ and $v'(x)=1$ giving us $u'(x)=1/(x^2+1)$ and $v(x)=x$.
+\[\ds\int\tan^{-1}(x)\;dx=x\tan^{-1}(x)-\ds\int\ds\frac{x}{x^2+1}\,dx=x\tan^{-1}(x)-\ds\frac{1}{2}\ln(x^2+1)+C.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+The idea is if we are integrating a function where we know its derivative but not its antiderivative sometimes mutliplying the function by 1 and then using integration by parts will be helpful. But not always. The following antiderivative does NOT have an elementary solution. None can be found no matter the technique tried.
+\[\ds\int e^{-x^2}\,dx.\]
+It should be enlightening to realize that not all mathematical problems have elementary solution techniques. But integration by parts allows to integrate many more functions than we could before.
+\vskip 1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\begin{center}
+{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,282 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Integration -- Basic Approaches}
+\def\topicshort{Integration Approaches}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic:}
+
+We are looking at some basic approaches to integration used when a function does not exactly match one of our known formulas. Often the strategy is to use identities and/or manipulate the integrand algebraically so that it fits into a know form. We will work through a number of examples below.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Integration Examples:}
+
+Let’s work an example together.
+\vskip 2mm
+
+\begin{example}
+
+Evaluate the integral $\ds\int\cos^2(x)\,dx$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We integrate as follows.
+
+\beq
+\ds\int\cos^2(x)\,dx&=&\ds\frac{1}{2}\ds\int 1+\cos(2x)\,dx\\
+&=&\ds\frac{1}{2}\left(\;x+\ds\frac{1}{2}\sin(2x)\;\right)+C\\
+&=&\ds\frac{1}{2}x+\ds\frac{1}{4}\sin(2x)+C
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example}
+
+Evaluate the integral $\ds\int\tan(x)\,dx$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We integrate as follows.
+
+\beq
+\ds\int\tan(x)\,dx&=&\ds\int\ds\frac{\sin(x)}{\cos(x)}\,dx\qquad\text{Let }u=\cos(x)\text{ and }du=-\sin(x)\,dx.\\
+&=&-\ln\big|\cos(x)\big|+C\\
+&=&\ln\big|\sec(x)\big|+C
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example}
+
+Evaluate the integral $\ds\int\sec(x)\,dx$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We integrate as follows.
+
+\beq
+\ds\int\sec(x)\,dx&=&\ds\int\sec(x)\ds\frac{\sec(x)+\tan(x)}{\sec(x)+\tan(x)}\,dx\\
+&=&\ds\int\ds\frac{\sec^2(x)+\sec(x)\tan(x)}{\sec(x)+\tan(x)}\,dx\qquad\text{Let }u=\sec(x)+\tan(x),\;du=\sec^2(x)+\sec(x)\tan(x)dx\\
+&=&\ln\big|\sec(x)+\tan(x)\big|+C
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example}
+
+Evaluate the integral $\ds\int\ds\frac{1}{e^{x}+e^{-x}}\,dx$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We integrate as follows.
+
+\beq
+\ds\int\ds\frac{1}{e^{x}+e^{-x}}\,dx&=&\ds\int\ds\frac{e^x}{e^x}\cdot\ds\frac{1}{e^{x}+e^{-x}}\,dx\\
+&=&\ds\int\ds\frac{e^x}{e^{2x}+1}\,dx\qquad\text{Let }u=e^{x}\text{ and }du=e^x\,dx\\
+&=&\ds\frac{1}{u^2+1}\,du\\
+&=&\tan^{-1}(u)+C\\
+&=&\tan^{-1}\left(e^x\right)+C
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example}
+
+Evaluate the integral $\ds\int\ds\frac{1}{x^2+4x+5}\,dx$
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We integrate as follows.
+
+\beq
+\ds\int\ds\frac{1}{x^2+4x+5}\,dx&=&\ds\int\ds\frac{1}{x^2+4x+4+1}\,dx\\
+&=&\ds\int\ds\frac{1}{(x+2)^2+1}\,dx\qquad\text{Let }u=x+2\text{ and }du=dx\\
+&=&\ds\int\ds\frac{1}{u^2+1}\,du\\
+&=&\tan^{-1}(u)+C\\
+&=&\tan^{-1}(x+2)+C
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 1cm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\begin{center}
+{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

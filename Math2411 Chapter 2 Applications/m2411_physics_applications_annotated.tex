@@ -1,0 +1,330 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Physics Applications}
+\def\topicshort{Physics Applications}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction}
+
+Suppose that we want to determine the work done when a force moves an object. Recall that in physics we define work as
+\[Work=Force\times Distance.\]
+For example, compute the work done by compressing or stretching a spring.
+ 
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{work_spring_gr1.jpg}
+\captionof{figure}{Block attached to a spring at equilibrium, compressed, and stretched.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+Hooke's Law states that the force applied from a spring at position $x$ from equilibrium can be described as $F(x)=kx$ for some positive constant $k$. We want to move a block from $x=a\to x=b$. Over a short interval $[x_{i-1},x_{i}]$ we can estimate the work done moving the block from $x_{i-1}\to x_{i}$.
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{work_spring_gr2.jpg}
+\captionof{figure}{The interval from $x_{i-1}\to x_i$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\[W_i\approx F(x_{i})\big(x_{i}-x_{i-1}\big)\quad\xRightarrow[\stackrel{\text{\textcolor{red}{Add up each}}}{\text{\textcolor{red}{\tiny work component}}}]{}\quad\text{Total Work}\approx\sum^{n}_{i=1}F(x_i)\big(x_{i}-x_{i-1}\big)=\sum^{n}_{i=1}kx\big(x_{i}-x_{i-1}\big)\]
+Then our approximation improves as we let $\Delta x_i=x_{i}-x_{i-1}\to 0$ and so we have
+\[\text{Total Work}=\ds\lim_{\Delta x\to 0}\sum^{n}_{i=1}F(x_i)\cdot\Delta x=\ds\int^{x=b}_{x=a}F(x)\,dx=\ds\int^{x=b}_{x=a}kx\,dx.\]
+
+We can interpret this integral as adding up all work done from $x=a\to x=b$.
+\[\text{Total Work}=\stackrel{\stackrel{\text{\textcolor{red}{Sum}}}{\downarrow}}{\ds\int^{x=b}_{x=a}}\underbrace{\stackrel{\stackrel{\stackrel{\text{\textcolor{red}{\;\;Spring Force at\;\;}}}{\text{\textcolor{red}{Position x}}}}{\downarrow}}{kx}\,\stackrel{\stackrel{\text{\textcolor{red}{\;\;Small Distance\;\;}}}{\downarrow}}{dx}}_{\text{\textcolor{blue}{Work Quantity}}}\]
+\vskip 2mm
+
+Continue with a concrete example.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 2mm
+
+\begin{example} Suppose it takes a force of $10\,N$ (in the negative direction) to compress a spring $0.2m$ from the equilibrium
+position. How much work is done to stretch the spring $0.5m$ from the equilibrium position? 
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We first determine the spring constant $k$. 
+\beq
+F(x)&=&kx\\
+-10&=&-0.2k\\
+k&=&50
+\eeq
+
+We can now set up the integral.
+\beq
+\text{Work}&=&\ds\int^{x=b}_{x=a}F(x)\,dx\\
+&=&\ds\int^{x=0.5}_{x=0}50x\,dx\\
+&=&25x^2\,\ds\Bigg|^{x=0.5}_{x=0}\\
+&=&25(0.5)^2-25(0)^2\\
+&=&6.25
+\eeq
+So the total work is $6.25\;J$ (or Newton-Meters).
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+Now try another example.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Consider the work done to pump water (or some other liquid) out of a tank. Pumping problems are a little more complicated
+than spring problems because many of the calculations depend on the shape and size of the tank. In addition, instead of
+being concerned about the work done to move a single mass, we are looking at the work done to move a volume of water,
+and it takes more work to move the water from the bottom of the tank than it does to move the water from the top of the
+tank.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We examine the process in the context of a cylindrical tank, then look at a couple of examples using tanks of different
+shapes. Assume a cylindrical tank of radius 4 m and height 10 m is filled to a depth of 8 m. How much work does it take
+to pump all the water over the top edge of the tank?
+\vskip 2mm
+The first thing we need to do is define a frame of reference. We let $x$ represent the vertical distance above the bottom of the
+tank. That is, we orient the $x$-axis vertically, with the origin at the bottom of the tank and the upward direction being positive. 
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.4]{work_tank_gr1.jpg}
+\captionof{figure}{Cylindrical Tank of water.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vskip 5mm
+Using this coordinate system, the water extends from $x=0$ to $x=8$. Therefore, we partition the interval $[0,8]$ and
+look at the work required to lift each individual ``layer" of water. For $i=0,1,2,\dots,n$ choose an arbitrary point $x^{*}_{i}\in[x_{i-1},x_{i}]$. 
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.5]{work_tank_gr2.jpg}
+\captionof{figure}{Representative layer of water.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+In pumping problems, the force required to lift the water to the top of the tank is the force required to overcome gravity, so
+it is equal to the weight of the water. Given that the weight-density of water is $9800\;N/m^3$ calculating the volume of each layer gives us the weight.
+
+\[Volume=\pi r^2\Delta x=16\pi\Delta x\quad\xRightarrow[\stackrel{\text{\textcolor{red}{Multipy Volume}}}{\text{\textcolor{red}{\tiny by Density}}}]{}\quad Weight=9800\cdot16\pi\Delta x=156,800\pi\Delta x.\]
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+	\begin{boxsolutioncont}
+\vspace*{5mm}
+Then the distance this representative layer or water must move is $10-x$ (the distance from height $x$ to the top of the tank).
+Therefore the work required to move a representative layer of water at height $x^{*}_{i}$ to the top of the tank is approximately
+\[W_{i}\approx 156,800\pi\big(10-x^{*}_{i}\big)\Delta x \]
+Therefore, we have
+{\small
+\[\text{Total Work}\approx\ds\sum^{n}_{i=1}156,800\pi\big(10-x^{*}_{i}\big)\Delta x\quad\xRightarrow[\stackrel{\text{\textcolor{red}{\small As $\Delta x\to 0$ we}}}{\text{\textcolor{red}{\small have an integral}}}]{}\quad {\text{Total Work}}=156,800\pi\ds\int^{x=8}_{x=0}10-x\,dx\]
+}
+So we have 
+\beq
+\text{Total Work}&=&156,800\pi\ds\int^{x=8}_{x=0}10-x\,dx\\
+&=&156,800\pi\left[10x-\ds\frac{x^2}{2}\ds\right]^{x=8}_{x=0}\\
+&=&156,800\pi\left[\left(10\cdot 8-\ds\frac{8^2}{2}\right)-\Big(0-0\Big)\right]\\
+&=&7,526,400\pi
+\eeq 
+So it requires approximately 23,644,883 $J$ to pump all the water out the top of the tank.
+\vspace*{5mm}
+	\end{boxsolutioncont}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+Before we try another example we can write down a problem solving strategy.
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{work_tank_strategy_graphic.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Assume a tank in the shape of an inverted cone, with height 12m and base radius 4m. The tank is full to start
+with, and water is pumped over the upper edge of the tank until the height of the water remaining in the tank is 4m. How much work is required to pump out that amount of water?
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 5mm
+
+\fi
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+
+%\noindent{\bf\emph{\underline{Workspace Cont.}:}}
+%
+%\vfill\eject
+
+	\begin{boxsolution}
+\vspace*{5mm}
+First sketch the tank, determine your coordinate system (with bottom of the tank at $x=0$, and sketch a representative ``layer" of water.
+\vskip 5mm
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{work_tank_gr3.jpg}$\quad\xRightarrow[\stackrel{\text{\textcolor{red}{Form a Representative}}}{\text{\textcolor{red}{Layer of Water}}}]{}\quad$\includegraphics[scale=0.5]{work_tank_gr4.jpg}
+\captionof{figure}{Inverted Conical Tank of water and representative layer of water.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+Find the weight of the representative layer of water at height $x^{*}_{i}$ from the bottom of the tank.
+
+\[Volume=\pi\left(\ds\frac{4x}{12}\right)^2\Delta x\quad\xRightarrow[\stackrel{\text{\textcolor{red}{Multipy Volume}}}{\text{\textcolor{red}{\tiny by Density}}}]{}\quad Weight=9800\cdot\pi\left(\ds\frac{4x}{12}\right)^2\Delta x\]
+
+So we have 
+\beq
+\text{Total Work}&=&9800\pi\ds\int^{x=12}_{x=4}\ds\frac{x^2}{9}\big(12-x\big)\,dx\\
+&=&9800\pi\ds\int^{x=12}_{x=4}\ds\frac{4x^2}{3}-\ds\frac{x^3}{9}\,dx\\
+&=&9800\pi\left[\ds\frac{4x^3}{9}-\ds\frac{x^4}{36}\ds\right]^{x=12}_{x=4}\\
+&=&9800\pi\left[\left(\ds\frac{4(12)^3}{9}-\ds\frac{(12)^4}{36}\right)-\Big(\ds\frac{4(4)^3}{9}-\ds\frac{(4)^4}{36}\Big)\right]\\
+&=&\ds\frac{16,307,200}{9}\pi
+\eeq 
+So it requires approximately 5,692,118.76 $J$ to pump all the water out the top of the tank.
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

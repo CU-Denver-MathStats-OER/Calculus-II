@@ -1,0 +1,367 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Trigonometric Integrals}
+\def\topicshort{Trig Integrals}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+Our objective is to integrate function involving of products and powers of $\sin(x)$ and $\cos(x)$, or products and powers of $\sec(x)$ and $\tan(x)$  
+\vskip 5mm
+We will need a few basic trig identities.
+\beq
+\sin^2(x)+\cos^2(x)=1&&\sin(2x)=2\sin(x)\cos(x)\\
+\cos^2(x)=\ds\frac{1+\cos(2x)}{2}&&\tan^2(x)=\sec^2(x)-1\\
+\sin^2(x)=\ds\frac{1-\cos(2x)}{2}&&\\
+\eeq
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{Integrals Involving $\sin^{k}(x)$ and $\cos^{j}(x)$:}
+
+Let’s consider a simple example together.
+\vskip 2mm
+
+
+\begin{minipage}[]{6.5in}
+%\begin{center}
+\includegraphics[scale=0.8]{trig_integrals_gr1.jpg}
+%\captionof{figure}{}
+\label{fig:}
+%\end{center}
+\end{minipage}
+
+Notice this is just a basic $u$-substitution problem. Let's consider another more complicated example.
+ 
+\vfill\eject
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Integrating $\ds\int\cos^j(x)\sin^k(x)\,dx$ when $j$ or $k$ is odd. As a concrete example, evaluate the integral 
+\[\ds\int\cos^2(x)\sin^3(x)\,dx\]
+
+\begin{minipage}[]{6.5in}
+%\begin{center}
+\includegraphics[scale=0.7]{trig_integrals_gr2.jpg}
+%\captionof{figure}{}
+\label{fig:}
+%\end{center}
+\end{minipage}
+
+Notice after the first step the $\sin(x)\,dx$ looks like $du$ in a $u$-substitution, so this leads us to write all other trig functions in terms of $\cos(x)$.
+\[\ds\int\cos^2(x)\sin^2(x)\stackrel{\stackrel{\stackrel{\text{\textcolor{red}{Wants to be our $du$}}}{\text{\textcolor{red}{term in a $u$-sub}}}}{\downarrow}}{\big[\sin(x)\,dx\big]}\quad\xRightarrow[\stackrel{\text{\textcolor{red}{Natural choice}}}{\text{\textcolor{red}{for our $u$-sub}}}]{}\quad u=\cos(x)\quad\xRightarrow[\stackrel{\text{\textcolor{red}{We have a}}}{\text{\textcolor{red}{perfect match}}}]{}\quad -du=\sin(x)\,dx\]
+
+\noindent{\bf\emph{\underline{Observation}:}} If the exponent over $\sin(x)$ is odd we can ``attach" one of the $\sin(x)$ terms to the differential $dx$ and prepare for a $u$-substitution. Let's set up another example.
+
+\end{example}
+\vskip 2mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{example} Evaluate the following integral.
+
+\[\ds\int\cos^3(x)\sin^5(x)\,dx\]
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm} 
+\beq
+\ds\int\cos^3(x)\sin^5(x)\,dx&=&\ds\int\cos^3(x)\stackrel{\stackrel{\text{\textcolor{red}{This is $\Big(\sin^2(x)\Big)^2$\;\;}}}{\downarrow}}{\sin^4(x)}\stackrel{\stackrel{\stackrel{\text{\textcolor{red}{\;\;Wants to be our $du$}}}{\text{\textcolor{red}{term in a $u$-sub}}}}{\downarrow}}{\big[\sin(x)\,dx\big]}\\
+\\
+&=&\ds\int\cos^3(x)\Big(1-\cos^2(x)\Big)^2\sin(x)\,dx\\
+\\
+&=&-\ds\int u^3\Big(1-u^2\Big)^2\,du\qquad\text{Letting $u=\cos(x)\;\Longrightarrow\;-du=\sin(x)\,dx$}\\
+\\
+&=&-\ds\int u^3-2u^5+u^7\,du\\
+\\
+&=&-\ds\frac{u^4}{4}+\ds\frac{2u^6}{6}-\ds\frac{u^8}{8}+C\\
+\\
+&=&-\ds\frac{\cos^4(x)}{4}+\ds\frac{2\cos^6(x)}{6}-\ds\frac{\cos^8(x)}{8}+C\\
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi 
+
+\end{example}
+
+Let’s have you try another example on your own.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example}
+
+Evaluate the integral $\ds\int\cos^3(x)\sin^6(x)\,dx$
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm} 
+\beq
+\ds\int\cos^3(x)\sin^6(x)\,dx&=&\ds\int\cos^2(x)\sin^6(x)\stackrel{\stackrel{\stackrel{\text{\textcolor{red}{\;\;Wants to be our $du$}}}{\text{\textcolor{red}{term in a $u$-sub}}}}{\downarrow}}{\big[\cos(x)\,dx\big]}\\
+\\
+&=&\ds\int\Big(1-\sin^2(x)\Big)\sin^6(x)\cos(x)\,dx\\
+\\
+&=&\ds\int\Big(1-u^2\Big)u^6\,du\qquad\text{Letting $u=\sin(x)\;\Longrightarrow\;du=\cos(x)\,dx$}\\
+\\
+&=&\ds\int u^6-u^8\,du\\
+\\
+&=&\ds\frac{u^7}{7}-\ds\frac{u^9}{9}+C\\
+\\
+&=&\ds\frac{\sin^7(x)}{7}-\ds\frac{\sin^9(x)}{9}+C\\
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi 
+
+\end{example}
+
+Let’s have you try another example on your own.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Evaluate the integral $\ds\int\cos^2(x)\sin^2(x)\,dx$.
+\vskip 5mm
+{\bf\emph{\underline{Question}:}} What do you notice about the exponents?
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm} 
+\beq
+\ds\int\cos^2(x)\sin^2(x)\,dx&=&\ds\int\left(\ds\frac{1+\cos(2x)}{2}\right)\left(\ds\frac{1-\cos(2x)}{2}\right)\,dx\\
+\\
+&=&\ds\frac{1}{4}\ds\int 1-\cos^2(2x)\,dx\qquad\Big[\text{Can also write the integrand as}\;\sin^2(2x)\Big]\\
+\\
+&=&\ds\frac{1}{4}\ds\int 1-\left(\ds\frac{1+\cos(4x)}{2}\right)\,dx\\
+\\
+&=&\ds\frac{1}{8}\ds\int 1-\cos(4x)\,dx\\
+\\
+&=&\ds\frac{1}{8}x-\ds\frac{1}{32}\sin(4x)+C\\
+\eeq
+
+Another possible solution method is
+\beq
+\ds\int\cos^2(x)\sin^2(x)\,dx&=&\ds\frac{1}{4}\ds\int\sin^2(2x)\,dx\\
+\\
+&=&\ds\frac{1}{8}\ds\int 1-\cos(4x)\,dx\\
+\\
+&=&\ds\frac{1}{8}x-\ds\frac{1}{32}\sin(4x)+C
+\eeq
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi 
+
+\end{example}
+
+Let’s try another example together.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Evaluate the integral $\ds\int\tan^6(x)\sec^4(x)\,dx$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+%\begin{center}
+\includegraphics[trim= 0cm 0cm 1cm 0cm, clip=true, scale=0.65]{trig_integrals_gr3.jpg}
+%\captionof{figure}{}
+\label{fig:}
+%\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi 
+
+\end{example}
+
+Let's consider another well-known example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Evaluate the integral $\ds\int\sec^3(x)\,dx$.
+\vskip 5mm
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+%\begin{center}
+\includegraphics[trim= 0cm 0cm 1cm 0cm, clip=true, scale=0.65]{trig_integrals_gr4.jpg}
+%\captionof{figure}{}
+\label{fig:}
+%\end{center}
+\end{minipage}
+\vspace*{5mm}
+	\end{boxsolution}
+\vskip 5mm
+
+\fi 
+
+
+\end{example}
+
+Below are some general strategies.
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minipage}[]{6.5in}
+%\begin{center}
+\includegraphics[scale=0.7]{trig_integrals_gr5.jpg}\\
+\vskip 1cm
+\includegraphics[scale=0.7]{trig_integrals_gr6.jpg}
+%\captionof{figure}{}
+\label{fig:}
+%\end{center}
+\end{minipage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 5mm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
