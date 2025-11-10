@@ -1,0 +1,494 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Separable Differential Equations}
+\def\topicshort{Separable ODEs}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\; Introduction:}
+
+Our objective is to solve {\bf\emph{separable differential equations}}. But what is a differential equation? It is an equation that describes a relation between a dependent variable, the independent variable, and one or more derivatives of the dependent variable. 
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{ode_definition_gr01.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage} 
+
+\vskip 5mm
+
+Here are some examples of differential equations and solutions.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{ode_and_solutions_gr02.jpg}
+\captionof{figure}{Differential Equations and Solutions}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+We will be dealing exclusively with {\bf\emph{first order differential equations}}.
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{ode_definition_gr03.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+In general, for first order equations we will be able to write $y'=F(x,y)$ to describe a known relationship between the quantities $y', y$ and $x$. 
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Here are a few examples.
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.7]{separable_ode_gr05.jpg}
+\captionof{figure}{Examples of Differential Equations in the Form $y'=F(x,y)$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+
+\vskip 5mm
+
+\section*{Separable Differential Equations:}
+
+We will be studying {\bf\emph{separable differential equations}}. As the name suggests, these are equations in which the quantities involving the independent variable can be separated from quantities involving the dependent variable. That is, a {\bf\emph{separable differential equation}} is a differential equation that can be written in the form
+\[n(y)\cdot y'=m(x).\]
+We are hoping for a solution algorithm so that we can avoid guessing and checking. To understand the algorithm we should remember implicit differentiation. Suppose that $y=y(x)$. Then, by the chain rule, the following calculus relationships hold.
+\[N(y)=M(x)+C\quad\stackrel{\xRightarrow[]{\text{\textcolor{red}{$\quad\frac{d}{dx}\quad$}}}}{\xLeftarrow[\text{\textcolor{red}{$\int\quad\frac{d}{dx}\quad$}}]{}}\quad \ds\frac{dN}{dy}\ds\frac{dy}{dx}=\ds\frac{dM}{dx}\quad\text{or we can write as}\quad n(y)\cdot y'=m(x)\]
+\vskip 5mm
+This means the following:
+\vskip 5mm
+	\begin{itemize}
+		\item[$\bullet$] If we differentiate (with respect to $x$) both sides of the equation
+\[N(y)=M(x)+C\]
+we end up with the relationship
+\[n(y)\cdot y'=m(x)+C.\]
+This is the familiar implicit differentiation.
+\vskip 5mm
+
+		\item[$\bullet$] If we integrate (with respect to $x$) both sides of the equation
+\[n(y)\cdot y'=m(x)+C\]
+we end up with the relationship
+\[N(y)=M(x)+C\]
+In some sense we are simply reversing implicit differentiation.
+	\end{itemize}
+
+\vfill\eject
+
+We are starting with the equation $n(y)\cdot y'=m(x)+C$. The above tells us that the desired relationship that describes our solution is
+\[N(y)=M(x)+C\qquad \Longleftrightarrow\qquad\ds\int n(y)\,dy=\ds\int m(x)\,dx+C\]	
+\vskip 5mm
+Let's work an example together.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Solve the differential equation $y'=5y^2x^3$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We first must separate the equation as $\left(\ds\frac{1}{y^2}\right)\cdot y'=5x^3$. We identify $n(y)=1/y^2$ and $m(x)=5x^3$. So our solution is given by the following.
+\beq
+\ds\int\ds\frac{1}{y^2}\,dy&=&\ds\int 5x^3\,dx+C\\
+-\ds\frac{1}{y}&=&\ds\frac{5}{4}x^4+C\\
+&\downarrow&\\
+y(x)&=&\ds\frac{1}{C-\ds\frac{5}{4}x^4}=\ds\frac{4}{C-5x^4}
+\eeq
+\vskip 5mm
+This is the {\bf\emph{general solution}}. Then different values of the constant $C$ give different solution behavior. 
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.5]{ode_family_solutions_gr07.jpg}
+\captionof{figure}{Family of Solutions to $y'=5y^2x^3$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm} 
+	\end{boxsolution}
+
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Question}:}} How do we determine the constant $C$? That is, which of the above graphs will be our desired solution?
+\vskip 5mm
+\noindent{\bf\emph{\underline{Answer}:}} An initial condition or starting state.
+
+\ifnum\longform=1
+\vfill\eject
+	\else
+\vskip 1cm
+
+\fi
+
+Suppose we knew that $y(0)=2$. We can use this information to solve for $C$. Why don't you give a try on your own.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\ifnum\longform=1
+\vskip 4in
+	\else
+\vfill\eject
+
+\fi
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+Setting $y=2$ and $x=0$ we get
+\[2=\ds\frac{4}{C-5\cdot 0^2}\quad\Longrightarrow\quad C=\ds\frac{1}{2}\]
+\vskip 5mm
+So we have an {\bf\emph{explicit solution}}.
+\[y(x)=\ds\frac{4}{\ds\frac{1}{2}-5x^2}=\ds\frac{8}{1-10x^2}\]
+\vskip 5mm
+\noindent{\bf\emph{\underline{Next Question}:}} Over what interval is the solution valid?
+\vskip 5mm
+Well we must satisfy $1-10x^2\not=0$ and so we satisfy $x\not=\pm\sqrt[4]{1/10}$. Then since our initial condition with $x=0$ is between $-\sqrt[4]{1/10}$ and $\sqrt[4]{1/10}$ our interval of validity is $\big(-\sqrt[4]{1/10},\sqrt[4]{1/10}\big)$. We can see the graph in the following diagram.
+\[\vdots\]
+%\vspace*{5mm} 
+	\end{boxsolution}
+
+\vskip 5mm
+
+\vfill\eject
+
+	\begin{boxsolutioncont}
+\vspace*{5mm}
+\[\vdots\]
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.4]{ode_explicit_solution_gr08.jpg}
+\captionof{figure}{Explicit Solution to $y'=5y^2x^3$ when $y(0)=2$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm} 
+	\end{boxsolutioncont}
+
+\vskip 5mm
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Let's try another example.
+\vskip 5mm
+
+\begin{example} Solve the initial value problem $y'=ky$ where $y(0)=y_0$ and $k\not=0$. This is a basic model for population growth or decay problems.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We first must separate the equation as $\left(\ds\frac{1}{y}\right)\cdot y'=ky$. Note that we are implicitly assuming $y\not=0$ in this step. We identify $n(y)=1/y$ and $m(x)=k$. So our solution is given by the following.
+\[\ds\int\ds\frac{1}{y}\,dy=\ds\int k\,dx+C.\]
+\vskip 5mm
+\beq
+\ds\int\ds\frac{1}{y}\,dy=\ds\int k\,dx+C\\
+\ln|y|&=&kx+C\\
+|y|&=&e^{kx+C}\\
+y(x)=Ce^{kx}
+\eeq
+This is our general solution. Then substituting $y(0)=y_0$ we get
+\[y_0=Ce^{0}\qquad\Longrightarrow\qquad y(x)=y_0e^{kx}.\]
+\vskip 5mm
+Clearly, the interval of validity is $(-\infty,\infty)$.
+\vspace*{5mm} 
+	\end{boxsolution}
+
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+Let's try another example.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 5mm
+
+\begin{example} Solve the initial value problem $y'=(2x+3)(y^2-4)$ where $y(0)=-1$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+\noindent{\bf\emph{\underline{Workspace Continued}:}}
+
+\vfill\eject
+
+\fi
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We first must separate the equation as $\left(\ds\frac{1}{y^2}\right)\cdot y'=5x^3$. We identify $n(y)=1/y^2$ and $m(x)=5x^3$. So our solution is given by the following.
+\[\ds\int\ds\frac{1}{y^2-4}\,dy=\ds\int 2x+3\,dx+C.\]
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0.5cm 0cm 0cm 0cm, clip=true, scale=0.7]{ode_solpt1_gr09.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+
+Next we have the following:
+
+\begin{minipage}[]{6.5in}
+\begin{flushleft}
+\includegraphics[trim= 0cm 0cm 2cm 0cm, clip=true, scale=0.75]{ode_solpt2_gr10.jpg}
+%\captionof{figure}{}
+\label{fig:}
+\end{flushleft}
+\end{minipage}
+
+This is an implicit description of our solution. It is possible to solve for $y$ by using properties of logarithms and then exponentiating both sides.
+\[\left|\ds\frac{y-2}{y+2}\right|=e^{4x^2+12x+C}=Ce^{4x^2+12x}\]
+We can remove the absolute values since our constant on the right-hand side of the equation can absorb the negative 1. We next rearrange to get
+\[y-2=C(y+2)e^{4x^2+12x}\quad\Longrightarrow\quad y\left(1-Ce^{4x^2+12x}\right)=2\left(1+Ce^{4x^2+12x}\right)\]
+Finally we have the general solution.
+\[y(x)=\ds\frac{2\left(1+Ce^{4x^2+12x}\right)}{1-Ce^{4x^2+12x}}\]
+\vskip 2mm
+We next need to solve for $C$ using $y(0)=-3$. Substituting into our solution we get
+\[-1=\ds\frac{2\left(1+Ce^{4\cdot0^2+12\cdot 0}\right)}{1-Ce^{4\cdot 0^2+12\cdot 0}}\quad\Longrightarrow\quad-1=\ds\frac{2(1+C)}{1-C}\quad\Longrightarrow\quad C=-3.\]
+So our explicit solution is given as
+\[y(x)=\ds\frac{2\left(1-3e^{4x^2+12x}\right)}{1+3e^{4x^2+12x}}\]
+Since the denominator is never zero the interval of validity for this solution is $(-\infty,\infty)$.
+\[\vdots\]
+\vspace*{5mm} 
+	\end{boxsolution}
+
+\vskip 5mm
+
+	\begin{boxsolutioncont}
+\vspace*{5mm}
+\[\vdots\]
+\vspace*{5mm}
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.75]{ode_solution_gr11.jpg}
+\captionof{figure}{Explicit Solution to $y'=(2x+3)(y^2-4)$ where $y(0)=-1$.}
+\label{fig:}
+\end{center}
+\end{minipage}
+\vspace*{5mm} 
+	\end{boxsolutioncont}
+
+\vskip 5mm
+
+\fi
+
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Let's try another example.
+\vskip 5mm
+
+\begin{example} Solve the initial value problem $y'=ky(M-y)$ where $y(0)=y_0$, $y\ge 0$, and $k>0$. This is a logistic model for population growth.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\noindent{\bf\emph{\underline{Workspace Cont}:}}
+
+\vfill\eject
+
+\ifnum\longform=1
+	\begin{boxsolution}
+\vspace*{5mm}
+We first must separate the equation as $\left(\ds\frac{1}{y(M-y)}\right)\cdot y'=ky$. Note that we are implicitly assuming $y\not=0$ in this step. We identify $n(y)=1/y(M-y)$ and $m(x)=k$. So our solution is given by the following.
+\[\ds\int\ds\frac{1}{y(M-y)}\,dy=\ds\int k\,dx+C.\]
+\vskip 5mm
+Our first step is partial fraction decomposition of the left side.
+\[\ds\frac{1}{y(M-y)}=\ds\frac{A}{y}+\ds\frac{B}{M-y}=\ds\frac{1}{M}\left(\ds\frac{1}{y}+\ds\frac{1}{M-y}\right).\]
+\beq
+\ds\int\ds\frac{1}{y(M-y)}\,dy=\ds\int k\,dx+C\\
+\ds\frac{1}{M}\ds\int\ds\frac{1}{y}+\ds\frac{1}{M-y}\,dy&=&\ds\int k\,dx+C\\
+\ds\frac{1}{M}\Big(\ln|y|-\ln|M-y|\Big)&=&kx+C\\
+\ds\frac{1}{M}\ln\left|\ds\frac{y}{M-y}\right|&=&kx+C\\
+\ln\left|\ds\frac{y}{M-y}\right|&=&Mkx+C\\
+\ds\frac{y}{M-y}&=&Ce^{Mkx}\\
+&\vdots&\\
+y(x)&=&\ds\frac{M}{1+Ce^{-Mkx}}
+\eeq
+This is our general solution. If we let $y(0)=y_0$ then we have $C=(M-y_0)/y_0$. Clearly, the interval of validity is $(-\infty,\infty)$.
+\vspace*{5mm} 
+	\end{boxsolution}
+
+\vskip 5mm
+
+\noindent{\bf\emph{\underline{Question}:}} Think about why this population growth model might be an improvement over our exponential growth model from before. You can see the plot of the family of solution functions on the next page in Figure \ref{fig:family_solutions}. where we have $k=2$ and $M=10$.
+
+\vfill\eject
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.4]{ode_family_solutions_gr12.jpg}
+\captionof{figure}{Family of Solutions to $y'=2y(10-y)$.}
+\label{fig:family_solutions}
+\end{center}
+\end{minipage}
+
+\vskip 1cm
+
+This ends these notes on separable differential equations.
+
+\fi
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifnum\longform=1
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
