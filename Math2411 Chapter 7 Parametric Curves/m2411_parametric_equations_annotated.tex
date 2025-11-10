@@ -1,0 +1,314 @@
+\documentclass[11pt]{article}
+\usepackage[suffix=Solutions]{teaching-header}
+
+\input{classinfo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This is defined in the teaching-header style file
+%\ifnum\printsol=0 (when no solutions printed)
+%Do something
+%	\else  (when solutions are printed)
+%Do something else
+%\fi
+
+
+% Package and setting included in teachin-header style file
+%\RequirePackage{amsmath,amsfonts,amssymb,amsthm,graphicx, pgfplots, tcolorbox, xcolor,latexsym,color,verbatim,float,xcolor,setspace}
+%%tikzsymbols
+%
+%\RequirePackage{enumerate}
+%\RequirePackage{multicol}
+%\RequirePackage{tikz}
+%\RequirePackage{cancel}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{calc, positioning, arrows}
+%\RequirePackage[margin=1in,letterpaper]{geometry}
+%\RequirePackage[colorlinks=true,allcolors=blue]{hyperref}
+%\usepackage[final]{pdfpages}
+%%\usepackage{capt-of}
+%
+%
+%\setlength{\textheight}{9in}
+%\setlength{\textwidth}{6.5in}
+%\addtolength{\topmargin}{0cm}
+%%\addtolength{\oddsidemargin}{0cm}
+%\parindent=0in
+%\parskip=.35em
+%\singlespacing
+%%\pagestyle{empty}  % remove page numbers
+
+%Add captions without being in figure environment
+%\captioof{figure}{\text}\label[fig:]
+\usepackage{capt-of}
+\usepackage{mathtools}
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%   Document Body   %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Information from classinfo.tex file
+%\def\classnum{2411}
+%\def\classtitle{Calculus II}
+%\def\classtitleshort{Calc 2}
+%\def\classsec{001}
+%\def\instructor{Rostermundt}
+%\def\classterm{Fall 2024}
+\def\topic{Parametric Equations}
+\def\topicshort{Parametric Equations}
+
+	\title{\vspace{-1in}Math\classnum\;-\;\classtitle\\
+	%Section\;\classsec\;-\;\classterm\\
+	Guided Lecture Notes\\
+	\topic}
+	\author{University of Colorado Denver / College of Liberal Arts and Sciences}
+	\date{Department of Mathematics}
+
+	\markright{Math\classnum\;-\;\classtitleshort, University of Colorado Denver,\;\topicshort}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\maketitle\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+
+\section*{\topic\, Introduction:}
+
+Our objective is to examine parametric equations and their graphs. In the two-dimensional coordinate system, parametric
+equations are useful for describing curves that are not necessarily functions. The parameter is an independent variable that
+both $x$ and $y$ depend on, and as the parameter increases, the values of $x$ and $y$ trace out a path along a plane curve. For
+example, if the parameter is $t$ (a common choice), then t might represent time. Then $x$ and $y$ are defined as functions of time,
+and $(x(t),y(t))$ can describe the position in the plane of a given object as it moves along a curved path. One example could be describing the orbit of the Earth around the sun.
+
+\vskip 5mm
+
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[scale=0.6]{earth_orbit.jpg}
+\captionof{figure}{Coordinate Axes Superimposed on the Orbit of Earth}
+\label{fig:orbit}
+\end{center}
+\end{minipage}
+
+\vskip 1cm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0.4cm 0cm 0cm, clip=true, scale=0.7]{parametric_curve_def_pt1.jpg}
+\includegraphics[trim= 0cm 0cm 0.1cm 0.3cm, clip=true, scale=0.7]{parametric_curve_def_pt2.jpg}
+%\captionof{figure}{}
+\label{fig:def}
+\end{center}
+\end{minipage}
+
+\vfill\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Parametric Curve Examples:}
+
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.7]{parametric_curve_gr1.jpg}
+\captionof{figure}{Graph of Parametric Curve with $x(t)=t-1$ and $y(t)=2t+4$ where $-3\le t\le 2$}
+\label{fig:parametricgr1}
+\end{center}
+\vskip 1cm
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.7]{parametric_curve_gr2.jpg}
+\captionof{figure}{Graph of Parametric Curve with $x(t)=t^2-3$ and $y(t)=2t+1$ where $-2\le t\le 3$}
+\label{fig:parametricgr2}
+\end{center}
+\end{minipage}
+	
+\vfill\eject
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.7]{parametric_curve_gr3.jpg}
+\captionof{figure}{Graph of Parametric Curve with $x(t)=4\cos(t)$ and $y(t)=4\sin(t)$ where $0\le t\le 2\pi$}
+\label{fig:parametricgr3}
+\end{center}
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Eliminating the Parameter:}
+
+Suppose we have a parametric curve described as $x(t)=t-1$ and $y(t)=2t+4$ where $-3\le t\le 2$. Can we write this in the form $y=f(x)$? This is called eliminating the parameter.
+\vskip 5mm
+If possible, solve $x=x(t)$ for $t$. $x=t-1$ gives us $t=x+1$. Then substitute back into $y(t)=2t+4$ to get
+\[y=2t+4=2(x+1)+4=2x+6.\]
+Because $-3\le t\le 2$ we have $-3\le x+1\le 2$ or $-4\le x\le 1$. So the parametric curve is the same graph as the straight line given by $y=2x+6$ on the interval $[-4,1]$. This agrees with our earlier sketch of the parametric curve.
+\vskip 5mm
+Let's have you work an example independently.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 5mm
+\begin{example} Eliminate the parameter for the parametric curve given by $x(t)=4\cos(t)$ and $y(t)=4\sin(t)$ where $0\le t\le 2\pi$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\shortform=1
+	\begin{boxsolution}
+We could try to solve $x(t)=4\cos(t)$ for $t$ arriving at $t=\cos^{-1}(x/4)$ so that 
+\[y=\sin\left(\cos^{-1}\left(\ds\frac{x}{4}\right)\right)\]
+where $0\le t\le 2\pi$ is equivalent to $-4\le x\le 4$. Some basic trigonometry allows us to write
+\[y=\pm\sqrt{16-x^2}\]
+with $-4\le x\le 4$ which is the equation of a circle of radius 4. Maybe there is an easier approach?
+\vskip 1cm
+Fortunately, there is! We can also proceed as follows: $x(t)=4\cos(t)$ and $y(t)=4\sin(t)$ implies
+\[x^2+y^2=16\cos^2(t)+16\sin^2(t)=16\quad\Longrightarrow\quad y=\pm\sqrt{16-x^2}.\]
+	\end{boxsolution}
+\fi
+
+
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 5mm
+\begin{example} Eliminate the parameter for the parametric curve given by $x(t)=t^2-3$ and $y(t)=2t+1$ where $-2\le t\le 3$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\shortform=1
+	\begin{boxsolution}
+Let's solve $y(t)=2t+1$ for $t$ getting $t=(y-1)/2$. Now a substitution gives us
+\[x=t^2-3=\left(\ds\frac{y-1}{2}\right)^2-3=\ds\frac{1}{4}\big(y-1\big)^2-3.\]
+Moreover, $-2\le t\le 3$ is gives us $-2\le (y-1)/2\le 3$ which is equivalent to $-3\le y\le 7$. So the parametric curve is the as the graph of
+\[x=\ds\frac{1}{4}\big(y-1\big)^2-3\]
+which is a scaled parabola whose vertex is shifted up one unit and left 3 units on the interval $-3\le y\le 7$. This agrees with the previous graph. 
+	\end{boxsolution}
+\fi
+	
+\end{example}
+
+\vskip 5mm
+Let's work another example.
+\vskip 5mm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vskip 5mm
+\begin{example} Eliminate the parameter for the parametric curve given by $x(t)=\sqrt{2t+4}$ and $y(t)=2t+1$ where $-2\le t\le 6$.
+\vskip 5mm
+\noindent{\bf\emph{\underline{Workspace}:}}
+
+\vfill\eject
+
+\ifnum\shortform=1
+	\begin{boxsolution}
+Let's solve $x(t)=\sqrt{2t+4}$ for $t$ getting $t=(x^2-4)/2$. Now a substitution gives us
+\[y=2t+1=2\left(\ds\frac{x^2-4}{2}\right)+1=x^2-3.\]
+Moreover, $-2\le t\le 6$ is gives us $-2\le (x^2-4)/2\le 6$ which is equivalent to $0\le x\le 4$ since $\sqrt{2t+4}$ in increasing. So the parametric curve is the as the graph of
+\[y=x^2-3\]
+on the interval $0\le x\le 4$.
+
+\vskip 1cm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.7]{parametric_curve_gr4.jpg}
+\captionof{figure}{Parametric Curve with $x(t)=\sqrt{2t+4}$ and $y(t)=2t+1$ where $-2\le t\le 6$}
+\label{fig:parametricgr4}
+\end{center}
+\end{minipage}
+
+\vspace*{1cm}
+
+	\end{boxsolution}
+\fi
+
+\end{example}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 
+\section*{Parameterize a Curve:}
+
+Suppose we have $y=2x^2-3$ for all $x$-values. The simplest way to parameterize the curve is to let $x(t)=t$ and $y(t)=2t^2-3$. But this is not the only choice. We could choose any $x(t)$ that takes on all $x$-values. For example, we could let $x(t)=3t-2$ for all $t$-values. Then we have
+\[y(t)=2x^2-3=2\big(3t-2\big)^2-3=18t^2-24t+6.\] 
+We have the parametric curve $x(t)=3t-2$ and $y(t)=18t^2-24t+6$ for all $t$-values.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\ifnum\shortform=1
+\section*{An Interesting Example - The Cycloid:}
+
+Imagine going on a bicycle ride through the country. The tires stay in contact with the road and rotate in a predictable
+pattern. Now suppose a very determined ant is tired after a long day and wants to get home. So he hangs onto the side of
+the tire and gets a free ride. The path that this ant travels down a straight road is called a {\bf\emph{cycloid}}. A cycloid
+generated by a circle (or bicycle wheel) of radius $a$ is given by the parametric equations
+\[x(t)=a\big(t-\sin t\big)\qquad y(t)=a\big(1-\cos t\big).\]
+
+\vskip 5mm
+
+\begin{minipage}[]{6.5in}
+\begin{center}
+\includegraphics[trim= 0cm 0cm 0cm 0cm, clip=true, scale=0.7]{cycloid_graphic.jpg}
+\captionof{figure}{Graph of Cycloid Curve with $x(t)=a\big(t-\sin t\big)$ and $y(t)=a\big(1-\cos t\big)$}
+\label{fig:cycloid}
+\end{center}
+\end{minipage}
+\vskip 5mm
+There are many interesting variations and applications of cycloid curves. Anyone who is interested can easily find many resources about cycloid curves.
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vskip 1cm
+\hrule
+\vskip 5mm
+\begin{center}{\bf Please let me know if you have any questions, comments, or corrections!}
+\end{center}	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
